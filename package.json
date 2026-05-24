@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "node migrate.js && node server.js",
+    "start": "node server.js",
     "dev": "node server.js",
     "build": "echo skip",
     "migrate": "node migrate.js"
