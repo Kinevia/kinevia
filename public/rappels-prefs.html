@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gérer mes rappels — Kinévia</title>
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="icon" href="/favicon.png" type="image/png">
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#38BDF8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background: #f8fafc; }
+    .gradient-bg { background: linear-gradient(135deg, #38BDF8, #2DD4BF); }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center px-4 py-12">
+
+  <!-- Logo / Header -->
+  <div class="mb-8 text-center">
+    <div class="inline-flex items-center gap-2 mb-3">
+      <div class="gradient-bg w-9 h-9 rounded-xl flex items-center justify-center">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+        </svg>
+      </div>
+      <span class="text-xl font-bold text-slate-800">Kinévia</span>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div id="loading" class="text-center">
+    <div class="w-8 h-8 border-4 border-sky-500 border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
+    <p class="text-slate-500 text-sm">Chargement...</p>
+  </div>
+
+  <!-- Error -->
+  <div id="error-view" class="hidden max-w-md w-full bg-white rounded-2xl shadow-sm border border-slate-200 p-8 text-center">
+    <div class="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+      <svg class="w-7 h-7 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+      </svg>
+    </div>
+    <h2 class="text-lg font-semibold text-slate-800 mb-2">Lien invalide</h2>
+    <p class="text-slate-500 text-sm">Ce lien de gestion des rappels est invalide ou a expiré.</p>
+  </div>
+
+  <!-- Main Card -->
+  <div id="main-view" class="hidden max-w-md w-full">
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+      <!-- Header -->
+      <div class="gradient-bg px-6 py-5">
+        <h1 class="text-white font-semibold text-lg">Mes préférences de rappels</h1>
+        <p id="patient-name" class="text-white/80 text-sm mt-0.5"></p>
+      </div>
+
+      <!-- Content -->
+      <div class="p-6">
+
+        <!-- État actuel -->
+        <div class="mb-6">
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-sm font-medium text-slate-700">Rappels par email</span>
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" id="toggle-rappels" class="sr-only peer">
+              <div class="w-11 h-6 bg-slate-200 rounded-full peer peer-checked:bg-sky-500 peer-focus:ring-2 peer-focus:ring-sky-300 transition-colors after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-5"></div>
+            </label>
+          </div>
+          <p class="text-xs text-slate-400">Activez ou désactivez tous les rappels automatiques</p>
+        </div>
+
+        <!-- Fréquence préférée -->
+        <div id="freq-section" class="mb-6">
+          <label class="block text-sm font-medium text-slate-700 mb-2">
+            Ma fréquence préférée
+          </label>
+          <p class="text-xs text-slate-400 mb-3">
+            Si vous définissez votre fréquence, elle est prioritaire sur celle choisie par votre kiné.
+          </p>
+          <select id="delai-select"
+                  class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500">
+            <option value="">Utiliser la fréquence de mon kiné (par défaut)</option>
+            <option value="1">Tous les jours</option>
+            <option value="2">Tous les 2 jours</option>
+            <option value="3">Tous les 3 jours</option>
+            <option value="4">Tous les 4 jours</option>
+            <option value="5">Tous les 5 jours</option>
+            <option value="7">Une fois par semaine</option>
+            <option value="10">Tous les 10 jours</option>
+            <option value="14">Tous les 14 jours</option>
+          </select>
+        </div>
+
+        <!-- Actions rapides -->
+        <div class="space-y-2 mb-6">
+          <button id="btn-pause"
+                  class="w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 hover:bg-slate-50 text-left transition-colors group">
+            <div class="w-9 h-9 rounded-lg bg-amber-100 flex items-center justify-center shrink-0">
+              <svg class="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-sm font-medium text-slate-700">Mettre en pause</div>
+              <div class="text-xs text-slate-400">Suspendre temporairement les rappels</div>
+            </div>
+          </button>
+
+          <button id="btn-unsubscribe"
+                  class="w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 hover:bg-red-50 hover:border-red-200 text-left transition-colors group">
+            <div class="w-9 h-9 rounded-lg bg-red-100 flex items-center justify-center shrink-0">
+              <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-sm font-medium text-slate-700 group-hover:text-red-600">Se désabonner</div>
+              <div class="text-xs text-slate-400">Ne plus jamais recevoir de rappels</div>
+            </div>
+          </button>
+        </div>
+
+        <!-- Save button -->
+        <button id="btn-save"
+                class="w-full gradient-bg text-white font-semibold py-3 rounded-xl hover:opacity-90 transition-opacity text-sm">
+          Enregistrer mes préférences
+        </button>
+
+        <!-- Success message -->
+        <div id="success-msg" class="hidden mt-4 flex items-center gap-2 text-emerald-600 text-sm justify-center">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          Préférences enregistrées
+        </div>
+      </div>
+    </div>
+
+    <p class="text-center text-xs text-slate-400 mt-4">
+      Kinévia · Suivi de rééducation · <a href="/confidentialite" class="underline">Politique de confidentialité</a>
+    </p>
+  </div>
+
+  <script>
+    const token = location.pathname.split('/rappels/')[1];
+    let prefs = {};
+
+    async function loadPrefs() {
+      try {
+        const action = new URLSearchParams(location.search).get('action');
+
+        const res = await fetch(`/api/rappels/prefs/${token}`);
+        if (!res.ok) throw new Error('not found');
+        prefs = await res.json();
+
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('main-view').classList.remove('hidden');
+
+        document.getElementById('patient-name').textContent = `Bonjour ${prefs.prenom}`;
+        document.getElementById('toggle-rappels').checked = prefs.rappels_actifs;
+        document.getElementById('delai-select').value = prefs.delai_jours_patient || '';
+
+        // Quick actions from URL
+        if (action === 'pause' || action === 'unsubscribe') {
+          await handleQuickAction(action === 'pause');
+        }
+      } catch (e) {
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('error-view').classList.remove('hidden');
+      }
+    }
+
+    async function savePrefs(rappels_actifs, delai_jours_patient) {
+      const body = { rappels_actifs };
+      if (delai_jours_patient !== undefined) {
+        body.delai_jours_patient = delai_jours_patient;
+      }
+      const res = await fetch(`/api/rappels/prefs/${token}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      return res.ok;
+    }
+
+    async function handleQuickAction(pause) {
+      // pause = true → pause (rappels_actifs=false), false → unsubscribe (rappels_actifs=false)
+      const ok = await savePrefs(false, null);
+      if (ok) {
+        document.getElementById('toggle-rappels').checked = false;
+        showSuccess();
+      }
+    }
+
+    function showSuccess() {
+      const msg = document.getElementById('success-msg');
+      msg.classList.remove('hidden');
+      setTimeout(() => msg.classList.add('hidden'), 3000);
+    }
+
+    document.getElementById('btn-save').addEventListener('click', async () => {
+      const rappels_actifs = document.getElementById('toggle-rappels').checked;
+      const delaiVal = document.getElementById('delai-select').value;
+      const delai_jours_patient = delaiVal ? parseInt(delaiVal, 10) : null;
+
+      const ok = await savePrefs(rappels_actifs, delai_jours_patient);
+      if (ok) showSuccess();
+    });
+
+    document.getElementById('btn-pause').addEventListener('click', async () => {
+      document.getElementById('toggle-rappels').checked = false;
+      await savePrefs(false, null);
+      showSuccess();
+    });
+
+    document.getElementById('btn-unsubscribe').addEventListener('click', async () => {
+      if (!confirm('Vous ne recevrez plus aucun rappel. Confirmer ?')) return;
+      document.getElementById('toggle-rappels').checked = false;
+      await savePrefs(false, null);
+      showSuccess();
+    });
+
+    loadPrefs();
+  </script>
+
+    <!-- PWA Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js')
+            .then(function(reg) { console.log('[SW] Registered:', reg.scope); })
+            .catch(function(err) { console.warn('[SW] Registration failed:', err); });
+        });
+      }
+    </script>
+</body>
+</html>

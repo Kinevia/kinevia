@@ -1,0 +1,26 @@
+<svg width="140" height="40" viewBox="0 0 140 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kinévia">
+  <defs>
+    <linearGradient id="nav-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1DADE4"/>
+      <stop offset="100%" stop-color="#0E7FA8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Icon background -->
+  <rect width="40" height="40" rx="10" fill="url(#nav-bg)"/>
+
+  <!-- K letterform — vertical stem -->
+  <rect x="11" y="9" width="5.5" height="22" rx="2.5" fill="white"/>
+
+  <!-- Upper arm -->
+  <line x1="13.5" y1="20" x2="29.5" y2="9" stroke="white" stroke-width="5.5" stroke-linecap="round"/>
+
+  <!-- Lower arm (distinctive lighter turquoise — Kinévia brand mark) -->
+  <line x1="13.5" y1="20" x2="28" y2="31" stroke="#5ED8E4" stroke-width="5.5" stroke-linecap="round"/>
+
+  <!-- Turquoise circle at end of lower arm -->
+  <circle cx="29.5" cy="31.5" r="3.5" fill="#5ED8E4"/>
+
+  <!-- "Kinévia" wordmark -->
+  <text x="50" y="27" font-family="Inter, -apple-system, system-ui, sans-serif" font-size="18" font-weight="700" fill="#1e293b" letter-spacing="-0.5">Kiné<tspan fill="#1DADE4">via</tspan></text>
+</svg>

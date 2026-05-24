@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votre avis compte — Kinévia bêta</title>
+    <meta name="description" content="Partagez votre retour d'expérience sur Kinévia. Votre avis nous aide à améliorer l'outil pour tous les kinésithérapeutes.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Satoshi:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --teal: #38BDF8;
+            --teal-dark: #0EA5E9;
+            --teal-light: #E0F2FE;
+            --ink: #0f172a;
+            --ink-soft: #1e293b;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --surface: #f8fafc;
+            --white: #ffffff;
+            --amber: #f59e0b;
+            --amber-light: #fef3c7;
+            --green: #10b981;
+            --green-light: #d1fae5;
+            --red: #ef4444;
+            --red-light: #fee2e2;
+        }
+
+        body {
+            font-family: 'Satoshi', -apple-system, sans-serif;
+            background: var(--surface);
+            color: var(--ink);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--ink);
+            text-decoration: none;
+            letter-spacing: -0.3px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo img { width: 28px; height: 28px; border-radius: 6px; object-fit: cover; flex-shrink: 0; }
+        .logo .via { color: var(--teal); }
+
+        /* ─── LAYOUT ─── */
+        .page-wrap {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        /* ─── HEADER ─── */
+        .page-header {
+            text-align: center;
+            padding: 40px 0 48px;
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--teal-light);
+            color: var(--teal-dark);
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 100px;
+            margin-bottom: 20px;
+        }
+        .badge-dot {
+            width: 6px; height: 6px;
+            background: var(--teal);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+        h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            line-height: 1.15;
+            color: var(--ink);
+            letter-spacing: -0.02em;
+            margin-bottom: 14px;
+        }
+        h1 em { font-style: italic; color: var(--teal); }
+        .page-sub {
+            font-size: 1.05rem;
+            color: var(--muted);
+            max-width: 480px;
+            margin: 0 auto;
+            line-height: 1.65;
+        }
+
+        /* ─── FORM CARD ─── */
+        .form-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px 44px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+        }
+
+        .section-title {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* ─── QUESTION BLOCK ─── */
+        .question-block {
+            margin-bottom: 32px;
+        }
+        .question-label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--ink-soft);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .q-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            background: var(--teal-light);
+            color: var(--teal-dark);
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .question-hint {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-bottom: 14px;
+            margin-left: 30px;
+        }
+
+        /* ─── STAR RATING ─── */
+        .star-group {
+            display: flex;
+            gap: 8px;
+            margin-left: 30px;
+        }
+        .star-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 2px;
+            transition: transform 0.1s;
+        }
+        .star-btn:hover { transform: scale(1.15); }
+        .star-btn svg {
+            width: 36px;
+            height: 36px;
+            fill: var(--border);
+            stroke: var(--border);
+            transition: fill 0.15s, stroke 0.15s;
+        }
+        .star-btn.active svg,
+        .star-btn.hover svg {
+            fill: var(--amber);
+            stroke: var(--amber);
+        }
+        .star-label {
+            margin-left: 30px;
+            margin-top: 6px;
+            font-size: 0.82rem;
+            color: var(--muted);
+            min-height: 18px;
+        }
+
+        /* ─── TEXTAREA ─── */
+        textarea {
+            width: 100%;
+            padding: 13px 16px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 0.95rem;
+            color: var(--ink);
+            background: var(--surface);
+            resize: vertical;
+            min-height: 100px;
+            line-height: 1.55;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+            margin-left: 0;
+        }
+        textarea:focus {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.12);
+            background: var(--white);
+        }
+        textarea::placeholder { color: #94a3b8; }
+
+        /* ─── RECOMMENDATION BUTTONS ─── */
+        .recomm-group {
+            display: flex;
+            gap: 12px;
+            margin-left: 30px;
+            flex-wrap: wrap;
+        }
+        .recomm-btn {
+            padding: 10px 20px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--muted);
+            background: var(--surface);
+            cursor: pointer;
+            transition: border-color 0.15s, color 0.15s, background 0.15s, transform 0.1s;
+        }
+        .recomm-btn:hover {
+            border-color: var(--teal);
+            color: var(--teal-dark);
+            background: var(--teal-light);
+            transform: translateY(-1px);
+        }
+        .recomm-btn.active-oui {
+            border-color: var(--green);
+            color: var(--green);
+            background: var(--green-light);
+        }
+        .recomm-btn.active-non {
+            border-color: var(--red);
+            color: var(--red);
+            background: var(--red-light);
+        }
+        .recomm-btn.active-peut-etre {
+            border-color: var(--amber);
+            color: var(--amber);
+            background: var(--amber-light);
+        }
+
+        /* ─── CONTACT FIELD ─── */
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 0.95rem;
+            color: var(--ink);
+            background: var(--surface);
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+        input[type="text"]:focus {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.12);
+            background: var(--white);
+        }
+        input[type="text"]::placeholder { color: #94a3b8; }
+
+        /* ─── OPTIONAL BADGE ─── */
+        .optional-tag {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--muted);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 2px 8px;
+            border-radius: 6px;
+            margin-left: 6px;
+        }
+
+        /* ─── DIVIDER ─── */
+        .divider { height: 1px; background: var(--border); margin: 28px 0; }
+
+        /* ─── SUBMIT ─── */
+        .btn-submit {
+            width: 100%;
+            padding: 16px 24px;
+            background: var(--teal);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-submit:hover { background: var(--teal-dark); }
+        .btn-submit:active { transform: scale(0.99); }
+        .btn-submit:disabled { background: #94a3b8; cursor: not-allowed; }
+        .submit-note {
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--muted);
+            margin-top: 12px;
+        }
+
+        /* ─── ERRORS ─── */
+        .field-error {
+            font-size: 0.82rem;
+            color: var(--red);
+            margin-top: 6px;
+            margin-left: 30px;
+            display: none;
+        }
+        .field-error.visible { display: block; }
+        #submit-error {
+            color: var(--red);
+            font-size: 0.88rem;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* ─── SUCCESS STATE ─── */
+        .success-screen {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .success-icon {
+            width: 72px; height: 72px;
+            background: var(--green-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+        .success-icon svg { width: 32px; height: 32px; stroke: var(--green); }
+        .success-screen h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.9rem;
+            color: var(--ink);
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+        .success-screen p {
+            font-size: 1rem;
+            color: var(--muted);
+            line-height: 1.65;
+            max-width: 380px;
+            margin: 0 auto 28px;
+        }
+        .success-back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 22px;
+            background: var(--teal-light);
+            color: var(--teal-dark);
+            border: none;
+            border-radius: 10px;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .success-back-btn:hover { background: #bae6fd; }
+
+        /* ─── FOOTER ─── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 28px 40px;
+            max-width: 760px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .footer-brand { font-size: 0.88rem; font-weight: 600; color: var(--ink); }
+        .footer-brand span { color: var(--teal); }
+        .footer-links { display: flex; gap: 18px; }
+        .footer-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.83rem;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--ink); }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 640px) {
+            nav { padding: 16px 20px; }
+            .page-wrap { padding: 0 16px 60px; }
+            .form-card { padding: 28px 20px; }
+            .page-header { padding: 30px 0 36px; }
+            .star-group { gap: 5px; }
+            .star-btn svg { width: 30px; height: 30px; }
+            footer { padding: 20px; flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="/" class="logo">
+        <img src="/icons/icon-96.png" alt="Kinévia">
+        Kiné<span class="via">via</span>
+    </a>
+    <a href="/connexion" style="color:var(--muted);text-decoration:none;font-size:0.88rem;font-weight:500;">Connexion →</a>
+</nav>
+
+<div class="page-wrap">
+    <div class="page-header">
+        <div class="badge"><span class="badge-dot"></span>Bêta-testeurs</div>
+        <h1>Votre avis sur <em>Kinévia</em><br>compte vraiment</h1>
+        <p class="page-sub">5 questions, 2 minutes. Votre retour nous aide à construire l'outil que les kinés méritent.</p>
+    </div>
+
+    <div class="form-card">
+        <!-- Form -->
+        <div id="feedback-form-wrap">
+            <div class="section-title">Votre expérience</div>
+
+            <!-- Q1 — Note globale -->
+            <div class="question-block">
+                <div class="question-label">
+                    <span class="q-num">1</span>
+                    Comment évalues-tu Kinévia dans l'ensemble ?
+                </div>
+                <div class="question-hint">Donne une note de 1 (pas convaincu) à 5 (excellent)</div>
+                <div class="star-group" data-field="note_globale">
+                    <button type="button" class="star-btn" data-value="1" aria-label="1 étoile">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+                    </button>
+                    <button type="button" class="star-btn" data-value="2" aria-label="2 étoiles">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+                    </button>
+                    <button type="button" class="star-btn" data-value="3" aria-label="3 étoiles">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+                    </button>
+                    <button type="button" class="star-btn" data-value="4" aria-label="4 étoiles">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+                    </button>
+                    <button type="button" class="star-btn" data-value="5" aria-label="5 étoiles">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+                    </button>
+                </div>
+                <div class="star-label" id="label-note_globale"></div>
+                <div class="field-error" id="error-note_globale">Merci de donner une note globale.</div>
+            </div>
+
+            <!-- Q2 — Facilité d'utilisation -->
+            <div class="question-block">
+                <div class="question-label">
+                    <span class="q-num">2</span>
+                    L'outil est-il facile à prendre en main ?
+                </div>
+                <div class="question-hint">1 = difficile, 5 = très intuitif</div>
+                <div class="star-group" data-field="facilite_utilisation">
+                    <button type="button" class="star-btn" data-value="1" aria-label="1 étoile">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+                    </button>
+                    <button type="button" class="star-btn" data-value="2" aria-label="2 étoiles">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+                    </button>
+                    <button type="button" class="star-btn" data-value="3" aria-label="3 étoiles">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+                    </button>
+                    <button type="button" class="star-btn" data-value="4" aria-label="4 étoiles">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+                    </button>
+                    <button type="button" class="star-btn" data-value="5" aria-label="5 étoiles">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+                    </button>
+                </div>
+                <div class="star-label" id="label-facilite_utilisation"></div>
+                <div class="field-error" id="error-facilite_utilisation">Merci de noter la facilité d'utilisation.</div>
+            </div>
+
+            <div class="divider"></div>
+            <div class="section-title">Ce que tu penses</div>
+
+            <!-- Q3 — Fonctionnalité préférée -->
+            <div class="question-block">
+                <div class="question-label">
+                    <span class="q-num">3</span>
+                    Quelle fonctionnalité t'a le plus convaincu(e) ?
+                    <span class="optional-tag">Optionnel</span>
+                </div>
+                <textarea id="fonctionnalite_preferee" name="fonctionnalite_preferee" placeholder="Ex. la génération de programmes, les bilans, le suivi de douleur…" rows="3"></textarea>
+            </div>
+
+            <!-- Q4 — Ce qui manque -->
+            <div class="question-block">
+                <div class="question-label">
+                    <span class="q-num">4</span>
+                    Qu'est-ce qui manque ou devrait être amélioré ?
+                    <span class="optional-tag">Optionnel</span>
+                </div>
+                <textarea id="ameliorations" name="ameliorations" placeholder="Dis-nous franchement — chaque retour est précieux." rows="3"></textarea>
+            </div>
+
+            <div class="divider"></div>
+            <div class="section-title">Pour finir</div>
+
+            <!-- Q5 — Recommandation -->
+            <div class="question-block">
+                <div class="question-label">
+                    <span class="q-num">5</span>
+                    Recommanderais-tu Kinévia à un(e) collègue ?
+                </div>
+                <div class="question-hint">Sois honnête !</div>
+                <div class="recomm-group" id="recomm-group">
+                    <button type="button" class="recomm-btn" data-value="oui">👍 Oui</button>
+                    <button type="button" class="recomm-btn" data-value="peut-etre">🤔 Peut-être</button>
+                    <button type="button" class="recomm-btn" data-value="non">👎 Non</button>
+                </div>
+                <div class="field-error" id="error-recommandation">Merci de sélectionner une option.</div>
+            </div>
+
+            <!-- Contact optionnel -->
+            <div class="question-block">
+                <div class="question-label">
+                    Ton nom et/ou email <em>(pour qu'on puisse te recontacter)</em>
+                    <span class="optional-tag">Optionnel</span>
+                </div>
+                <input type="text" id="contact_nom_email" name="contact_nom_email" placeholder="Prénom Nom ou email@exemple.fr" autocomplete="name email">
+            </div>
+
+            <div id="submit-error"></div>
+
+            <button type="button" class="btn-submit" id="submit-btn" onclick="submitFeedback()">
+                <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                </svg>
+                Envoyer mon feedback
+            </button>
+            <p class="submit-note">Anonyme si tu ne renseignes pas ton contact · Données protégées RGPD</p>
+        </div>
+
+        <!-- Success state -->
+        <div class="success-screen" id="success-screen">
+            <div class="success-icon">
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                </svg>
+            </div>
+            <h2>Merci pour ton retour !</h2>
+            <p>Ton feedback nous aide directement à améliorer Kinévia. Chaque avis compte — vraiment.</p>
+            <a href="/" class="success-back-btn">← Retour à Kinévia</a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-brand">Kin<span>évia</span></div>
+    <div class="footer-links">
+        <a href="/mentions-legales">Mentions légales</a>
+        <a href="/confidentialite">Confidentialité</a>
+    </div>
+</footer>
+
+<script>
+    // ─── Star rating logic ───
+    const starLabels = {
+        1: 'Pas du tout satisfait(e)',
+        2: 'Peu satisfait(e)',
+        3: 'Assez satisfait(e)',
+        4: 'Satisfait(e)',
+        5: 'Très satisfait(e) ⭐'
+    };
+    const faciliteLabels = {
+        1: 'Très difficile à utiliser',
+        2: 'Difficile',
+        3: 'Correct',
+        4: 'Facile',
+        5: 'Très intuitif ✨'
+    };
+
+    const ratings = { note_globale: 0, facilite_utilisation: 0 };
+
+    function setupStarGroup(groupEl) {
+        const field = groupEl.dataset.field;
+        const stars = groupEl.querySelectorAll('.star-btn');
+        const labelEl = document.getElementById('label-' + field);
+        const labelsMap = field === 'note_globale' ? starLabels : faciliteLabels;
+
+        stars.forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                const val = parseInt(btn.dataset.value, 10);
+                stars.forEach(s => {
+                    s.classList.toggle('hover', parseInt(s.dataset.value, 10) <= val);
+                });
+                labelEl.textContent = labelsMap[val];
+            });
+            btn.addEventListener('mouseleave', () => {
+                stars.forEach(s => s.classList.remove('hover'));
+                labelEl.textContent = ratings[field] ? labelsMap[ratings[field]] : '';
+            });
+            btn.addEventListener('click', () => {
+                const val = parseInt(btn.dataset.value, 10);
+                ratings[field] = val;
+                stars.forEach(s => {
+                    s.classList.toggle('active', parseInt(s.dataset.value, 10) <= val);
+                });
+                labelEl.textContent = labelsMap[val];
+                document.getElementById('error-' + field).classList.remove('visible');
+            });
+        });
+    }
+
+    document.querySelectorAll('.star-group').forEach(setupStarGroup);
+
+    // ─── Recommendation buttons ───
+    let recommandation = '';
+    document.querySelectorAll('.recomm-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            recommandation = btn.dataset.value;
+            document.querySelectorAll('.recomm-btn').forEach(b => {
+                b.classList.remove('active-oui', 'active-non', 'active-peut-etre');
+            });
+            btn.classList.add('active-' + recommandation.replace('-', '-'));
+            document.getElementById('error-recommandation').classList.remove('visible');
+        });
+    });
+
+    // ─── Submit ───
+    async function submitFeedback() {
+        let hasError = false;
+
+        if (!ratings.note_globale) {
+            document.getElementById('error-note_globale').classList.add('visible');
+            hasError = true;
+        }
+        if (!ratings.facilite_utilisation) {
+            document.getElementById('error-facilite_utilisation').classList.add('visible');
+            hasError = true;
+        }
+        if (!recommandation) {
+            document.getElementById('error-recommandation').classList.add('visible');
+            hasError = true;
+        }
+
+        if (hasError) {
+            // Scroll to first error
+            const firstErr = document.querySelector('.field-error.visible');
+            if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+        }
+
+        const btn = document.getElementById('submit-btn');
+        const errEl = document.getElementById('submit-error');
+        btn.disabled = true;
+        btn.innerHTML = '<svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="9" opacity="0.3"/><path d="M12 3a9 9 0 010 18" stroke-linecap="round" class="spin-arc"/></svg> Envoi en cours…';
+        errEl.style.display = 'none';
+
+        try {
+            const payload = {
+                note_globale: ratings.note_globale,
+                facilite_utilisation: ratings.facilite_utilisation,
+                fonctionnalite_preferee: document.getElementById('fonctionnalite_preferee').value.trim() || null,
+                ameliorations: document.getElementById('ameliorations').value.trim() || null,
+                recommandation,
+                contact_nom_email: document.getElementById('contact_nom_email').value.trim() || null,
+            };
+
+            const res = await fetch('/api/feedback', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+
+            if (res.ok) {
+                document.getElementById('feedback-form-wrap').style.display = 'none';
+                document.getElementById('success-screen').style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                const data = await res.json().catch(() => ({}));
+                errEl.textContent = data.error || 'Une erreur est survenue. Veuillez réessayer.';
+                errEl.style.display = 'block';
+                btn.disabled = false;
+                btn.innerHTML = '<svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg> Envoyer mon feedback';
+            }
+        } catch (err) {
+            errEl.textContent = 'Erreur réseau. Vérifiez votre connexion et réessayez.';
+            errEl.style.display = 'block';
+            btn.disabled = false;
+            btn.innerHTML = '<svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg> Envoyer mon feedback';
+        }
+    }
+</script>
+
+</body>
+</html>

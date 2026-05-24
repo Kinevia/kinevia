@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sécurité & Protection des données — Kinévia</title>
+    <meta name="description" content="Comment Kinévia protège vos données et celles de vos patients : hébergement, chiffrement, authentification, sauvegardes et conformité RGPD.">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#38BDF8">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Satoshi:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #38BDF8;
+            --primary-dark: #0EA5E9;
+            --primary-glow: rgba(56, 189, 248, 0.15);
+            --accent: #2DD4BF;
+            --ink: #0c1a2e;
+            --ink-soft: #1e3a5f;
+            --paper: #f4f8fc;
+            --surface: #ffffff;
+            --muted: #5a7a96;
+            --border: #d4e4f0;
+            --border-soft: #e8f2fb;
+            --green: #10b981;
+            --green-bg: #f0fdf4;
+            --green-border: #a7f3d0;
+            --amber: #f59e0b;
+            --amber-bg: #fffbeb;
+        }
+
+        body {
+            font-family: 'Satoshi', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAV */
+        nav {
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--ink);
+            letter-spacing: -0.5px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo .via { color: var(--primary); }
+
+        /* HERO STRIP */
+        .hero-strip {
+            background: linear-gradient(135deg, #0c1a2e 0%, #1e3a5f 50%, #0a2a44 100%);
+            padding: 64px 40px 56px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-strip::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 300px;
+            background: radial-gradient(ellipse, rgba(56, 189, 248, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-strip .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: var(--primary);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 100px;
+            margin-bottom: 20px;
+        }
+
+        .hero-strip h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 400;
+            color: #ffffff;
+            line-height: 1.15;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-strip h1 em {
+            font-style: italic;
+            color: var(--primary);
+        }
+
+        .hero-strip p {
+            color: #94b8d4;
+            font-size: 1.05rem;
+            max-width: 580px;
+            margin: 0 auto;
+            line-height: 1.65;
+        }
+
+        /* TRUST PILLS */
+        .trust-bar {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 18px 40px;
+        }
+        .trust-bar-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .trust-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.83rem;
+            font-weight: 600;
+            color: var(--muted);
+        }
+        .trust-pill svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+        .trust-pill .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--green);
+            flex-shrink: 0;
+        }
+
+        /* MAIN CONTENT */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 56px 40px 80px;
+        }
+
+        .section-intro {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .section-intro h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--ink);
+            margin-bottom: 10px;
+        }
+        .section-intro p {
+            color: var(--muted);
+            font-size: 0.97rem;
+        }
+
+        /* CARD GRID */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 48px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 28px 24px;
+            transition: box-shadow 0.25s ease, transform 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 16px 16px 0 0;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+        .card:hover {
+            box-shadow: 0 8px 32px rgba(14, 165, 233, 0.1);
+            transform: translateY(-2px);
+        }
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+        .card-icon.blue { background: #eff8ff; }
+        .card-icon.teal { background: #f0fdfc; }
+        .card-icon.green { background: var(--green-bg); }
+        .card-icon.amber { background: var(--amber-bg); }
+        .card-icon.purple { background: #faf5ff; }
+        .card-icon.indigo { background: #eef2ff; }
+
+        .card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 10px;
+            letter-spacing: -0.2px;
+        }
+        .card p {
+            font-size: 0.9rem;
+            color: #4a6a85;
+            margin-bottom: 0;
+            line-height: 1.65;
+        }
+        .card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .card ul li {
+            font-size: 0.88rem;
+            color: #4a6a85;
+            padding: 5px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            line-height: 1.5;
+        }
+        .card ul li::before {
+            content: '✓';
+            color: var(--green);
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-top: 1px;
+            flex-shrink: 0;
+        }
+
+        /* COMPLIANCE BLOCK */
+        .compliance-block {
+            background: linear-gradient(135deg, #0c1a2e 0%, #1a3550 100%);
+            border-radius: 20px;
+            padding: 40px 44px;
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+        .compliance-block .text {
+            flex: 1;
+            min-width: 220px;
+        }
+        .compliance-block h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+        .compliance-block h3 em {
+            font-style: italic;
+            color: var(--primary);
+        }
+        .compliance-block p {
+            color: #94b8d4;
+            font-size: 0.92rem;
+            line-height: 1.7;
+        }
+        .compliance-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-width: 200px;
+        }
+        .comp-badge {
+            background: rgba(56, 189, 248, 0.12);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 12px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .comp-badge .icon {
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+        .comp-badge .label {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.3;
+        }
+        .comp-badge .sublabel {
+            font-size: 0.75rem;
+            color: #7eafc9;
+            display: block;
+            margin-top: 2px;
+        }
+
+        /* CONTACT STRIP */
+        .contact-strip {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px 36px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .contact-strip .text h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 4px;
+        }
+        .contact-strip .text p {
+            font-size: 0.88rem;
+            color: var(--muted);
+        }
+        .contact-strip .btn {
+            background: var(--primary);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 11px 22px;
+            border-radius: 10px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            white-space: nowrap;
+            transition: background 0.2s ease, transform 0.2s ease;
+            display: inline-block;
+        }
+        .contact-strip .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--surface);
+            padding: 40px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+        }
+        footer .logo { font-size: 1.1rem; margin-bottom: 8px; display: block; }
+        .footer-links {
+            margin-top: 12px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: var(--muted);
+            font-size: 0.82rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--ink); }
+
+        @media (max-width: 768px) {
+            nav { padding: 16px 20px; }
+            .hero-strip { padding: 48px 24px 40px; }
+            .trust-bar { padding: 14px 20px; }
+            .trust-bar-inner { gap: 16px; }
+            .container { padding: 40px 20px 64px; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .compliance-block { padding: 28px 24px; gap: 24px; }
+            .compliance-badges { flex-direction: row; flex-wrap: wrap; }
+            .contact-strip { padding: 24px 20px; }
+            footer { padding: 32px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="logo">
+            <img src="/icons/icon-96.png" alt="Kinévia" style="width:28px;height:28px;border-radius:6px;object-fit:cover;">
+            Kiné<span class="via">via</span>
+        </a>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero-strip">
+        <div class="badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Sécurité & Données
+        </div>
+        <h1>Vos données protégées,<br><em>par conception</em></h1>
+        <p>Kinévia a été conçu pour les professionnels de santé. Hébergement européen, chiffrement de bout en bout, conformité RGPD — votre sécurité n'est pas une option, c'est l'architecture.</p>
+    </div>
+
+    <!-- TRUST BAR -->
+    <div class="trust-bar">
+        <div class="trust-bar-inner">
+            <div class="trust-pill"><span class="dot"></span> HTTPS/TLS sur toutes les connexions</div>
+            <div class="trust-pill"><span class="dot"></span> Hébergement 100% européen</div>
+            <div class="trust-pill"><span class="dot"></span> Données chiffrées au repos</div>
+            <div class="trust-pill"><span class="dot"></span> Aucun mot de passe stocké</div>
+            <div class="trust-pill"><span class="dot"></span> Backups en temps réel</div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- SECTION INTRO -->
+        <div class="section-intro">
+            <h2>Six piliers de sécurité</h2>
+            <p>Des fondations techniques solides pour vous concentrer sur vos patients, pas sur la conformité.</p>
+        </div>
+
+        <!-- CARDS GRID -->
+        <div class="cards-grid">
+
+            <!-- 1 — Hébergement -->
+            <div class="card">
+                <div class="card-icon blue">🏗️</div>
+                <h3>Hébergement & Infrastructure</h3>
+                <ul>
+                    <li>Serveurs <strong>Render</strong> en Europe — HTTPS/TLS obligatoire</li>
+                    <li>Base de données <strong>Neon PostgreSQL</strong> — cloud, chiffrement au repos inclus</li>
+                    <li>Toutes les connexions chiffrées en transit (TLS 1.2+)</li>
+                    <li>Haute disponibilité avec redémarrage automatique</li>
+                </ul>
+            </div>
+
+            <!-- 2 — Chiffrement -->
+            <div class="card">
+                <div class="card-icon teal">🔒</div>
+                <h3>Chiffrement des données</h3>
+                <ul>
+                    <li><strong>En transit :</strong> HTTPS/TLS sur app ↔ serveur ↔ base</li>
+                    <li><strong>Au repos :</strong> chiffrement automatique par Neon</li>
+                    <li><strong>Champs sensibles :</strong> chiffrement AES-256-GCM sur les bilans patients</li>
+                    <li>Clés de chiffrement gérées séparément des données</li>
+                </ul>
+            </div>
+
+            <!-- 3 — Auth -->
+            <div class="card">
+                <div class="card-icon green">🔑</div>
+                <h3>Authentification</h3>
+                <ul>
+                    <li>Connexion par <strong>magic link</strong> — lien sécurisé envoyé par email</li>
+                    <li><strong>Aucun mot de passe</strong> stocké en base de données</li>
+                    <li>Session expire après <strong>48h d'inactivité</strong></li>
+                    <li>Cookies de session httpOnly, flag Secure activé</li>
+                </ul>
+            </div>
+
+            <!-- 4 — Sauvegardes -->
+            <div class="card">
+                <div class="card-icon amber">💾</div>
+                <h3>Sauvegardes</h3>
+                <ul>
+                    <li>Backups <strong>continus en temps réel</strong> (WAL — Write-Ahead Logging)</li>
+                    <li>Restauration à n'importe quel point dans le temps (PITR)</li>
+                    <li>Aucun risque de perte de données entre deux sauvegardes</li>
+                    <li>Copies géo-redondantes chez Neon</li>
+                </ul>
+            </div>
+
+            <!-- 5 — Mises à jour -->
+            <div class="card">
+                <div class="card-icon purple">🚀</div>
+                <h3>Mises à jour du service</h3>
+                <ul>
+                    <li>Déploiement via <strong>Git → Render</strong> — code versionné, rollback possible</li>
+                    <li>Les mises à jour ne touchent <strong>jamais</strong> les données existantes</li>
+                    <li>Modifications de base par <strong>migrations</strong> (ajout sans suppression)</li>
+                    <li>Audit complet de chaque déploiement</li>
+                </ul>
+            </div>
+
+            <!-- 6 — Accès patients -->
+            <div class="card">
+                <div class="card-icon indigo">👤</div>
+                <h3>Accès des patients</h3>
+                <ul>
+                    <li>Lien d'accès unique et personnel pour chaque patient</li>
+                    <li>Consentement explicite recueilli au premier accès (Art. 9 RGPD)</li>
+                    <li>Données accessibles uniquement par le kiné traitant</li>
+                    <li>Droit à l'effacement à la demande du patient</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- COMPLIANCE BLOCK -->
+        <div class="compliance-block">
+            <div class="text">
+                <h3>Conformité <em>par architecture</em></h3>
+                <p>
+                    Kinévia a été conçu dès l'origine pour le secteur de la santé. Les données des patients sont traitées comme des données de santé au sens de l'article 9 du RGPD — jamais partagées avec des tiers, jamais utilisées à des fins commerciales. L'architecture est compatible avec les exigences HDS (Hébergement de Données de Santé) et toutes les données restent en Europe.
+                </p>
+                <p style="margin-top:12px;">
+                    Pour toute demande d'accès, de rectification ou d'effacement de données : <a href="mailto:privacy@kinevia.pro" style="color:var(--primary);text-decoration:none;font-weight:600;">privacy@kinevia.pro</a>
+                </p>
+            </div>
+            <div class="compliance-badges">
+                <div class="comp-badge">
+                    <span class="icon">🇪🇺</span>
+                    <div>
+                        <div class="label">Conforme RGPD</div>
+                        <span class="sublabel">Données hébergées en Europe</span>
+                    </div>
+                </div>
+                <div class="comp-badge">
+                    <span class="icon">🏥</span>
+                    <div>
+                        <div class="label">Architecture HDS</div>
+                        <span class="sublabel">Hébergement de Données de Santé</span>
+                    </div>
+                </div>
+                <div class="comp-badge">
+                    <span class="icon">🔐</span>
+                    <div>
+                        <div class="label">AES-256-GCM</div>
+                        <span class="sublabel">Chiffrement champs sensibles</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACT STRIP -->
+        <div class="contact-strip">
+            <div class="text">
+                <h4>Une question sur la sécurité ?</h4>
+                <p>Notre équipe répond aux demandes liées à la protection des données sous 72h.</p>
+            </div>
+            <a href="mailto:privacy@kinevia.pro" class="btn">Contacter notre DPO →</a>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <a href="/" class="logo" style="text-decoration:none;color:inherit;">
+            <img src="/logo/navbar.svg" alt="Kinévia" style="width:110px;height:30px;border-radius:0;object-fit:contain;">
+        </a>
+        <p>&copy; 2026 Kinévia. Tous droits réservés.</p>
+        <div class="footer-links">
+            <a href="/mentions-legales">Mentions légales</a>
+            <a href="/confidentialite">Confidentialité</a>
+            <a href="/cgu">CGU</a>
+            <a href="/securite" style="color:var(--primary);font-weight:600;">Sécurité des données</a>
+        </div>
+    </footer>
+
+    <!-- PWA -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js')
+            .then(function(reg) {})
+            .catch(function(err) {});
+        });
+      }
+    </script>
+</body>
+</html>

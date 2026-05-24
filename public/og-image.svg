@@ -1,0 +1,45 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+    <linearGradient id="logo-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1DADE4"/>
+      <stop offset="100%" stop-color="#0E7FA8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Decorative circles -->
+  <circle cx="980" cy="100" r="200" fill="#1DADE4" opacity="0.06"/>
+  <circle cx="1100" cy="500" r="150" fill="#1DADE4" opacity="0.06"/>
+
+  <!-- Logo icon (K in teal square) -->
+  <rect x="80" y="52" width="80" height="80" rx="18" fill="url(#logo-bg)"/>
+  <!-- Stem -->
+  <rect x="101" y="64" width="10" height="56" rx="4" fill="white"/>
+  <!-- Upper arm -->
+  <line x1="106" y1="92" x2="148" y2="64" stroke="white" stroke-width="10" stroke-linecap="round"/>
+  <!-- Lower arm (distinctive lighter turquoise — Kinévia brand mark) -->
+  <line x1="106" y1="92" x2="145" y2="120" stroke="#5ED8E4" stroke-width="10" stroke-linecap="round"/>
+  <!-- Turquoise dot -->
+  <circle cx="151" cy="122" r="7" fill="#5ED8E4"/>
+
+  <!-- Logo wordmark -->
+  <text x="176" y="106" font-family="Inter, system-ui, sans-serif" font-size="52" font-weight="800" fill="white" letter-spacing="-2">Kiné<tspan fill="#1DADE4">via</tspan></text>
+
+  <!-- Tagline -->
+  <text x="80" y="260" font-family="Inter, system-ui, sans-serif" font-size="68" font-weight="800" fill="white" letter-spacing="-3">Le suivi patient</text>
+  <text x="80" y="345" font-family="Inter, system-ui, sans-serif" font-size="68" font-weight="800" fill="#1DADE4" letter-spacing="-3">simplifié</text>
+  <text x="80" y="430" font-family="Inter, system-ui, sans-serif" font-size="68" font-weight="800" fill="white" letter-spacing="-3">pour les kinés.</text>
+
+  <!-- Subtitle -->
+  <text x="80" y="520" font-family="Inter, system-ui, sans-serif" font-size="28" fill="#94a3b8" letter-spacing="-0.5">Programmes d'exercices · Bilans · Suivi de la douleur</text>
+
+  <!-- Badge -->
+  <rect x="80" y="548" width="220" height="42" rx="21" fill="#1DADE4" opacity="0.15"/>
+  <text x="190" y="574" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="600" fill="#1DADE4" text-anchor="middle">Gratuit pour commencer</text>
+</svg>

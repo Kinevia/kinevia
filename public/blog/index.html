@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Blog Kinévia — Conseils et ressources pour kinésithérapeutes</title>
+    <meta name="description" content="Conseils pratiques, exercices et ressources pour les kinésithérapeutes. Découvrez nos articles sur la rééducation, le suivi patient et les meilleures pratiques en kinésithérapie.">
+    <meta name="keywords" content="blog kinésithérapie, conseils kiné, exercices rééducation, suivi patient kiné, programme kinésithérapie">
+    <meta name="author" content="Kinévia">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://kinevia.pro/blog">
+
+    <link rel="icon" href="/favicon.png" type="image/png">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kinevia.pro/blog">
+    <meta property="og:site_name" content="Kinévia">
+    <meta property="og:title" content="Blog Kinévia — Conseils et ressources pour kinésithérapeutes">
+    <meta property="og:description" content="Conseils pratiques, exercices et ressources pour les kinésithérapeutes. Découvrez nos articles sur la rééducation, le suivi patient et les meilleures pratiques.">
+    <meta property="og:image" content="https://kinevia.pro/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog Kinévia — Conseils et ressources pour kinésithérapeutes">
+    <meta name="twitter:description" content="Conseils pratiques, exercices et ressources pour les kinésithérapeutes.">
+    <meta name="twitter:image" content="https://kinevia.pro/og-image.png">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Blog Kinévia",
+      "url": "https://kinevia.pro/blog",
+      "description": "Conseils pratiques, exercices et ressources pour les kinésithérapeutes.",
+      "inLanguage": "fr",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Kinévia",
+        "url": "https://kinevia.pro",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://kinevia.pro/og-image.png"
+        }
+      }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #0ea5e9;
+            --primary-dark: #0284c7;
+            --primary-light: #e0f2fe;
+            --accent: #2DD4BF;
+            --accent-light: #CCFBF1;
+            --ink: #0f172a;
+            --paper: #f8fafc;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAV */
+        nav {
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--ink);
+            letter-spacing: -0.5px;
+            text-decoration: none;
+        }
+        .logo { display:inline-flex; align-items:center; gap:6px; } .logo .via { color: #38BDF8; }
+        .nav-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+        .btn-ghost { background: transparent; color: var(--muted); }
+        .btn-ghost:hover { color: var(--ink); }
+        .btn-ghost.active { color: var(--primary); }
+        .btn-primary { background: var(--primary); color: var(--white); }
+        .btn-primary:hover { background: var(--primary-dark); }
+
+        /* HERO */
+        .blog-hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px 48px;
+        }
+        .blog-hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .blog-hero h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+            color: var(--ink);
+            max-width: 700px;
+        }
+        .blog-hero h1 em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .blog-hero-sub {
+            margin-top: 16px;
+            font-size: 1.1rem;
+            color: var(--muted);
+            max-width: 560px;
+        }
+
+        /* ARTICLES GRID */
+        .articles-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px 80px;
+        }
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+        }
+        .article-card {
+            background: var(--white);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .article-card:hover {
+            box-shadow: 0 8px 32px rgba(14, 165, 233, 0.12);
+            transform: translateY(-2px);
+        }
+        .article-card-banner {
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+        }
+        .article-card-body { padding: 24px; }
+        .article-tag {
+            display: inline-block;
+            background: var(--accent-light);
+            color: #14B8A6;
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+        .article-card h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            line-height: 1.35;
+            color: var(--ink);
+            margin-bottom: 10px;
+        }
+        .article-excerpt {
+            font-size: 0.88rem;
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.78rem;
+            color: var(--muted);
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
+        }
+        .article-read-more {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.82rem;
+        }
+
+        /* CTA BANNER */
+        .cta-banner {
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            padding: 0 40px;
+        }
+        .cta-inner {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 20px;
+            padding: 48px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+        .cta-text h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 8px;
+        }
+        .cta-text p {
+            color: rgba(255,255,255,0.85);
+            font-size: 1rem;
+        }
+        .btn-white {
+            background: white;
+            color: var(--primary-dark);
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+        .btn-white:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.15); transform: translateY(-1px); }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 32px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+        footer a { color: var(--muted); text-decoration: none; }
+        footer a:hover { color: var(--ink); }
+        .footer-links { display: flex; gap: 20px; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav { padding: 16px 20px; }
+            .nav-actions .btn { padding: 8px 14px; font-size: 0.82rem; }
+            .blog-hero { padding: 40px 20px 32px; }
+            .articles-section { padding: 0 20px 60px; }
+            .articles-grid { grid-template-columns: 1fr; }
+            .cta-banner { padding: 0 20px; }
+            .cta-inner { flex-direction: column; padding: 32px 24px; text-align: center; }
+            footer { padding: 24px 20px; flex-direction: column; gap: 12px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="logo"><img src="/icons/icon-96.png" alt="Kinévia" style="width:28px;height:28px;border-radius:6px;object-fit:cover;">Kiné<span class="via">via</span></a>
+        <div class="nav-actions">
+            <a href="/blog" class="btn btn-ghost active">Blog</a>
+            <a href="/#tarifs" class="btn btn-ghost">Tarifs</a>
+            <a href="/connexion" class="btn btn-ghost">Connexion</a>
+            <a href="/inscription" class="btn btn-primary">Essai gratuit 14 jours</a>
+        </div>
+    </nav>
+
+    <div class="blog-hero">
+        <div class="blog-hero-label">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect width="12" height="12" rx="3" fill="#0ea5e9"/></svg>
+            Ressources professionnelles
+        </div>
+        <h1>Le blog des <em>kinésithérapeutes</em></h1>
+        <p class="blog-hero-sub">Conseils pratiques, exercices thérapeutiques et meilleures pratiques pour améliorer le suivi de vos patients.</p>
+    </div>
+
+    <section class="articles-section">
+        <div class="articles-grid">
+
+            <a href="/blog/exercices-epaule-kine" class="article-card">
+                <div class="article-card-banner" style="background: linear-gradient(135deg, #e0f2fe, #dbeafe);">💪</div>
+                <div class="article-card-body">
+                    <span class="article-tag">Rééducation</span>
+                    <h2>Les meilleurs exercices d'épaule en kinésithérapie : protocole complet</h2>
+                    <p class="article-excerpt">Douleur à l'épaule, conflit sous-acromial, tendinopathie de la coiffe — découvrez les exercices de référence et comment les prescrire efficacement à vos patients.</p>
+                    <div class="article-meta">
+                        <span>30 avril 2026 · 8 min</span>
+                        <span class="article-read-more">Lire →</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="/blog/lombalgie-exercices-dos" class="article-card">
+                <div class="article-card-banner" style="background: linear-gradient(135deg, #CCFBF1, #ecfdf5);">🦴</div>
+                <div class="article-card-body">
+                    <span class="article-tag">Lombalgie</span>
+                    <h2>Lombalgie : les exercices kiné qui font vraiment la différence</h2>
+                    <p class="article-excerpt">La lombalgie chronique touche 1 Français sur 3. Quels exercices prescrire, dans quel ordre, et comment motiver vos patients à les pratiquer chez eux ?</p>
+                    <div class="article-meta">
+                        <span>28 avril 2026 · 9 min</span>
+                        <span class="article-read-more">Lire →</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="/blog/programme-kine-patient-maison" class="article-card">
+                <div class="article-card-banner" style="background: linear-gradient(135deg, #fef3c7, #fde68a);">🏠</div>
+                <div class="article-card-body">
+                    <span class="article-tag">Suivi patient</span>
+                    <h2>Comment créer un programme kiné à faire à la maison qui tient dans la durée</h2>
+                    <p class="article-excerpt">L'observance thérapeutique est le premier défi des kinés. Voici comment structurer un programme à domicile que vos patients vont vraiment suivre.</p>
+                    <div class="article-meta">
+                        <span>25 avril 2026 · 7 min</span>
+                        <span class="article-read-more">Lire →</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="/blog/suivi-patient-kinesitherapeute" class="article-card">
+                <div class="article-card-banner" style="background: linear-gradient(135deg, #f3e8ff, #ede9fe);">📊</div>
+                <div class="article-card-body">
+                    <span class="article-tag">Gestion cabinet</span>
+                    <h2>Suivi patient en kinésithérapie : méthodes et outils pour mesurer les progrès</h2>
+                    <p class="article-excerpt">Douleur EVA, bilans fonctionnels, observance des exercices — comment objectiver les progrès de vos patients et adapter vos protocoles en temps réel.</p>
+                    <div class="article-meta">
+                        <span>22 avril 2026 · 8 min</span>
+                        <span class="article-read-more">Lire →</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="/blog/observance-exercices-kine" class="article-card">
+                <div class="article-card-banner" style="background: linear-gradient(135deg, #CCFBF1, #a7f3d0);">✅</div>
+                <div class="article-card-body">
+                    <span class="article-tag">Suivi patient</span>
+                    <h2>Comment améliorer l'observance des exercices de vos patients à domicile</h2>
+                    <p class="article-excerpt">65 % des patients ne font pas leurs exercices correctement. Stratégies fondées sur les preuves pour améliorer l'adhérence thérapeutique de vos patients.</p>
+                    <div class="article-meta">
+                        <span>1 mai 2026 · 8 min</span>
+                        <span class="article-read-more">Lire →</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="/blog/suivi-patient-numerique-2026" class="article-card">
+                <div class="article-card-banner" style="background: linear-gradient(135deg, #e0f2fe, #bae6fd);">📱</div>
+                <div class="article-card-body">
+                    <span class="article-tag">Numérique & Innovation</span>
+                    <h2>Suivi patient kiné à domicile : les outils numériques en 2026</h2>
+                    <p class="article-excerpt">Téléréadaptation, capteurs connectés, télémédecine — tour d'horizon des outils numériques validés par la recherche pour le suivi patient kiné à domicile.</p>
+                    <div class="article-meta">
+                        <span>1 mai 2026 · 9 min</span>
+                        <span class="article-read-more">Lire →</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="/blog/programme-exercices-personnalise" class="article-card">
+                <div class="article-card-banner" style="background: linear-gradient(135deg, #fef3c7, #fde68a);">🎯</div>
+                <div class="article-card-body">
+                    <span class="article-tag">Thérapeutique</span>
+                    <h2>Exercices thérapeutiques : comment créer un programme personnalisé efficace</h2>
+                    <p class="article-excerpt">Dosage, progression, individualisation — les principes scientifiques pour un programme d'exercices thérapeutiques qui fonctionne vraiment pour chaque patient.</p>
+                    <div class="article-meta">
+                        <span>1 mai 2026 · 8 min</span>
+                        <span class="article-read-more">Lire →</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="/blog/rgpd-donnees-sante-kine" class="article-card">
+                <div class="article-card-banner" style="background: linear-gradient(135deg, #f3e8ff, #e9d5ff);">🔒</div>
+                <div class="article-card-body">
+                    <span class="article-tag">Réglementation</span>
+                    <h2>RGPD et données de santé : ce que chaque kiné doit savoir</h2>
+                    <p class="article-excerpt">Consentement, hébergement HDS, durée de conservation, violation de données — le guide complet des obligations RGPD pour les kinésithérapeutes en 2026.</p>
+                    <div class="article-meta">
+                        <span>1 mai 2026 · 9 min</span>
+                        <span class="article-read-more">Lire →</span>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <div class="cta-banner">
+        <div class="cta-inner">
+            <div class="cta-text">
+                <h3>Essayez Kinévia gratuitement pendant 14 jours</h3>
+                <p>Programmes personnalisés, suivi patient, bilan initial — tout ce qu'il vous faut pour un cabinet moderne.</p>
+            </div>
+            <a href="/inscription" class="btn-white">Commencer l'essai gratuit →</a>
+        </div>
+    </div>
+
+    <footer>
+        <a href="/" class="logo" style="font-size:1.1rem;"><img src="/icons/icon-96.png" alt="Kinévia" style="width:24px;height:24px;border-radius:5px;object-fit:cover;">Kiné<span class="via">via</span></a>
+        <div class="footer-links">
+            <a href="/blog">Blog</a>
+            <a href="/mentions-legales">Mentions légales</a>
+            <a href="/confidentialite">Confidentialité</a>
+            <a href="/cgu">CGU</a>
+        </div>
+    </footer>
+
+</body>
+</html>

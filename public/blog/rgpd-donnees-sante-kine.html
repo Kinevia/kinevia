@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RGPD et données de santé : ce que chaque kiné doit savoir | Kinévia</title>
+    <meta name="description" content="Consentement, hébergement HDS, durée de conservation, violation de données : le guide complet RGPD pour les kinésithérapeutes. Obligations légales et bonnes pratiques en 2026.">
+    <meta name="keywords" content="RGPD santé kinésithérapie, conformité kiné données, HDS kinésithérapeute, données patients kiné, protection données santé, RGPD cabinet kiné, consentement données médicales">
+    <meta name="author" content="Kinévia">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://kinevia.pro/blog/rgpd-donnees-sante-kine">
+
+    <link rel="icon" href="/favicon.png" type="image/png">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://kinevia.pro/blog/rgpd-donnees-sante-kine">
+    <meta property="og:site_name" content="Kinévia">
+    <meta property="og:title" content="RGPD et données de santé : ce que chaque kiné doit savoir">
+    <meta property="og:description" content="Consentement, HDS, conservation, violations — le guide complet RGPD pour les kinésithérapeutes. Vos obligations légales en 2026.">
+    <meta property="og:image" content="https://kinevia.pro/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="article:published_time" content="2026-05-01">
+    <meta property="article:author" content="Kinévia">
+    <meta property="article:section" content="Réglementation">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="RGPD et données de santé : ce que chaque kiné doit savoir">
+    <meta name="twitter:description" content="Consentement, HDS, conservation, violations — vos obligations RGPD en tant que kinésithérapeute en 2026.">
+    <meta name="twitter:image" content="https://kinevia.pro/og-image.png">
+
+    <!-- Schema.org Article -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "RGPD et données de santé : ce que chaque kiné doit savoir",
+      "description": "Consentement, hébergement HDS, durée de conservation, violation de données : le guide complet RGPD pour les kinésithérapeutes. Obligations légales et bonnes pratiques en 2026.",
+      "url": "https://kinevia.pro/blog/rgpd-donnees-sante-kine",
+      "datePublished": "2026-05-01",
+      "dateModified": "2026-05-01",
+      "inLanguage": "fr",
+      "author": {
+        "@type": "Organization",
+        "name": "Kinévia",
+        "url": "https://kinevia.pro"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Kinévia",
+        "url": "https://kinevia.pro",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://kinevia.pro/og-image.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://kinevia.pro/blog/rgpd-donnees-sante-kine"
+      }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #0ea5e9; --primary-dark: #0284c7; --primary-light: #e0f2fe;
+            --accent: #2DD4BF; --accent-light: #CCFBF1;
+            --ink: #0f172a; --paper: #f8fafc; --muted: #64748b; --border: #e2e8f0; --white: #ffffff;
+        }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--white); color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        nav { padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid var(--border); }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--ink); letter-spacing: -0.5px; text-decoration: none; }
+        .logo { display:inline-flex; align-items:center; gap:6px; } .logo .via { color: #38BDF8; }
+        .nav-actions { display: flex; gap: 12px; align-items: center; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 10px; font-size: 0.9rem; font-weight: 600; font-family: 'Inter', sans-serif; text-decoration: none; cursor: pointer; border: none; transition: all 0.2s; }
+        .btn-ghost { background: transparent; color: var(--muted); }
+        .btn-ghost:hover { color: var(--ink); }
+        .btn-primary { background: var(--primary); color: var(--white); }
+        .btn-primary:hover { background: var(--primary-dark); }
+        .article-wrapper { max-width: 720px; margin: 0 auto; padding: 60px 40px 80px; }
+        .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--muted); margin-bottom: 28px; }
+        .breadcrumb a { color: var(--muted); text-decoration: none; }
+        .breadcrumb a:hover { color: var(--primary); }
+        .article-tag { display: inline-block; background: #f3e8ff; color: #6b21a8; font-size: 0.72rem; font-weight: 600; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; }
+        .article-wrapper h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 800; line-height: 1.2; letter-spacing: -1px; color: var(--ink); margin-bottom: 16px; }
+        .article-intro { font-size: 1.1rem; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+        .article-meta { display: flex; align-items: center; gap: 16px; font-size: 0.82rem; color: var(--muted); padding-bottom: 32px; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
+        .meta-dot { width: 3px; height: 3px; background: var(--muted); border-radius: 50%; }
+        .article-body h2 { font-size: 1.5rem; font-weight: 700; color: var(--ink); margin-top: 40px; margin-bottom: 16px; letter-spacing: -0.5px; }
+        .article-body h3 { font-size: 1.15rem; font-weight: 700; color: var(--ink); margin-top: 28px; margin-bottom: 12px; }
+        .article-body p { color: #334155; font-size: 1rem; line-height: 1.75; margin-bottom: 18px; }
+        .article-body ul, .article-body ol { padding-left: 24px; margin-bottom: 18px; }
+        .article-body li { color: #334155; font-size: 1rem; line-height: 1.7; margin-bottom: 8px; }
+        .article-body strong { color: var(--ink); font-weight: 700; }
+        .warning-box { background: #fef2f2; border-left: 4px solid #ef4444; border-radius: 0 10px 10px 0; padding: 20px 24px; margin: 28px 0; }
+        .warning-box p { color: #991b1b; font-size: 0.95rem; margin: 0; }
+        .warning-box strong { color: #991b1b; }
+        .ok-box { background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 10px 10px 0; padding: 20px 24px; margin: 28px 0; }
+        .ok-box p { color: #065f46; font-size: 0.95rem; margin: 0; }
+        .ok-box strong { color: #065f46; }
+        .info-box { background: var(--primary-light); border-left: 4px solid var(--primary); border-radius: 0 10px 10px 0; padding: 20px 24px; margin: 28px 0; }
+        .info-box p { color: #0369a1; font-size: 0.95rem; margin: 0 0 8px 0; }
+        .info-box p:last-child { margin: 0; }
+        .info-box strong { color: #0369a1; }
+        .checklist-card { background: var(--paper); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin: 24px 0; }
+        .checklist-card h4 { font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 14px; }
+        .checklist-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; font-size: 0.9rem; color: #334155; line-height: 1.5; }
+        .check-icon { flex-shrink: 0; width: 20px; height: 20px; background: var(--accent-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent); font-weight: 700; font-size: 0.75rem; margin-top: 1px; }
+        .article-cta { background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 16px; padding: 36px 40px; margin-top: 48px; text-align: center; }
+        .article-cta h3 { font-size: 1.4rem; font-weight: 800; color: white; margin-bottom: 10px; }
+        .article-cta p { color: rgba(255,255,255,0.85); margin-bottom: 24px; font-size: 0.95rem; }
+        .btn-white { display: inline-block; background: white; color: var(--primary-dark); padding: 14px 28px; border-radius: 12px; font-size: 1rem; font-weight: 700; text-decoration: none; transition: all 0.2s; }
+        .btn-white:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.15); transform: translateY(-1px); }
+        .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 0.85rem; font-weight: 500; text-decoration: none; margin-top: 48px; }
+        .back-link:hover { color: var(--primary); }
+        footer { border-top: 1px solid var(--border); padding: 32px 40px; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: 0.85rem; }
+        footer a { color: var(--muted); text-decoration: none; }
+        footer a:hover { color: var(--ink); }
+        .footer-links { display: flex; gap: 20px; }
+        @media (max-width: 768px) {
+            nav { padding: 16px 20px; }
+            .nav-actions .btn { padding: 8px 14px; font-size: 0.82rem; }
+            .article-wrapper { padding: 32px 20px 60px; }
+            .article-cta { padding: 28px 24px; }
+            footer { padding: 24px 20px; flex-direction: column; gap: 12px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="logo"><img src="/icons/icon-96.png" alt="Kinévia" style="width:28px;height:28px;border-radius:6px;object-fit:cover;">Kiné<span class="via">via</span></a>
+        <div class="nav-actions">
+            <a href="/blog" class="btn btn-ghost">Blog</a>
+            <a href="/#tarifs" class="btn btn-ghost">Tarifs</a>
+            <a href="/connexion" class="btn btn-ghost">Connexion</a>
+            <a href="/inscription" class="btn btn-primary">Essai gratuit 14 jours</a>
+        </div>
+    </nav>
+
+    <article class="article-wrapper">
+
+        <div class="breadcrumb">
+            <a href="/">Accueil</a>
+            <span>›</span>
+            <a href="/blog">Blog</a>
+            <span>›</span>
+            <span>Réglementation</span>
+        </div>
+
+        <span class="article-tag">Réglementation</span>
+
+        <h1>RGPD et données de santé : ce que chaque kiné doit savoir</h1>
+
+        <p class="article-intro">Les données collectées en cabinet de kinésithérapie — bilans, dossiers patients, programmes de rééducation, photos cliniques — sont des données de santé au sens du RGPD. À ce titre, elles bénéficient du régime le plus protecteur du droit européen. Voici ce que cela implique concrètement pour votre pratique.</p>
+
+        <div class="article-meta">
+            <span>1 mai 2026</span>
+            <span class="meta-dot"></span>
+            <span>9 min de lecture</span>
+            <span class="meta-dot"></span>
+            <span>Par l'équipe Kinévia</span>
+        </div>
+
+        <div class="article-body">
+
+            <h2>Pourquoi le RGPD s'applique pleinement à la kinésithérapie</h2>
+
+            <p>Le Règlement Général sur la Protection des Données (RGPD, Règlement UE 2016/679) classe les données de santé parmi les catégories "particulières" — c'est-à-dire sensibles — à l'article 9. Cette classification implique des obligations plus strictes que pour les données ordinaires.</p>
+
+            <p>En kinésithérapie, entrent dans cette catégorie :</p>
+            <ul>
+                <li>Tout diagnostic ou indication médicale (lombalgie, fracture, AVC…)</li>
+                <li>Les mesures corporelles et bilans fonctionnels (amplitudes, force, EVA)</li>
+                <li>Les prescriptions et ordonnances scannées</li>
+                <li>Les photos et vidéos à visée clinique</li>
+                <li>Les données d'observance des exercices à domicile</li>
+                <li>Les questionnaires de qualité de vie (Oswestry, DASH, KOOS…)</li>
+            </ul>
+
+            <div class="warning-box">
+                <p><strong>Attention :</strong> stocker des données de santé sur des outils non conformes (Google Drive personnel, WhatsApp, fichiers Excel non chiffrés, logiciels sans certification HDS) constitue une violation du RGPD — même si aucune fuite ne se produit. La CNIL contrôle les conditions de traitement, pas seulement les incidents.</p>
+            </div>
+
+            <h2>Les 5 obligations fondamentales pour votre cabinet</h2>
+
+            <h3>1. Base légale du traitement</h3>
+
+            <p>Pour traiter des données de santé, vous devez disposer d'une base légale. En kinésithérapie libérale, la base légale principale est <strong>l'article 9.2(h) du RGPD</strong> : traitement nécessaire à des fins de médecine préventive ou de médecine du travail, de diagnostic médical, ou de prise en charge thérapeutique.</p>
+
+            <p>Cela signifie que vous n'avez pas besoin du consentement explicite du patient pour traiter ses données dans le cadre direct de sa prise en charge — la nécessité thérapeutique suffit. En revanche, vous avez besoin du consentement pour :</p>
+            <ul>
+                <li>Photos/vidéos utilisées à des fins de formation ou de communication (même anonymisées)</li>
+                <li>Envoi de newsletters ou communications marketing</li>
+                <li>Partage des données avec des tiers non impliqués dans le soin (chercheurs, assureurs)</li>
+            </ul>
+
+            <h3>2. Information du patient</h3>
+
+            <p>L'article 13 du RGPD impose d'informer le patient, au moment de la collecte des données :</p>
+
+            <ul>
+                <li>Votre identité en tant que responsable du traitement</li>
+                <li>La finalité du traitement (prise en charge thérapeutique)</li>
+                <li>La durée de conservation des données</li>
+                <li>Les droits du patient (accès, rectification, suppression, portabilité)</li>
+                <li>L'identité des éventuels destinataires (secrétariat, remplaçants, logiciels utilisés)</li>
+            </ul>
+
+            <div class="info-box">
+                <p><strong>En pratique :</strong> une fiche d'information RGPD remise au premier rendez-vous suffit dans la plupart des cas. Elle peut être intégrée au formulaire de prise en charge initial. La CNIL met à disposition des modèles adaptés aux professionnels de santé sur cnil.fr.</p>
+            </div>
+
+            <h3>3. Hébergement des données de santé (HDS)</h3>
+
+            <p>C'est l'obligation que les kinésithérapeutes négligent le plus. L'article L.1111-8 du Code de la Santé Publique impose que toute donnée de santé à caractère personnel hébergée sur un serveur tiers soit stockée chez un <strong>Hébergeur de Données de Santé (HDS) certifié</strong> par l'Agence du Numérique en Santé (ANS).</p>
+
+            <p>Ce que cela interdit concrètement :</p>
+            <ul>
+                <li>Stocker des dossiers patients sur Dropbox, Google Drive, ou iCloud</li>
+                <li>Utiliser un logiciel de gestion dont l'hébergeur n'est pas certifié HDS</li>
+                <li>Envoyer des données de santé non chiffrées par email standard</li>
+                <li>Photographier des bilans cliniques et les stocker dans la galerie photo de votre téléphone</li>
+            </ul>
+
+            <div class="ok-box">
+                <p><strong>Comment vérifier qu'un logiciel est conforme :</strong> demandez au prestataire sa certification HDS (numéro de certificat et date d'expiration). La liste des hébergeurs certifiés est disponible et mise à jour sur esante.gouv.fr. Un prestataire qui ne peut pas vous fournir cette certification n'est pas conforme.</p>
+            </div>
+
+            <h3>4. Durée de conservation des données</h3>
+
+            <p>Le RGPD impose une durée de conservation limitée à ce qui est nécessaire. Pour les données de santé en kinésithérapie, les règles sont définies par le Code de la Santé Publique :</p>
+
+            <ul>
+                <li><strong>Dossiers médicaux adultes :</strong> 20 ans à compter du dernier séjour ou de la dernière consultation (article R.1112-7 du CSP)</li>
+                <li><strong>Dossiers patients mineurs :</strong> jusqu'à la majorité plus 10 ans minimum (20 ans si cela dépasse)</li>
+                <li><strong>Données de facturation :</strong> 10 ans (droit comptable)</li>
+                <li><strong>Consentements écrits :</strong> durée de la relation, plus le temps de prescription applicable</li>
+            </ul>
+
+            <p>Au-delà de ces durées, les données doivent être supprimées ou anonymisées de manière irréversible. Tenir un registre de vos politiques de conservation est une bonne pratique — et potentiellement demandé lors d'un contrôle CNIL.</p>
+
+            <h3>5. Répondre à une violation de données</h3>
+
+            <p>Une violation de données de santé (accès non autorisé, perte, vol de matériel) impose une double obligation :</p>
+
+            <ol>
+                <li><strong>Notification à la CNIL dans les 72 heures</strong> si la violation est susceptible d'engendrer un risque pour les droits et libertés des personnes (article 33 RGPD). La notification se fait via le portail notifications.cnil.fr.</li>
+                <li><strong>Information des patients concernés</strong> si la violation est susceptible d'engendrer un risque élevé (article 34 RGPD) — par exemple : vol d'un ordinateur non chiffré contenant des dossiers patients.</li>
+            </ol>
+
+            <div class="warning-box">
+                <p><strong>L'amende n'est pas le seul risque.</strong> Les sanctions RGPD peuvent atteindre 4 % du chiffre d'affaires mondial ou 20 M€. Mais pour un kinésithérapeute libéral, le risque disciplinaire auprès de l'Ordre, la responsabilité civile professionnelle, et surtout la perte de confiance des patients sont des conséquences tout aussi concrètes.</p>
+            </div>
+
+            <h2>La checklist de conformité RGPD pour les kinés</h2>
+
+            <div class="checklist-card">
+                <h4>À vérifier dans votre cabinet</h4>
+                <div class="checklist-item">
+                    <div class="check-icon">✓</div>
+                    <span>Fiche d'information RGPD remise aux nouveaux patients (avec accusé de réception ou signature)</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-icon">✓</div>
+                    <span>Logiciel de gestion et dossier patient hébergé chez un prestataire HDS certifié ANS</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-icon">✓</div>
+                    <span>Ordinateurs et téléphones contenant des données patients protégés par mot de passe et chiffrement du disque</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-icon">✓</div>
+                    <span>Pas de données de santé sur outils grand public non conformes (WhatsApp, Gmail perso, Google Drive…)</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-icon">✓</div>
+                    <span>Procédure définie pour répondre aux demandes d'accès ou de suppression d'un patient</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-icon">✓</div>
+                    <span>Politique de conservation définie (et appliquée) pour les différents types de données</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-icon">✓</div>
+                    <span>Registre des activités de traitement tenu à jour (obligatoire pour les structures traitant des données sensibles à grande échelle)</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-icon">✓</div>
+                    <span>Procédure de notification CNIL documentée en cas de violation de données</span>
+                </div>
+            </div>
+
+            <h2>Le cas particulier des logiciels de suivi patient</h2>
+
+            <p>L'adoption d'un logiciel de suivi patient ou d'envoi de programmes à domicile soulève des questions RGPD spécifiques. En adoptant un tel outil, vous devenez <strong>responsable de traitement</strong>, et le prestataire devient votre <strong>sous-traitant</strong>.</p>
+
+            <p>Le RGPD impose la signature d'un <strong>Accord de Sous-Traitance (DPA)</strong> avec tout prestataire traitant des données pour votre compte. Cet accord doit préciser :</p>
+            <ul>
+                <li>La nature et la finalité du traitement</li>
+                <li>Les obligations de sécurité du prestataire</li>
+                <li>Les conditions de sous-traitance ultérieure</li>
+                <li>Les modalités de suppression des données en fin de contrat</li>
+            </ul>
+
+            <div class="info-box">
+                <p><strong>Questions à poser à tout prestataire de logiciel :</strong></p>
+                <p>1. Disposez-vous d'une certification HDS ? (Numéro de certificat)</p>
+                <p>2. Pouvez-vous me fournir un accord de sous-traitance (DPA) conforme RGPD ?</p>
+                <p>3. Où sont hébergées physiquement les données ? (Union européenne obligatoire, sauf encadrement spécifique)</p>
+                <p>4. Quelle est votre procédure en cas de violation de données ?</p>
+            </div>
+
+            <h2>Ressources officielles</h2>
+
+            <ul>
+                <li><strong>CNIL :</strong> cnil.fr — référentiel santé, modèles de documents, notifications de violations</li>
+                <li><strong>Agence du Numérique en Santé :</strong> esante.gouv.fr — liste des hébergeurs HDS certifiés, référentiels de sécurité</li>
+                <li><strong>Ordre National des Masseurs-Kinésithérapeutes :</strong> ordremk.fr — positions déontologiques sur le numérique et la protection des données</li>
+                <li><strong>G_NIUS :</strong> g-nius.fr — guide numérique pour les professionnels de santé libéraux</li>
+            </ul>
+
+            <h2>Ce qu'il faut retenir</h2>
+
+            <ul>
+                <li>Les données de kinésithérapie sont des données de santé — le régime RGPD le plus strict s'applique</li>
+                <li>L'hébergement HDS est une obligation légale, pas une option — vérifiez la certification de vos prestataires</li>
+                <li>Informez vos patients au premier rendez-vous de la manière dont leurs données sont traitées</li>
+                <li>En cas de violation, vous avez 72h pour notifier la CNIL</li>
+                <li>Tout logiciel traitant des données pour votre compte doit faire l'objet d'un accord de sous-traitance signé</li>
+                <li>La non-conformité n'est pas un risque théorique — la CNIL contrôle activement le secteur santé depuis 2023</li>
+            </ul>
+
+            <h2>Références réglementaires et officielles</h2>
+
+            <ol style="font-size:0.88rem; color:#64748b; line-height:1.7;">
+                <li>Règlement (UE) 2016/679 du Parlement européen et du Conseil (RGPD), notamment articles 9, 13, 33, 34. <a href="https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX%3A32016R0679" target="_blank" rel="noopener">Texte intégral EUR-Lex</a></li>
+                <li>Code de la Santé Publique, article L.1111-8 : hébergement des données de santé. <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006685539/" target="_blank" rel="noopener">Legifrance.gouv.fr</a></li>
+                <li>Code de la Santé Publique, article R.1112-7 : durée de conservation des dossiers médicaux. <a href="https://www.legifrance.gouv.fr" target="_blank" rel="noopener">Legifrance.gouv.fr</a></li>
+                <li>CNIL. RGPD et professionnels de santé libéraux : ce que vous devez savoir. <a href="https://www.cnil.fr/fr/rgpd-et-professionnels-de-sante-liberaux-ce-que-vous-devez-savoir" target="_blank" rel="noopener">cnil.fr</a></li>
+                <li>Agence du Numérique en Santé (ANS). Certification Hébergeurs de Données de Santé (HDS) — liste et référentiel. <a href="https://esante.gouv.fr/offres-services/hds/certification-hds" target="_blank" rel="noopener">esante.gouv.fr</a></li>
+                <li>CNIL. Bilan 2024 des sanctions et mesures correctrices — 87 sanctions, 55,2 M€, secteur santé prioritaire. <a href="https://www.cnil.fr/fr/sanctions-et-mesures-correctrices-bilan-2024-de-laction-de-la-cnil" target="_blank" rel="noopener">cnil.fr</a></li>
+            </ol>
+
+        </div>
+
+        <div class="article-cta">
+            <h3>Kinévia est conforme RGPD et certifié HDS</h3>
+            <p>Données chiffrées, hébergement certifié Hébergeur de Données de Santé, accord de sous-traitance inclus. Vous suivez vos patients sans compromis sur la conformité réglementaire. Essai gratuit 14 jours.</p>
+            <a href="/inscription" class="btn-white">Vérifier la conformité Kinévia →</a>
+        </div>
+
+        <a href="/blog" class="back-link">← Retour au blog</a>
+
+    </article>
+
+    <footer>
+        <a href="/" class="logo" style="font-size:1.1rem;"><img src="/icons/icon-96.png" alt="Kinévia" style="width:24px;height:24px;border-radius:5px;object-fit:cover;">Kiné<span class="via">via</span></a>
+        <div class="footer-links">
+            <a href="/blog">Blog</a>
+            <a href="/mentions-legales">Mentions légales</a>
+            <a href="/confidentialite">Confidentialité</a>
+            <a href="/cgu">CGU</a>
+        </div>
+    </footer>
+
+</body>
+</html>

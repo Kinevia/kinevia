@@ -1,0 +1,42 @@
+<svg width="794" height="80" viewBox="0 0 794 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kinévia — En-tête PDF">
+  <defs>
+    <linearGradient id="pdf-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1DADE4"/>
+      <stop offset="100%" stop-color="#0E7FA8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Horizontal rule accent line at top -->
+  <rect x="0" y="0" width="794" height="3" rx="1.5" fill="url(#pdf-bg)"/>
+
+  <!-- Icon background -->
+  <rect x="12" y="12" width="50" height="50" rx="12" fill="url(#pdf-bg)"/>
+
+  <!-- K letterform — vertical stem -->
+  <rect x="23" y="20" width="6" height="34" rx="2.5" fill="white"/>
+
+  <!-- Upper arm -->
+  <line x1="26" y1="37" x2="52" y2="20" stroke="white" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- Lower arm (distinctive lighter turquoise — Kinévia brand mark) -->
+  <line x1="26" y1="37" x2="50" y2="54" stroke="#5ED8E4" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- Turquoise dot -->
+  <circle cx="53.5" cy="55.5" r="4" fill="#5ED8E4"/>
+
+  <!-- Brand name -->
+  <text x="74" y="42" font-family="Inter, -apple-system, system-ui, sans-serif" font-size="26" font-weight="800" fill="#0E7FA8" letter-spacing="-1">Kiné<tspan fill="#1DADE4">via</tspan></text>
+
+  <!-- Tagline below brand name -->
+  <text x="75" y="60" font-family="Inter, -apple-system, system-ui, sans-serif" font-size="11" font-weight="400" fill="#94A3B8" letter-spacing="0.3">Suivi patient · Rééducation · Bilan clinique</text>
+
+  <!-- Separator vertical line -->
+  <line x1="230" y1="14" x2="230" y2="66" stroke="#E2E8F0" stroke-width="1.5"/>
+
+  <!-- Practitioner info placeholder zone (right of separator) -->
+  <!-- This zone is intentionally empty — praticien details are overlaid at PDF render time -->
+  <!-- Bounds: x=244 to x=782, y=12 to y=68 -->
+  <text x="244" y="32" font-family="Inter, -apple-system, system-ui, sans-serif" font-size="12" font-weight="600" fill="#334155" id="praticien-nom"><!-- Nom Prénom --></text>
+  <text x="244" y="48" font-family="Inter, -apple-system, system-ui, sans-serif" font-size="11" font-weight="400" fill="#64748B" id="praticien-rpps"><!-- RPPS : XXXXXXXXXXX --></text>
+  <text x="244" y="64" font-family="Inter, -apple-system, system-ui, sans-serif" font-size="11" font-weight="400" fill="#64748B" id="praticien-adresse"><!-- Adresse du cabinet --></text>
+</svg>

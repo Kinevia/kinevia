@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditions Générales de Vente — Kinévia</title>
+    <meta name="robots" content="noindex">
+    <link rel="icon" href="/favicon.png" type="image/png">
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#38BDF8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #38BDF8;
+            --primary-dark: #0EA5E9;
+            --ink: #0f172a;
+            --paper: #f8fafc;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --white: #ffffff;
+        }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.75;
+            -webkit-font-smoothing: antialiased;
+        }
+        nav {
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--ink);
+            letter-spacing: -0.5px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo img { width: 28px; height: 28px; border-radius: 6px; object-fit: cover; }
+        .logo .via { color: var(--primary); }
+        .nav-back {
+            font-size: 0.9rem;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-back:hover { color: var(--ink); }
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 48px 40px 80px;
+        }
+        .page-header {
+            margin-bottom: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+        }
+        .page-header .label {
+            display: inline-block;
+            background: #e0f2fe;
+            color: var(--primary-dark);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 100px;
+            margin-bottom: 16px;
+        }
+        .page-header h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--ink);
+            margin-bottom: 12px;
+        }
+        .page-header .meta {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+        /* Table of contents */
+        .toc {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 48px;
+        }
+        .toc h2 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+            margin-bottom: 14px;
+        }
+        .toc ol {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px 24px;
+        }
+        .toc ol li {
+            font-size: 0.875rem;
+            counter-increment: toc-item;
+        }
+        .toc ol li a {
+            color: var(--primary-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+        }
+        .toc ol li a:hover { text-decoration: underline; }
+        .toc ol li a::before {
+            content: counter(toc-item) ".";
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: var(--muted);
+            min-width: 18px;
+        }
+        .toc { counter-reset: toc-item; }
+        /* Section */
+        .section {
+            margin-bottom: 48px;
+            scroll-margin-top: 24px;
+        }
+        .section h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0f2fe;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section h2 .num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--primary);
+            color: white;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+        .section h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin: 20px 0 8px;
+        }
+        .section p {
+            font-size: 0.9rem;
+            color: #334155;
+            margin-bottom: 12px;
+        }
+        .section ul, .section ol {
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+        .section li {
+            font-size: 0.9rem;
+            color: #334155;
+            margin-bottom: 6px;
+        }
+        .callout {
+            background: #fefce8;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 0.875rem;
+            color: #78350f;
+        }
+        .callout strong { color: #92400e; }
+        .info-box {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 0.875rem;
+            color: #0c4a6e;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+            margin: 16px 0;
+        }
+        th {
+            background: #f1f5f9;
+            font-weight: 600;
+            text-align: left;
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            color: var(--ink);
+        }
+        td {
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            color: #334155;
+        }
+        tr:nth-child(even) td { background: #f8fafc; }
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 32px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: var(--muted);
+            font-size: 0.82rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--ink); }
+        @media (max-width: 640px) {
+            nav { padding: 16px 20px; }
+            .container { padding: 32px 20px 60px; }
+            .toc ol { grid-template-columns: 1fr; }
+            footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="logo"><img src="/icons/icon-96.png" alt="Kinévia">Kiné<span class="via">via</span></a>
+        <a href="/" class="nav-back">← Retour à l'accueil</a>
+    </nav>
+
+    <div class="container">
+
+        <div class="page-header">
+            <span class="label">Document légal</span>
+            <h1>Conditions Générales de Vente</h1>
+            <p class="meta">Version en vigueur au 1er mai 2026 · Kinévia — Service édité par Polsia SAS</p>
+        </div>
+
+        <div class="toc">
+            <h2>Sommaire</h2>
+            <ol>
+                <li><a href="#article-1">Objet et champ d'application</a></li>
+                <li><a href="#article-2">Identification de l'éditeur</a></li>
+                <li><a href="#article-3">Description du service</a></li>
+                <li><a href="#article-4">Conditions d'accès et inscription</a></li>
+                <li><a href="#article-5">Tarifs et modalités de paiement</a></li>
+                <li><a href="#article-6">Durée — Renouvellement — Résiliation</a></li>
+                <li><a href="#article-7">Droit de rétractation</a></li>
+                <li><a href="#article-8">Obligations de l'éditeur</a></li>
+                <li><a href="#article-9">Obligations de l'abonné</a></li>
+                <li><a href="#article-10">Responsabilité et limitation</a></li>
+                <li><a href="#article-11">Propriété intellectuelle</a></li>
+                <li><a href="#article-12">Données personnelles et confidentialité</a></li>
+                <li><a href="#article-13">Modification des CGV</a></li>
+                <li><a href="#article-14">Droit applicable et règlement des litiges</a></li>
+            </ol>
+        </div>
+
+        <!-- ARTICLE 1 -->
+        <div class="section" id="article-1">
+            <h2><span class="num">1</span>Objet et champ d'application</h2>
+            <p>
+                Les présentes Conditions Générales de Vente (ci-après « CGV ») régissent exclusivement les relations contractuelles entre :
+            </p>
+            <ul>
+                <li>La société <strong>Polsia SAS</strong>, éditrice du service Kinévia (ci-après « l'Éditeur ») ;</li>
+                <li>Tout professionnel de santé — kinésithérapeute ou étudiant en masso-kinésithérapie — souscrivant à un abonnement payant ou bénéficiant d'un accès en période d'essai (ci-après « l'Abonné »).</li>
+            </ul>
+            <p>
+                Les CGV s'appliquent à l'exclusion de tout autre document contractuel. Elles prévalent sur toute condition d'achat de l'Abonné.
+                Toute souscription au service implique l'acceptation pleine et entière des présentes CGV.
+            </p>
+            <div class="callout">
+                <strong>Contrat B2B / professionnel uniquement.</strong> Kinévia est un outil destiné exclusivement aux professionnels de santé exerçant la kinésithérapie à titre libéral ou salarié. Le service ne s'adresse pas aux patients ni aux consommateurs finaux au sens du Code de la consommation.
+            </div>
+        </div>
+
+        <!-- ARTICLE 2 -->
+        <div class="section" id="article-2">
+            <h2><span class="num">2</span>Identification de l'éditeur</h2>
+            <table>
+                <tr><th>Raison sociale</th><td>Polsia SAS</td></tr>
+                <tr><th>Service</th><td>Kinévia (kinevia.pro)</td></tr>
+                <tr><th>Contact</th><td><a href="mailto:contact@kinevia.pro">contact@kinevia.pro</a></td></tr>
+                <tr><th>Droit applicable</th><td>Droit français</td></tr>
+            </table>
+        </div>
+
+        <!-- ARTICLE 3 -->
+        <div class="section" id="article-3">
+            <h2><span class="num">3</span>Description du service</h2>
+            <p>
+                Kinévia est une application SaaS (Software as a Service) destinée aux kinésithérapeutes. Elle leur permet notamment de :
+            </p>
+            <ul>
+                <li>Gérer un fichier patients (création, suivi, historique) ;</li>
+                <li>Créer et personnaliser des programmes d'exercices de rééducation ;</li>
+                <li>Documenter des bilans initiaux et de suivi ;</li>
+                <li>Partager un lien d'accès unique avec chaque patient ;</li>
+                <li>Accéder à des ressources cliniques : fiches pathologies EBP, protocoles, tests cliniques ;</li>
+                <li>Utiliser un assistant IA pour les questions cliniques générales.</li>
+            </ul>
+
+            <h3>Statut non-dispositif médical</h3>
+            <p>
+                Kinévia est un <strong>outil de gestion et de communication</strong> professionnel. Il ne constitue pas un dispositif médical au sens du Règlement (UE) 2017/745 (MDR). Il n'effectue aucun diagnostic, ne prescrit aucun traitement et ne remplace en aucun cas le jugement clinique du professionnel de santé.
+            </p>
+
+            <h3>Accès en période d'essai</h3>
+            <p>
+                Kinévia propose une période d'essai gratuite de <strong>14 jours</strong> à compter de la création du compte, sans obligation d'abonnement et sans saisie de coordonnées bancaires. À l'expiration de l'essai, l'accès est suspendu sauf souscription à un abonnement payant.
+            </p>
+        </div>
+
+        <!-- ARTICLE 4 -->
+        <div class="section" id="article-4">
+            <h2><span class="num">4</span>Conditions d'accès et inscription</h2>
+            <p>Pour accéder au service, l'Abonné doit :</p>
+            <ul>
+                <li>Être kinésithérapeute diplômé d'État ou étudiant en masso-kinésithérapie ;</li>
+                <li>Créer un compte en fournissant une adresse email valide, un nom et un mot de passe sécurisé ;</li>
+                <li>Accepter les présentes CGV ainsi que la Politique de confidentialité au moment de l'inscription ;</li>
+                <li>Valider son adresse email via le lien de confirmation envoyé à la création du compte.</li>
+            </ul>
+            <p>
+                L'Abonné est seul responsable de la confidentialité de ses identifiants de connexion. Toute utilisation du service effectuée depuis son compte est réputée faite par lui-même. En cas de compromission de son compte, l'Abonné s'engage à en informer sans délai l'Éditeur à l'adresse <a href="mailto:contact@kinevia.pro">contact@kinevia.pro</a>.
+            </p>
+            <p>
+                Chaque compte est strictement personnel et ne peut être partagé ni cédé à un tiers.
+            </p>
+        </div>
+
+        <!-- ARTICLE 5 -->
+        <div class="section" id="article-5">
+            <h2><span class="num">5</span>Tarifs et modalités de paiement</h2>
+
+            <h3>Tarification</h3>
+            <table>
+                <thead>
+                    <tr><th>Offre</th><th>Tarif</th><th>Engagement</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Essai gratuit</td><td>0 €</td><td>14 jours, sans carte bancaire</td></tr>
+                    <tr><td>Abonnement mensuel</td><td>19,99 € TTC / mois</td><td>Sans engagement, résiliable à tout moment</td></tr>
+                </tbody>
+            </table>
+            <p>
+                Tous les prix sont indiqués en euros TTC (toutes taxes comprises). La TVA applicable est celle en vigueur en France à la date de facturation.
+            </p>
+
+            <h3>Modalités de paiement</h3>
+            <p>
+                Le paiement est effectué par carte bancaire (Visa, Mastercard, American Express) via la plateforme sécurisée <strong>Stripe</strong>. L'Éditeur ne stocke à aucun moment les données de carte bancaire de l'Abonné — celles-ci sont gérées exclusivement par Stripe, certifié PCI DSS niveau 1.
+            </p>
+            <p>
+                Le prélèvement mensuel est effectué automatiquement à la date anniversaire de la souscription. En cas d'échec de paiement, l'Éditeur peut suspendre l'accès au service après un délai de 7 jours et un email de relance.
+            </p>
+
+            <h3>Facturation</h3>
+            <p>
+                Une facture électronique est mise à disposition de l'Abonné dans son espace personnel à chaque renouvellement mensuel.
+            </p>
+        </div>
+
+        <!-- ARTICLE 6 -->
+        <div class="section" id="article-6">
+            <h2><span class="num">6</span>Durée — Renouvellement — Résiliation</h2>
+
+            <h3>Durée</h3>
+            <p>
+                L'abonnement est souscrit pour une durée d'un mois, renouvelable par tacite reconduction à chaque échéance mensuelle.
+            </p>
+
+            <h3>Résiliation par l'Abonné</h3>
+            <p>
+                L'Abonné peut résilier son abonnement à tout moment, sans frais ni pénalité, depuis son espace personnel ou en envoyant un email à <a href="mailto:contact@kinevia.pro">contact@kinevia.pro</a>. La résiliation prend effet à la fin de la période mensuelle en cours déjà réglée. Aucun remboursement prorata temporis n'est effectué pour la période en cours, sauf exercice du droit de rétractation dans les conditions de l'article 7.
+            </p>
+
+            <h3>Résiliation par l'Éditeur</h3>
+            <p>
+                L'Éditeur se réserve le droit de suspendre ou résilier le compte d'un Abonné en cas de :
+            </p>
+            <ul>
+                <li>Violation des présentes CGV ou des Conditions Générales d'Utilisation ;</li>
+                <li>Usage frauduleux, abusif ou contraire aux règles de déontologie professionnelle ;</li>
+                <li>Impayé persistant après relance.</li>
+            </ul>
+            <p>
+                Sauf urgence (fraude, sécurité), la résiliation par l'Éditeur sera précédée d'une mise en demeure par email restée sans effet sous 48 heures.
+            </p>
+
+            <h3>Effets de la résiliation</h3>
+            <p>
+                À la date d'effet de la résiliation, l'accès au service est coupé. Les données de l'Abonné et de ses patients sont conservées 90 jours pour permettre un éventuel export, puis supprimées définitivement conformément à la Politique de confidentialité.
+            </p>
+        </div>
+
+        <!-- ARTICLE 7 -->
+        <div class="section" id="article-7">
+            <h2><span class="num">7</span>Droit de rétractation</h2>
+            <div class="info-box">
+                Conformément à l'article L.221-18 du Code de la consommation et aux règles applicables aux contrats conclus à distance avec des professionnels agissant en dehors de leur activité principale, l'Abonné dispose d'un <strong>droit de rétractation de 14 jours</strong> à compter de la souscription de son premier abonnement payant.
+            </div>
+            <p>
+                Pour exercer ce droit, l'Abonné doit notifier sa décision à l'Éditeur par email à <a href="mailto:contact@kinevia.pro">contact@kinevia.pro</a> en indiquant clairement sa demande de rétractation. Le remboursement du montant payé sera effectué dans les 14 jours suivant réception de la demande, par le même moyen de paiement que celui utilisé pour la transaction initiale.
+            </p>
+            <p>
+                Conformément à l'article L.221-28, 13° du Code de la consommation, le droit de rétractation ne s'applique pas si l'Abonné a expressément consenti à commencer à utiliser le service avant l'expiration du délai de 14 jours et a reconnu perdre de ce fait son droit de rétractation.
+            </p>
+        </div>
+
+        <!-- ARTICLE 8 -->
+        <div class="section" id="article-8">
+            <h2><span class="num">8</span>Obligations de l'éditeur</h2>
+            <p>L'Éditeur s'engage à :</p>
+            <ul>
+                <li>Mettre le service à disposition de l'Abonné de manière continue, sauf opérations de maintenance planifiées (préavis 24h par email sauf urgence) ;</li>
+                <li>Assurer la sécurité et la confidentialité des données hébergées, conformément à la Politique de confidentialité ;</li>
+                <li>Informer l'Abonné de toute modification substantielle du service ou des CGV au moins 30 jours avant son entrée en vigueur ;</li>
+                <li>Fournir un support technique accessible à <a href="mailto:contact@kinevia.pro">contact@kinevia.pro</a>.</li>
+            </ul>
+            <p>
+                L'Éditeur ne garantit pas une disponibilité ininterrompue du service (SLA non contractuel). En cas d'indisponibilité prolongée non planifiée (plus de 48h consécutives), l'Abonné pourra obtenir un avoir proportionnel à la durée d'indisponibilité sur simple demande.
+            </p>
+        </div>
+
+        <!-- ARTICLE 9 -->
+        <div class="section" id="article-9">
+            <h2><span class="num">9</span>Obligations de l'abonné</h2>
+            <p>L'Abonné s'engage à :</p>
+            <ul>
+                <li>N'utiliser le service qu'à des fins professionnelles de kinésithérapie, conformément à son objet ;</li>
+                <li>Ne saisir dans le service que des données de patients ayant consenti à leur traitement informatique, conformément au RGPD ;</li>
+                <li>Ne pas tenter d'accéder aux données d'autres utilisateurs ni compromettre la sécurité du service ;</li>
+                <li>Ne pas revendre, sous-licencier ou mettre à disposition le service à des tiers ;</li>
+                <li>Maintenir à jour ses informations de contact et de paiement ;</li>
+                <li>Respecter l'ensemble des dispositions des Conditions Générales d'Utilisation accessibles à <a href="/cgu">/cgu</a>.</li>
+            </ul>
+        </div>
+
+        <!-- ARTICLE 10 -->
+        <div class="section" id="article-10">
+            <h2><span class="num">10</span>Responsabilité et limitation</h2>
+
+            <h3>Responsabilité de l'Éditeur</h3>
+            <p>
+                L'Éditeur est soumis à une obligation de moyens concernant la disponibilité et la sécurité du service. Sa responsabilité ne pourra être engagée en cas de :
+            </p>
+            <ul>
+                <li>Force majeure (panne internet, catastrophe naturelle, attaque informatique de grande ampleur, etc.) ;</li>
+                <li>Usage non conforme du service par l'Abonné ;</li>
+                <li>Perte de données résultant d'un défaut de sauvegarde par l'Abonné ;</li>
+                <li>Décisions cliniques prises par l'Abonné sur la base des informations du service — le professionnel de santé reste seul responsable de ses actes.</li>
+            </ul>
+            <p>
+                En tout état de cause, la responsabilité de l'Éditeur ne peut excéder le montant des sommes effectivement versées par l'Abonné au titre des 3 derniers mois d'abonnement précédant le fait générateur.
+            </p>
+
+            <h3>Responsabilité de l'Abonné</h3>
+            <p>
+                L'Abonné est seul responsable de l'usage qu'il fait du service, du respect du secret professionnel et des règles déontologiques applicables à la kinésithérapie, ainsi que de la conformité RGPD de son traitement de données patients.
+            </p>
+        </div>
+
+        <!-- ARTICLE 11 -->
+        <div class="section" id="article-11">
+            <h2><span class="num">11</span>Propriété intellectuelle</h2>
+            <p>
+                Le service Kinévia, son interface, ses textes, ses graphismes, son code source, ses fiches pathologies, ses protocoles et toute autre composante sont la propriété exclusive de l'Éditeur ou de ses concédants de licence. Toute reproduction, représentation, modification ou exploitation non autorisée, totale ou partielle, est strictement interdite.
+            </p>
+            <p>
+                L'Abonné bénéficie d'une licence d'utilisation personnelle, non exclusive et non transférable du service pour la durée de son abonnement.
+            </p>
+            <p>
+                Les données saisies par l'Abonné (patients, bilans, programmes) restent sa propriété exclusive. Il peut en demander l'export à tout moment via <a href="mailto:contact@kinevia.pro">contact@kinevia.pro</a>. L'Éditeur n'exploite ces données qu'aux fins de fourniture du service.
+            </p>
+        </div>
+
+        <!-- ARTICLE 12 -->
+        <div class="section" id="article-12">
+            <h2><span class="num">12</span>Données personnelles et confidentialité</h2>
+            <p>
+                L'Éditeur traite les données personnelles de l'Abonné et les données de santé de ses patients en qualité de <strong>sous-traitant</strong> au sens de l'article 28 du Règlement (UE) 2016/679 (RGPD). L'Abonné demeure le <strong>responsable de traitement</strong> vis-à-vis de ses patients.
+            </p>
+            <p>
+                Les données sont hébergées sur des serveurs situés dans l'Espace Économique Européen. Elles ne sont pas revendues à des tiers.
+            </p>
+            <p>
+                La Politique de confidentialité complète est accessible à <a href="/confidentialite">/confidentialite</a> et constitue un document contractuel annexé aux présentes CGV.
+            </p>
+            <p>
+                L'Abonné dispose d'un droit d'accès, de rectification, de portabilité et d'effacement de ses données en contactant <a href="mailto:contact@kinevia.pro">contact@kinevia.pro</a>. Il peut également introduire une réclamation auprès de la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a>).
+            </p>
+        </div>
+
+        <!-- ARTICLE 13 -->
+        <div class="section" id="article-13">
+            <h2><span class="num">13</span>Modification des CGV</h2>
+            <p>
+                L'Éditeur se réserve le droit de modifier les présentes CGV à tout moment. En cas de modification substantielle (tarifs, droit de rétractation, responsabilité), l'Abonné sera notifié par email au moins <strong>30 jours</strong> avant l'entrée en vigueur des nouvelles conditions.
+            </p>
+            <p>
+                L'utilisation du service après la date d'entrée en vigueur des nouvelles CGV vaut acceptation. En cas de refus, l'Abonné peut résilier son abonnement sans frais avant la date d'application.
+            </p>
+            <p>
+                La version en vigueur des CGV est celle publiée à l'adresse <a href="/cgv">kinevia.pro/cgv</a>, accompagnée de la date d'entrée en vigueur.
+            </p>
+        </div>
+
+        <!-- ARTICLE 14 -->
+        <div class="section" id="article-14">
+            <h2><span class="num">14</span>Droit applicable et règlement des litiges</h2>
+
+            <h3>Droit applicable</h3>
+            <p>
+                Les présentes CGV sont soumises au droit français.
+            </p>
+
+            <h3>Médiation</h3>
+            <p>
+                Conformément aux articles L.612-1 et suivants du Code de la consommation, l'Abonné peut recourir gratuitement à un médiateur de la consommation. L'Éditeur s'engage à participer de bonne foi à toute procédure de médiation engagée.
+            </p>
+            <p>
+                En cas de litige, les parties s'engagent à rechercher une solution amiable. L'Abonné peut adresser sa réclamation à <a href="mailto:contact@kinevia.pro">contact@kinevia.pro</a>. À défaut de résolution amiable dans un délai de 30 jours, le litige sera soumis à la juridiction compétente conformément aux règles du droit français.
+            </p>
+
+            <h3>Juridiction compétente</h3>
+            <p>
+                Tout litige relatif à l'interprétation ou à l'exécution des présentes CGV sera soumis aux tribunaux compétents du ressort du siège social de l'Éditeur, sauf disposition légale contraire impérative.
+            </p>
+
+            <div class="info-box">
+                <strong>Contact :</strong> Pour toute question relative aux présentes CGV, écrivez à <a href="mailto:contact@kinevia.pro">contact@kinevia.pro</a>
+            </div>
+        </div>
+
+        <hr style="border:none;border-top:1px solid var(--border);margin:48px 0 32px;">
+        <p style="font-size:0.8rem;color:var(--muted);text-align:center;">
+            Ces CGV ont été mises à jour le <strong>1er mai 2026</strong>. Pour toute question, contactez-nous à <a href="mailto:contact@kinevia.pro" style="color:var(--primary-dark);">contact@kinevia.pro</a>
+        </p>
+
+    </div>
+
+    <footer>
+        <span class="logo"><img src="/icons/icon-96.png" alt="Kinévia" style="width:28px;height:28px;border-radius:6px;object-fit:cover;">Kiné<span class="via">via</span></span>
+        <p style="font-size:0.82rem;color:var(--muted);">&copy; 2026 Kinévia. Tous droits réservés.</p>
+        <div class="footer-links">
+            <a href="/mentions-legales">Mentions légales</a>
+            <a href="/confidentialite">Confidentialité</a>
+            <a href="/cgu">CGU</a>
+            <a href="/cgv" style="font-weight:600;color:var(--primary-dark);">CGV</a>
+            <a href="/securite">Sécurité</a>
+        </div>
+    </footer>
+
+    <!-- PWA Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js')
+            .then(function(reg) { console.log('[SW] Registered:', reg.scope); })
+            .catch(function(err) { console.warn('[SW] Registration failed:', err); });
+        });
+      }
+    </script>
+</body>
+</html>

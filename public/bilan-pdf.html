@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bilan — Kinévia</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 11pt;
+      color: #1e293b;
+      background: #f1f5f9;
+    }
+
+    /* ── SCREEN WRAPPER ── */
+    .screen-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .screen-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 14px 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .screen-toolbar .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #475569;
+      text-decoration: none;
+      padding: 7px 14px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .screen-toolbar .btn-back:hover { background: #f8fafc; }
+    .screen-toolbar .btn-print {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 600;
+      color: white;
+      background: #38BDF8;
+      padding: 8px 18px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .screen-toolbar .btn-print:hover { background: #0EA5E9; }
+
+    /* ── A4 PAPER ── */
+    .a4-paper {
+      background: white;
+      width: 100%;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      padding: 32mm 25mm;
+      min-height: 297mm;
+    }
+
+    /* ── HEADER (pdf-header.svg) ── */
+    .doc-header {
+      margin-bottom: 20px;
+    }
+    .doc-header-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .doc-header-date {
+      font-size: 9pt;
+      color: #94a3b8;
+      text-align: right;
+      margin-top: 6px;
+    }
+
+    /* ── RECIPIENT BLOCK (patient) ── */
+    .recipient-block {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-left: 3px solid #38BDF8;
+      border-radius: 4px;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+    }
+    .recipient-block .section-label {
+      font-size: 8pt;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #94a3b8;
+      margin-bottom: 6px;
+    }
+    .recipient-block .patient-name {
+      font-size: 13pt;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 3px;
+    }
+    .recipient-block .patient-meta {
+      font-size: 9pt;
+      color: #475569;
+      line-height: 1.5;
+    }
+
+    /* ── DOC TITLE ── */
+    .doc-title-block {
+      text-align: center;
+      margin: 20px 0 22px;
+      padding: 12px;
+      background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+      border-radius: 6px;
+      border: 1px solid #bae6fd;
+    }
+    .doc-title-block h2 {
+      font-size: 13pt;
+      font-weight: 700;
+      color: #0369a1;
+      margin-bottom: 2px;
+    }
+    .doc-title-block .doc-subtitle {
+      font-size: 9pt;
+      color: #0284c7;
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      margin-bottom: 18px;
+    }
+    .section-title {
+      font-size: 9pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #38BDF8;
+      border-bottom: 1px solid #e0f2fe;
+      padding-bottom: 5px;
+      margin-bottom: 11px;
+    }
+    .section-body {
+      font-size: 10pt;
+      color: #334155;
+      line-height: 1.65;
+    }
+
+    /* ── SYNTHESE REDIGEE ── */
+    .synthese-block {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 14px 18px;
+      font-size: 10pt;
+      color: #1e293b;
+      line-height: 1.85;
+      white-space: pre-line;
+    }
+
+    /* ── OBSERVATIONS PRATICIEN ── */
+    .observations-praticien-block {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-left: 3px solid #f59e0b;
+      border-radius: 4px;
+      padding: 12px 16px;
+      font-size: 10pt;
+      color: #78350f;
+      line-height: 1.7;
+      white-space: pre-line;
+    }
+
+    /* ── CONCLUSION ── */
+    .conclusion-block {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-left: 3px solid #22c55e;
+      border-radius: 4px;
+      padding: 14px 18px;
+      font-size: 10pt;
+      color: #14532d;
+      line-height: 1.75;
+      white-space: pre-line;
+    }
+
+    /* ── ELEMENTS COMPLEMENTAIRES ── */
+    .notes-courrier-block {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-left: 3px solid #38BDF8;
+      border-radius: 4px;
+      padding: 10px 14px;
+      font-size: 10pt;
+      color: #0c4a6e;
+      line-height: 1.65;
+    }
+
+    /* ── SCORE BADGE ── */
+    .score-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .score-label {
+      font-size: 9.5pt;
+      font-weight: 600;
+      color: #475569;
+      min-width: 100px;
+    }
+    .score-bar-wrap {
+      flex: 1;
+      height: 7px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+      max-width: 120px;
+    }
+    .score-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+    }
+    .score-value {
+      font-size: 10pt;
+      font-weight: 700;
+      min-width: 36px;
+    }
+    .score-value.green { color: #16a34a; }
+    .score-value.yellow { color: #ca8a04; }
+    .score-value.red { color: #dc2626; }
+    .score-bar-fill.green { background: #22c55e; }
+    .score-bar-fill.yellow { background: #eab308; }
+    .score-bar-fill.red { background: #ef4444; }
+    .score-details {
+      font-size: 9pt;
+      color: #64748b;
+      margin-top: 2px;
+      margin-left: 4px;
+      font-style: italic;
+    }
+
+    /* ── CHIP TAGS ── */
+    .chips-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 5px;
+    }
+    .chip {
+      display: inline-block;
+      font-size: 8.5pt;
+      padding: 2px 9px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+    .chip-blue { background: #eff6ff; color: #1d4ed8; }
+    .chip-amber { background: #fffbeb; color: #b45309; }
+    .chip-purple { background: #faf5ff; color: #7c3aed; }
+    .chip-green { background: #f0fdf4; color: #15803d; }
+    .chip-gray { background: #f8fafc; color: #475569; border: 1px solid #e2e8f0; }
+    .chip-indigo { background: #eef2ff; color: #4338ca; }
+
+    /* ── CLINICAL TESTS TABLE ── */
+    .test-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.5pt;
+      margin-top: 6px;
+    }
+    .test-table th {
+      background: #f1f5f9;
+      font-weight: 600;
+      font-size: 8.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #64748b;
+      padding: 7px 10px;
+      text-align: left;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .test-table td {
+      padding: 7px 10px;
+      border-bottom: 1px solid #f1f5f9;
+      vertical-align: top;
+    }
+    .test-table tr:last-child td { border-bottom: none; }
+
+    /* ── AMPLITUDES TABLE ── */
+    .amp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.5pt;
+    }
+    .amp-table td {
+      padding: 5px 8px;
+      border-bottom: 1px solid #f8fafc;
+    }
+    .amp-table td:first-child {
+      font-weight: 600;
+      color: #475569;
+      width: 130px;
+    }
+
+    /* ── PROGRESSION TABLE ── */
+    .progression-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9pt;
+      margin-top: 6px;
+    }
+    .progression-table th {
+      background: #0f172a;
+      color: white;
+      font-weight: 600;
+      font-size: 8.5pt;
+      padding: 7px 10px;
+      text-align: left;
+    }
+    .progression-table td {
+      padding: 7px 10px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .progression-table tr.current-bilan td {
+      background: #f0f9ff;
+      font-weight: 600;
+    }
+    .progression-table .trend-up { color: #16a34a; }
+    .progression-table .trend-down { color: #dc2626; }
+    .progression-table .trend-same { color: #94a3b8; }
+
+    /* ── SIGNATURE ── */
+    .signature-block {
+      margin-top: 28px;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .signature-inner {
+      text-align: right;
+      min-width: 220px;
+    }
+    .signature-inner .sig-line {
+      border-top: 1px solid #cbd5e1;
+      padding-top: 8px;
+      margin-top: 48px;
+      font-size: 9pt;
+      color: #64748b;
+    }
+    .signature-inner .sig-name {
+      font-size: 10pt;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .signature-inner .sig-rpps {
+      font-size: 8.5pt;
+      color: #94a3b8;
+    }
+
+    /* ── FOOTER ── */
+    .doc-footer {
+      margin-top: 24px;
+      padding-top: 12px;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .doc-footer .footer-left {
+      font-size: 8pt;
+      color: #94a3b8;
+    }
+    .doc-footer .footer-right {
+      font-size: 8pt;
+      color: #94a3b8;
+      text-align: right;
+    }
+
+    /* ── LOADING / ERROR ── */
+    #loading-state, #error-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 300px;
+      gap: 12px;
+      color: #64748b;
+      font-size: 13px;
+    }
+    .spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid #e2e8f0;
+      border-top-color: #38BDF8;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── PRINT STYLES ── */
+    @media print {
+      body { background: white; font-size: 10pt; }
+      .screen-wrapper { max-width: none; padding: 0; }
+      .screen-toolbar { display: none !important; }
+      .a4-paper {
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        padding: 15mm 18mm;
+        min-height: auto;
+        width: 100%;
+        page-break-after: always;
+      }
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+      .section { page-break-inside: avoid; }
+      .progression-table { page-break-inside: avoid; }
+    }
+
+    /* ── EXERCISES TABLE ── */
+    .exercise-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.5pt;
+      margin-top: 6px;
+    }
+    .exercise-table th {
+      background: #f0f9ff;
+      font-weight: 600;
+      font-size: 8.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #0369a1;
+      padding: 7px 10px;
+      text-align: left;
+      border-bottom: 1px solid #bae6fd;
+    }
+    .exercise-table td {
+      padding: 7px 10px;
+      border-bottom: 1px solid #f1f5f9;
+      vertical-align: top;
+    }
+    .exercise-table tr:last-child td { border-bottom: none; }
+    .exercise-table .ex-name { font-weight: 600; color: #0f172a; }
+    .exercise-table .ex-zone { font-size: 8.5pt; color: #64748b; margin-top: 2px; }
+
+    /* ── DATA GRID ── */
+    .data-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 16px;
+    }
+    .data-item label {
+      display: block;
+      font-size: 8pt;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #94a3b8;
+      margin-bottom: 1px;
+    }
+    .data-item span {
+      font-size: 10pt;
+      color: #1e293b;
+    }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      border: none;
+      border-top: 1px solid #f1f5f9;
+      margin: 6px 0 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="screen-wrapper">
+    <div class="screen-toolbar">
+      <button class="btn-back" onclick="history.back()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+        Retour
+      </button>
+      <div style="font-size:13px;font-weight:600;color:#0f172a;">Prévisualisation du bilan</div>
+      <button class="btn-print" onclick="window.print()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        Télécharger / Imprimer
+      </button>
+    </div>
+
+    <div id="loading-state">
+      <div class="spinner"></div>
+      <span>Génération du document…</span>
+    </div>
+
+    <div id="error-state" style="display:none">
+      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" viewBox="0 0 24 24" stroke="#ef4444" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/></svg>
+      <span id="error-msg">Erreur lors du chargement</span>
+      <button onclick="history.back()" style="margin-top:8px;font-size:13px;color:#38BDF8;text-decoration:underline;background:none;border:none;cursor:pointer">Retour</button>
+    </div>
+
+    <div id="pdf-content" style="display:none">
+      <div class="a4-paper" id="a4-doc">
+        <!-- Filled dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var bilanId = null;
+
+    // Extract bilan ID from URL: /bilan-pdf?id=123
+    var params = new URLSearchParams(window.location.search);
+    bilanId = params.get('id');
+
+    if (!bilanId) {
+      document.getElementById('loading-state').style.display = 'none';
+      document.getElementById('error-state').style.display = 'flex';
+      document.getElementById('error-msg').textContent = 'Identifiant de bilan manquant';
+    } else {
+      loadPDF(bilanId);
+    }
+
+    function esc(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function formatDate(d) {
+      if (!d) return '\u2014';
+      var dt = new Date(d);
+      if (isNaN(dt)) return d;
+      return dt.toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' });
+    }
+
+    function formatDateShort(d) {
+      if (!d) return '\u2014';
+      var dt = new Date(d);
+      if (isNaN(dt)) return d;
+      return dt.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    }
+
+    function scoreColor(s, max) {
+      var pct = max ? (s / max) : s / 10;
+      if (pct >= 0.7) return 'green';
+      if (pct >= 0.4) return 'yellow';
+      return 'red';
+    }
+
+    async function loadPDF(id) {
+      try {
+        var resp = await fetch('/api/bilans/' + id + '/pdf-data', { credentials: 'include' });
+        if (resp.status === 401) {
+          window.location.href = '/connexion';
+          return;
+        }
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        var data = await resp.json();
+        renderDocument(data.bilan, data.kine, data.allBilans, data.activeProgramme, data.programmeExercices);
+        document.getElementById('loading-state').style.display = 'none';
+        document.getElementById('pdf-content').style.display = 'block';
+      } catch (e) {
+        document.getElementById('loading-state').style.display = 'none';
+        document.getElementById('error-state').style.display = 'flex';
+        document.getElementById('error-msg').textContent = 'Impossible de charger le bilan : ' + e.message;
+      }
+    }
+
+    function renderDocument(b, kine, allBilans, activeProgramme, programmeExercices) {
+      var dc = b.donnees_cliniques || {};
+      var today = new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' });
+      var bilanDate = formatDate(b.date_bilan || b.created_at);
+
+      // ── 1. EN-TÊTE : Kiné + Branding
+      var kineName = [kine.prenom, kine.nom].filter(Boolean).join(' ') || 'Kin\u00e9sith\u00e9rapeute';
+      var kineDetails = [];
+      if (kine.cabinet) kineDetails.push(kine.cabinet);
+      if (kine.adresse) kineDetails.push(kine.adresse);
+      if (kine.telephone) kineDetails.push(kine.telephone);
+      if (kine.email) kineDetails.push(kine.email);
+
+      // Build practitioner info lines for the SVG right zone (x=244, y=20/38/54/70)
+      var svgPraticienLines = [];
+      svgPraticienLines.push(kineName); // name always first
+      if (kine.rpps) svgPraticienLines.push('N\u00b0 RPPS\u00a0: ' + kine.rpps);
+      if (kine.cabinet) svgPraticienLines.push(kine.cabinet);
+      if (kine.adresse) svgPraticienLines.push(kine.adresse);
+      if (kine.telephone) svgPraticienLines.push(kine.telephone);
+
+      // SVG text lines (max 4, spaced at y=28,44,58,70 within 80px height zone)
+      var svgTextYPositions = [28, 44, 58, 70];
+      var svgTextFontSizes = ['13', '11', '11', '11'];
+      var svgTextFontWeights = ['600', '400', '400', '400'];
+      var svgPraticienSvgLines = svgPraticienLines.slice(0, 4).map(function(line, i) {
+        return '<text x="244" y="' + svgTextYPositions[i] + '" font-family="Inter, -apple-system, system-ui, sans-serif" font-size="' + svgTextFontSizes[i] + '" font-weight="' + svgTextFontWeights[i] + '" fill="' + (i === 0 ? '#334155' : '#64748B') + '">' + esc(line) + '</text>';
+      }).join('');
+
+      var headerHtml = '<div class="doc-header">' +
+        '<svg class="doc-header-svg" viewBox="0 0 794 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kin\u00e9via \u2014 En-t\u00eate">' +
+          '<defs>' +
+            '<linearGradient id="pdf-grad" x1="0%" y1="0%" x2="100%" y2="100%">' +
+              '<stop offset="0%" stop-color="#2DD4BF"/>' +
+              '<stop offset="100%" stop-color="#818CF8"/>' +
+            '</linearGradient>' +
+            '<linearGradient id="pdf-icon-grad" x1="0%" y1="0%" x2="100%" y2="100%">' +
+              '<stop offset="0%" stop-color="#2DD4BF"/>' +
+              '<stop offset="50%" stop-color="#60A5FA"/>' +
+              '<stop offset="100%" stop-color="#818CF8"/>' +
+            '</linearGradient>' +
+          '</defs>' +
+          '<rect x="0" y="0" width="794" height="3" rx="1.5" fill="url(#pdf-grad)"/>' +
+          '<rect x="12" y="12" width="50" height="50" rx="12" fill="url(#pdf-icon-grad)"/>' +
+          '<g transform="translate(22, 19)">' +
+            '<rect x="0" y="0" width="6" height="36" rx="2" fill="white"/>' +
+            '<path d="M6 18 L30 0" stroke="white" stroke-width="6" stroke-linecap="round" fill="none"/>' +
+            '<path d="M6 18 L30 36" stroke="white" stroke-width="6" stroke-linecap="round" fill="none"/>' +
+          '</g>' +
+          '<text x="74" y="42" font-family="Inter, -apple-system, system-ui, sans-serif" font-size="26" font-weight="800" fill="url(#pdf-grad)" letter-spacing="-1">Kin\u00e9via</text>' +
+          '<text x="75" y="60" font-family="Inter, -apple-system, system-ui, sans-serif" font-size="11" font-weight="400" fill="#94A3B8" letter-spacing="0.3">Suivi patient \u00b7 R\u00e9\u00e9ducation \u00b7 Bilan clinique</text>' +
+          '<line x1="230" y1="10" x2="230" y2="70" stroke="#E2E8F0" stroke-width="1.5"/>' +
+          svgPraticienSvgLines +
+        '</svg>' +
+        '<div class="doc-header-date">\u00c9mis le ' + today + '</div>' +
+      '</div>';
+
+      // ── Patient block
+      var patientName = [b.patient_prenom, b.patient_nom].filter(Boolean).join(' ') || 'Patient';
+      var patientMeta = [];
+      if (b.patient_pathologie) patientMeta.push('Motif\u00a0: ' + b.patient_pathologie);
+
+      var recipientHtml = '<div class="recipient-block">' +
+        '<div class="section-label">Patient</div>' +
+        '<div class="patient-name">' + esc(patientName) + '</div>' +
+        (patientMeta.length ? '<div class="patient-meta">' + patientMeta.map(esc).join(' \u00b7 ') + '</div>' : '') +
+      '</div>';
+
+      // ── Title block: "Bilan initial" ou "Bilan #N"
+      var bilanNum = b.bilan_number ? parseInt(b.bilan_number) : 1;
+      var docTitleLabel = bilanNum === 1 ? 'Bilan initial' : 'Bilan #' + bilanNum;
+      var titleHtml = '<div class="doc-title-block">' +
+        '<h2>' + docTitleLabel + ' \u2014 ' + bilanDate + '</h2>' +
+        '<div class="doc-subtitle">Compte rendu de kin\u00e9sith\u00e9rapie</div>' +
+      '</div>';
+
+      // ── SECTIONS
+      var sectionsHtml = '';
+
+      // ── 2. SYNTHESE REDIGEE (nouveau bloc, position haute)
+      if (b.synthese_redigee) {
+        sectionsHtml += '<div class="section">' +
+          '<div class="section-title">Synth\u00e8se r\u00e9dig\u00e9e</div>' +
+          '<div class="synthese-block">' + esc(b.synthese_redigee) + '</div>' +
+        '</div>';
+      }
+
+      // ── 3. OBSERVATIONS DU PRATICIEN (nouveau champ)
+      if (b.observations_praticien) {
+        sectionsHtml += '<div class="section">' +
+          '<div class="section-title">Observations du praticien</div>' +
+          '<div class="observations-praticien-block">' + esc(b.observations_praticien) + '</div>' +
+        '</div>';
+      }
+
+      // ── Données cliniques brutes (conservées pour contexte médical)
+
+      // Douleur EVA + Niveau fonctionnel
+      var eva = b.douleur_initiale;
+      var fs = b.functional_scale;
+      if (eva != null || fs != null) {
+        sectionsHtml += '<div class="section">' +
+          '<div class="section-title">\u00c9valuation initiale</div>' +
+          '<div class="section-body">';
+
+        if (eva != null) {
+          var cEvaReal = eva <= 3 ? 'green' : eva <= 6 ? 'yellow' : 'red';
+          sectionsHtml += '<div class="score-row">' +
+            '<span class="score-label">Douleur (EVA)</span>' +
+            '<div class="score-bar-wrap"><div class="score-bar-fill ' + cEvaReal + '" style="width:' + (eva * 10) + '%"></div></div>' +
+            '<span class="score-value ' + cEvaReal + '">' + eva + '/10</span>' +
+          '</div>';
+          if (dc.douleur) {
+            var dDetails = [];
+            if (dc.douleur.type) dDetails.push('Type\u00a0: ' + dc.douleur.type);
+            if (dc.douleur.localisation) dDetails.push('Localisation\u00a0: ' + dc.douleur.localisation);
+            if (dDetails.length) sectionsHtml += '<div class="score-details">' + esc(dDetails.join(' \u00b7 ')) + '</div>';
+          }
+        }
+
+        if (fs != null) {
+          var cFs = fs >= 7 ? 'green' : fs >= 4 ? 'yellow' : 'red';
+          sectionsHtml += '<div class="score-row" style="margin-top:8px">' +
+            '<span class="score-label">Niveau fonctionnel</span>' +
+            '<div class="score-bar-wrap"><div class="score-bar-fill ' + cFs + '" style="width:' + (fs * 10) + '%"></div></div>' +
+            '<span class="score-value ' + cFs + '">' + fs + '/10</span>' +
+          '</div>';
+          if (b.functional_details) {
+            sectionsHtml += '<div class="score-details">' + esc(b.functional_details) + '</div>';
+          }
+        }
+
+        sectionsHtml += '</div></div>';
+      }
+
+      // Antécédents
+      var hasAntMed = dc.antecedents_medicaux && dc.antecedents_medicaux.items && dc.antecedents_medicaux.items.length;
+      var hasAntTrau = dc.antecedents_traumatiques && dc.antecedents_traumatiques.items && dc.antecedents_traumatiques.items.length;
+      if (hasAntMed || hasAntTrau) {
+        sectionsHtml += '<div class="section"><div class="section-title">Ant\u00e9c\u00e9dents</div><div class="section-body">';
+        if (hasAntMed) {
+          sectionsHtml += '<div style="margin-bottom:8px"><div style="font-size:9pt;font-weight:600;color:#475569;margin-bottom:4px">M\u00e9dicaux</div><div class="chips-row">' +
+            dc.antecedents_medicaux.items.map(function(x) { return '<span class="chip chip-blue">' + esc(x) + '</span>'; }).join('') + '</div>' +
+            (dc.antecedents_medicaux.note ? '<div style="font-size:9pt;color:#64748b;margin-top:4px;font-style:italic">' + esc(dc.antecedents_medicaux.note) + '</div>' : '') +
+          '</div>';
+        }
+        if (hasAntTrau) {
+          sectionsHtml += '<div><div style="font-size:9pt;font-weight:600;color:#475569;margin-bottom:4px">Traumatiques</div><div class="chips-row">' +
+            dc.antecedents_traumatiques.items.map(function(x) { return '<span class="chip chip-amber">' + esc(x) + '</span>'; }).join('') + '</div>' +
+            (dc.antecedents_traumatiques.note ? '<div style="font-size:9pt;color:#64748b;margin-top:4px;font-style:italic">' + esc(dc.antecedents_traumatiques.note) + '</div>' : '') +
+          '</div>';
+        }
+        sectionsHtml += '</div></div>';
+      }
+
+      // Imagerie
+      if (dc.imagerie && dc.imagerie.items && dc.imagerie.items.length) {
+        sectionsHtml += '<div class="section"><div class="section-title">Imagerie</div><div class="section-body">' +
+          '<div class="chips-row">' + dc.imagerie.items.map(function(x) { return '<span class="chip chip-purple">' + esc(x) + '</span>'; }).join('') + '</div>' +
+          (dc.imagerie.date_imagerie ? '<div style="font-size:9pt;color:#64748b;margin-top:4px">Date\u00a0: ' + esc(dc.imagerie.date_imagerie) + '</div>' : '') +
+          (dc.imagerie.resultats ? '<div style="font-size:9pt;color:#475569;margin-top:4px">' + esc(dc.imagerie.resultats) + '</div>' : '') +
+          (dc.imagerie.note ? '<div style="font-size:9pt;color:#64748b;margin-top:4px;font-style:italic">' + esc(dc.imagerie.note) + '</div>' : '') +
+        '</div></div>';
+      }
+
+      // Amplitudes articulaires
+      if (dc.amplitudes) {
+        var ampFields = ['epaule', 'coude', 'poignet', 'hanche', 'genou', 'cheville', 'rachis_cervical', 'rachis_lombaire'];
+        var ampLabels = { epaule:'\u00c9paule', coude:'Coude', poignet:'Poignet', hanche:'Hanche', genou:'Genou', cheville:'Cheville', rachis_cervical:'Rachis cervical', rachis_lombaire:'Rachis lombaire' };
+        var ampRows = ampFields.filter(function(k) { return dc.amplitudes[k]; });
+        if (ampRows.length) {
+          sectionsHtml += '<div class="section"><div class="section-title">Amplitudes articulaires</div><div class="section-body">' +
+            '<table class="amp-table">' +
+            ampRows.map(function(k) {
+              return '<tr><td>' + esc(ampLabels[k] || k) + '</td><td>' + esc(dc.amplitudes[k]) + '</td></tr>';
+            }).join('') +
+            '</table>' +
+            (dc.amplitudes.note ? '<div style="font-size:9pt;color:#64748b;margin-top:6px;font-style:italic">' + esc(dc.amplitudes.note) + '</div>' : '') +
+          '</div></div>';
+        }
+      }
+
+      // Bilan musculaire
+      if (dc.musculaire) {
+        var muscFields = ['quadriceps','ischio-jambiers','triceps_sural','tibial_ant\u00e9rieur','fessiers','rotateurs_\u00e9paule','stabilisateurs_scapulaires','abdominaux_profonds'];
+        var muscLabels = {
+          quadriceps:'Quadriceps', 'ischio-jambiers':'Ischio-jambiers', triceps_sural:'Triceps sural',
+          'tibial_ant\u00e9rieur':'Tibial ant\u00e9rieur', fessiers:'Fessiers', 'rotateurs_\u00e9paule':'Rotateurs \u00e9paule',
+          'stabilisateurs_scapulaires':'Stabilisateurs scap.', 'abdominaux_profonds':'Abdominaux profonds'
+        };
+        var muscScores = [];
+        Object.keys(dc.musculaire).forEach(function(k) {
+          if (k !== 'items' && k !== 'note' && dc.musculaire[k] !== '' && dc.musculaire[k] !== undefined) {
+            muscScores.push({ label: muscLabels[k] || k, val: dc.musculaire[k] });
+          }
+        });
+        var hasMusc = muscScores.length || (dc.musculaire.items && dc.musculaire.items.length) || dc.musculaire.note;
+        if (hasMusc) {
+          sectionsHtml += '<div class="section"><div class="section-title">Bilan musculaire (cotation MRC 0\u20135)</div><div class="section-body">';
+          if (muscScores.length) {
+            sectionsHtml += '<table class="amp-table">' +
+              muscScores.map(function(m) { return '<tr><td>' + esc(m.label) + '</td><td>' + esc(m.val) + '/5</td></tr>'; }).join('') +
+              '</table>';
+          }
+          if (dc.musculaire.items && dc.musculaire.items.length) {
+            sectionsHtml += '<div class="chips-row" style="margin-top:6px">' + dc.musculaire.items.map(function(x) { return '<span class="chip chip-gray">' + esc(x) + '</span>'; }).join('') + '</div>';
+          }
+          if (dc.musculaire.note) sectionsHtml += '<div style="font-size:9pt;color:#64748b;margin-top:6px;font-style:italic">' + esc(dc.musculaire.note) + '</div>';
+          sectionsHtml += '</div></div>';
+        }
+      }
+
+      // Tests fonctionnels validés
+      if (dc.fonctionnel && ((dc.fonctionnel.items && dc.fonctionnel.items.length) || dc.fonctionnel.scores)) {
+        sectionsHtml += '<div class="section"><div class="section-title">Tests fonctionnels valid\u00e9s</div><div class="section-body">';
+        if (dc.fonctionnel.items && dc.fonctionnel.items.length) {
+          sectionsHtml += '<div class="chips-row">' + dc.fonctionnel.items.map(function(x) { return '<span class="chip chip-indigo">' + esc(x) + '</span>'; }).join('') + '</div>';
+        }
+        if (dc.fonctionnel.scores) {
+          sectionsHtml += '<div style="margin-top:6px;font-size:9.5pt;color:#334155">Scores\u00a0: ' + esc(dc.fonctionnel.scores) + '</div>';
+        }
+        sectionsHtml += '</div></div>';
+      }
+
+      // Diagnostic & Objectifs
+      var hasObjectifs = dc.objectifs_patient && ((dc.objectifs_patient.items && dc.objectifs_patient.items.length) || dc.objectifs_patient.precisions);
+      var hasDiag = b.objectifs;
+      if (hasObjectifs || hasDiag) {
+        sectionsHtml += '<div class="section"><div class="section-title">Diagnostic kin\u00e9sith\u00e9rapique &amp; Objectifs</div><div class="section-body">';
+        if (hasDiag) {
+          sectionsHtml += '<div style="margin-bottom:8px"><div style="font-size:9pt;font-weight:600;color:#475569;margin-bottom:3px">Objectifs th\u00e9rapeutiques</div>' +
+            '<div style="font-size:10pt;color:#334155">' + esc(b.objectifs) + '</div></div>';
+        }
+        if (hasObjectifs) {
+          if (dc.objectifs_patient.items && dc.objectifs_patient.items.length) {
+            sectionsHtml += '<div style="font-size:9pt;font-weight:600;color:#475569;margin-bottom:4px">Objectifs du patient</div>' +
+              '<div class="chips-row">' + dc.objectifs_patient.items.map(function(x) { return '<span class="chip chip-green">' + esc(x) + '</span>'; }).join('') + '</div>';
+          }
+          if (dc.objectifs_patient.precisions) {
+            sectionsHtml += '<div style="font-size:9pt;color:#64748b;margin-top:4px;font-style:italic">' + esc(dc.objectifs_patient.precisions) + '</div>';
+          }
+        }
+        sectionsHtml += '</div></div>';
+      }
+
+      // Plan de traitement
+      var hasTraitement = dc.traitement && ((dc.traitement.items && dc.traitement.items.length) || dc.traitement.note);
+      var hasPlanTraitement = b.observations;
+      if (hasTraitement || hasPlanTraitement) {
+        sectionsHtml += '<div class="section"><div class="section-title">Traitement en cours &amp; Plan</div><div class="section-body">';
+        if (hasPlanTraitement) {
+          sectionsHtml += '<div style="margin-bottom:8px;font-size:10pt;color:#334155">' + esc(b.observations) + '</div>';
+        }
+        if (hasTraitement) {
+          if (dc.traitement.items && dc.traitement.items.length) {
+            sectionsHtml += '<div class="chips-row">' + dc.traitement.items.map(function(x) { return '<span class="chip chip-gray">' + esc(x) + '</span>'; }).join('') + '</div>';
+          }
+          if (dc.traitement.note) {
+            sectionsHtml += '<div style="font-size:9pt;color:#64748b;margin-top:4px;font-style:italic">' + esc(dc.traitement.note) + '</div>';
+          }
+        }
+        sectionsHtml += '</div></div>';
+      }
+
+      // Programme d'exercices prescrit
+      if (activeProgramme && programmeExercices && programmeExercices.length > 0) {
+        var freqLabel = activeProgramme.frequence_semaine ? activeProgramme.frequence_semaine + 'x\u00a0/ semaine' : null;
+        var dureeLabel = activeProgramme.duree_semaines ? 'sur ' + activeProgramme.duree_semaines + ' semaines' : null;
+        var progMeta = [freqLabel, dureeLabel].filter(Boolean).join(' \u00b7 ');
+        sectionsHtml += '<div class="section"><div class="section-title">Programme d\'exercices prescrit</div><div class="section-body">';
+        if (activeProgramme.titre || progMeta) {
+          sectionsHtml += '<div style="font-size:9pt;color:#475569;margin-bottom:8px">';
+          if (activeProgramme.titre) sectionsHtml += '<span style="font-weight:600">' + esc(activeProgramme.titre) + '</span>';
+          if (progMeta) sectionsHtml += (activeProgramme.titre ? ' \u00b7 ' : '') + esc(progMeta);
+          sectionsHtml += '</div>';
+        }
+        sectionsHtml += '<table class="exercise-table"><thead><tr>' +
+          '<th>Exercice</th><th>S\u00e9ries</th><th>R\u00e9p\u00e9titions\u00a0/ Dur\u00e9e</th>' +
+        '</tr></thead><tbody>';
+        programmeExercices.forEach(function(ex) {
+          var repLabel = ex.repetitions || '\u2014';
+          if (ex.duree_secondes) repLabel = ex.duree_secondes + '\u00a0sec';
+          sectionsHtml += '<tr>' +
+            '<td><div class="ex-name">' + esc(ex.nom) + '</div>' +
+            (ex.zone_corporelle ? '<div class="ex-zone">' + esc(ex.zone_corporelle) + '</div>' : '') +
+            '</td>' +
+            '<td>' + esc(ex.series ? String(ex.series) : '\u2014') + '</td>' +
+            '<td>' + esc(repLabel) + '</td>' +
+          '</tr>';
+        });
+        sectionsHtml += '</tbody></table></div></div>';
+      }
+
+      // Notes libres / observations classiques
+      if (dc.notes_libres || b.notes) {
+        sectionsHtml += '<div class="section"><div class="section-title">Notes cliniques</div><div class="section-body">' +
+          '<div style="font-size:10pt;color:#334155;line-height:1.7">' + esc(dc.notes_libres || b.notes) + '</div>' +
+        '</div></div>';
+      }
+
+      // ── 4. TABLEAU DE PROGRESSION (bilans précédents)
+      if (allBilans && allBilans.length > 1) {
+        sectionsHtml += '<div class="section"><div class="section-title">Progression \u2014 Tableau comparatif des bilans</div>' +
+          '<table class="progression-table">' +
+            '<thead><tr>' +
+              '<th>Date</th><th>Bilan</th><th>Douleur EVA</th><th>Fonctionnel</th><th>Observations</th>' +
+            '</tr></thead>' +
+            '<tbody>';
+
+        allBilans.forEach(function(pb, idx) {
+          var isCurrent = String(pb.id) === String(b.id);
+          var evaVal = pb.douleur_initiale;
+          var fsVal = pb.functional_scale;
+          var prevEva = idx > 0 ? allBilans[idx - 1].douleur_initiale : null;
+          var prevFs = idx > 0 ? allBilans[idx - 1].functional_scale : null;
+
+          var evaTrend = '';
+          if (evaVal != null && prevEva != null) {
+            if (evaVal < prevEva) evaTrend = ' <span class="trend-up">\u2193</span>';
+            else if (evaVal > prevEva) evaTrend = ' <span class="trend-down">\u2191</span>';
+            else evaTrend = ' <span class="trend-same">\u2192</span>';
+          }
+          var fsTrend = '';
+          if (fsVal != null && prevFs != null) {
+            if (fsVal > prevFs) fsTrend = ' <span class="trend-up">\u2191</span>';
+            else if (fsVal < prevFs) fsTrend = ' <span class="trend-down">\u2193</span>';
+            else fsTrend = ' <span class="trend-same">\u2192</span>';
+          }
+
+          var pbDc = pb.donnees_cliniques || {};
+          var obsText = pbDc.notes_libres || pb.notes || '';
+          var obsShort = obsText.substring(0, 60) + (obsText.length > 60 ? '\u2026' : '');
+          var pbNum = pb.bilan_number ? parseInt(pb.bilan_number) : (idx + 1);
+          var typeLabel = pbNum === 1 ? 'Initial' : 'Bilan #' + pbNum;
+
+          sectionsHtml += '<tr' + (isCurrent ? ' class="current-bilan"' : '') + '>' +
+            '<td>' + formatDateShort(pb.date_bilan || pb.created_at) + (isCurrent ? ' <span style="font-size:8pt;color:#0284c7">(actuel)</span>' : '') + '</td>' +
+            '<td>' + esc(typeLabel) + '</td>' +
+            '<td>' + (evaVal != null ? evaVal + '/10' + evaTrend : '\u2014') + '</td>' +
+            '<td>' + (fsVal != null ? fsVal + '/10' + fsTrend : '\u2014') + '</td>' +
+            '<td style="font-size:8.5pt;color:#64748b">' + esc(obsShort) + '</td>' +
+          '</tr>';
+        });
+
+        sectionsHtml += '</tbody></table></div>';
+      }
+
+      // ── 5. CONCLUSION DU BILAN (nouveau bloc, en fin de document)
+      if (b.conclusion_bilan) {
+        sectionsHtml += '<div class="section">' +
+          '<div class="section-title">Conclusion</div>' +
+          '<div class="conclusion-block">' + esc(b.conclusion_bilan) + '</div>' +
+        '</div>';
+      }
+
+      // ── 6. ELEMENTS COMPLEMENTAIRES POUR LE MEDECIN (ex-notes_courrier)
+      if (dc.notes_courrier) {
+        sectionsHtml += '<div class="section"><div class="section-title">\u00c9l\u00e9ments compl\u00e9mentaires pour le m\u00e9decin</div>' +
+          '<div class="notes-courrier-block">' + esc(dc.notes_courrier) + '</div>' +
+        '</div>';
+      }
+
+      // ── SIGNATURE
+      var sigHtml = '<div class="signature-block">' +
+        '<div class="signature-inner">' +
+          '<div class="sig-line">' +
+            '<div class="sig-name">' + esc(kineName) + '</div>' +
+            (kine.rpps ? '<div class="sig-rpps">RPPS\u00a0: ' + esc(kine.rpps) + '</div>' : '') +
+          '</div>' +
+        '</div>' +
+      '</div>';
+
+      // ── FOOTER
+      var footerHtml = '<div class="doc-footer">' +
+        '<div class="footer-left">Document g\u00e9n\u00e9r\u00e9 via Kin\u00e9via\u00a0\u00b7\u00a0kinevia.pro<br>Document confidentiel \u2014 \u00e0 usage m\u00e9dical uniquement</div>' +
+        '<div class="footer-right">' + bilanDate + '<br>' + esc(kineName) + '</div>' +
+      '</div>';
+
+      // ── ASSEMBLE
+      document.getElementById('a4-doc').innerHTML =
+        headerHtml +
+        recipientHtml +
+        titleHtml +
+        sectionsHtml +
+        sigHtml +
+        footerHtml;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title & description -->
+    <title>Kinévia — Suivi patient pour kinésithérapeutes</title>
+    <meta name="description" content="Kinévia simplifie le suivi de vos patients en kinésithérapie. Programmes d'exercices personnalisés, bilans, suivi de la douleur, accès patient par lien unique.">
+    <meta name="keywords" content="kinésithérapeute, suivi patient, programme exercices, kiné, rééducation, bilan kinésithérapie, application kiné">
+    <meta name="author" content="Kinévia">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://kinevia.pro/">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.png" type="image/png">
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#38BDF8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Kinévia">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kinevia.pro/">
+    <meta property="og:site_name" content="Kinévia">
+    <meta property="og:title" content="Kinévia — Suivi patient pour kinésithérapeutes">
+    <meta property="og:description" content="Programmes d'exercices personnalisés, bilans, suivi de la douleur. L'outil SaaS pensé pour les kinésithérapeutes francophones.">
+    <meta property="og:image" content="https://kinevia.pro/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kinévia — Suivi patient pour kinésithérapeutes">
+    <meta name="twitter:description" content="Programmes d'exercices personnalisés, bilans, suivi de la douleur. L'outil SaaS pensé pour les kinés.">
+    <meta name="twitter:image" content="https://kinevia.pro/og-image.png">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://kinevia.pro/#organization",
+          "name": "Kinévia",
+          "url": "https://kinevia.pro",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://kinevia.pro/og-image.png"
+          },
+          "description": "Application SaaS de suivi patient pour kinésithérapeutes. Programmes d'exercices, bilans, suivi de la douleur.",
+          "inLanguage": "fr"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://kinevia.pro/#app",
+          "name": "Kinévia",
+          "url": "https://kinevia.pro",
+          "applicationCategory": "HealthApplication",
+          "operatingSystem": "Web",
+          "offers": {
+            "@type": "Offer",
+            "price": "19.99",
+            "priceCurrency": "EUR",
+            "description": "Abonnement mensuel — essai gratuit 14 jours",
+            "billingIncrement": "P1M"
+          },
+          "description": "Kinévia permet aux kinésithérapeutes de créer des programmes d'exercices personnalisés, suivre la progression de leurs patients, documenter des bilans initiaux et partager un lien d'accès unique aux patients.",
+          "inLanguage": "fr",
+          "publisher": {
+            "@id": "https://kinevia.pro/#organization"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://kinevia.pro/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Kinévia est-il gratuit ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Kinévia propose un essai gratuit de 14 jours, sans engagement. Après l'essai, l'abonnement est de 19,99€/mois, résiliable à tout moment depuis votre espace."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Comment mes patients accèdent-ils à leurs exercices ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Chaque patient reçoit un lien unique lui permettant d'accéder à son programme d'exercices sans avoir besoin de créer un compte ni de retenir un mot de passe."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Kinévia est-il conforme RGPD ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Oui. Les données de santé des patients sont chiffrées (AES-256-GCM), un consentement explicite est recueilli, et vous pouvez exercer vos droits via notre politique de confidentialité."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #38BDF8;
+            --primary-dark: #0EA5E9;
+            --primary-light: #E0F2FE;
+            --accent: #2DD4BF;
+            --accent-light: #CCFBF1;
+            --ink: #0f172a;
+            --paper: #f8fafc;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAV */
+        nav {
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--ink);
+            letter-spacing: -0.5px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo img { width: 32px; height: 32px; border-radius: 8px; object-fit: cover; flex-shrink: 0; }
+        .logo .via { color: var(--primary); }
+        .nav-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+        .btn-ghost {
+            background: transparent;
+            color: var(--muted);
+        }
+        .btn-ghost:hover { color: var(--ink); }
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+        .btn-primary:hover { background: var(--primary-dark); }
+        .btn-dark {
+            background: var(--ink);
+            color: var(--white);
+        }
+        .btn-dark:hover { background: #1e293b; }
+        .btn-lg {
+            padding: 14px 28px;
+            font-size: 1rem;
+            border-radius: 12px;
+        }
+
+        /* HERO */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            color: var(--ink);
+        }
+        .hero h1 em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-sub {
+            margin-top: 24px;
+            font-size: 1.15rem;
+            color: var(--muted);
+            line-height: 1.7;
+            max-width: 480px;
+        }
+        .hero-actions {
+            margin-top: 32px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .hero-trust {
+            margin-top: 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+        .hero-trust svg { flex-shrink: 0; }
+
+        /* MOCK UI */
+        .mock-card {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 20px 60px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
+        }
+        .mock-patient-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        .mock-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+        .mock-name { font-weight: 700; font-size: 1rem; }
+        .mock-path { font-size: 0.8rem; color: var(--muted); }
+        .mock-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: var(--accent-light);
+            color: #14B8A6;
+        }
+        .mock-programme {
+            background: var(--paper);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+        .mock-programme-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .mock-exercise {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            font-size: 0.85rem;
+            color: var(--muted);
+            border-bottom: 1px solid var(--border);
+        }
+        .mock-exercise:last-child { border-bottom: none; }
+        .mock-exercise-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .mock-zone {
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-weight: 500;
+            margin-left: auto;
+        }
+        .mock-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 16px;
+        }
+        .mock-stat {
+            text-align: center;
+            padding: 12px 8px;
+            background: var(--paper);
+            border-radius: 10px;
+        }
+        .mock-stat-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .mock-stat-label {
+            font-size: 0.7rem;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        /* DIVIDER */
+        .divider {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        .divider hr {
+            border: none;
+            border-top: 1px solid var(--border);
+        }
+
+        /* HOW IT WORKS */
+        .how {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+        .section-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .how h2 {
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            margin-bottom: 60px;
+            max-width: 600px;
+        }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+        }
+        .step-num {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+        .step h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .step p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* FEATURES */
+        .features {
+            background: var(--ink);
+            color: white;
+            padding: 100px 40px;
+        }
+        .features-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .features .section-label { color: var(--accent); }
+        .features h2 {
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            margin-bottom: 60px;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+        .feature-item {
+            padding: 32px;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+        .feature-item h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .feature-item p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        /* CTA */
+        .cta {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 40px;
+            text-align: center;
+        }
+        .cta h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+        }
+        .cta p {
+            color: var(--muted);
+            font-size: 1.1rem;
+            max-width: 520px;
+            margin: 0 auto 32px;
+            line-height: 1.7;
+        }
+
+        /* PRICING */
+        .pricing {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 40px;
+            text-align: center;
+        }
+        .pricing h2 {
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            margin-bottom: 16px;
+        }
+        .pricing-sub {
+            color: var(--muted);
+            font-size: 1.05rem;
+            max-width: 480px;
+            margin: 0 auto 56px;
+            line-height: 1.7;
+        }
+        .pricing-card {
+            background: var(--white);
+            border: 2px solid var(--primary);
+            border-radius: 24px;
+            padding: 48px 40px;
+            max-width: 520px;
+            margin: 0 auto;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.04), 0 24px 64px rgba(14,165,233,0.12);
+            position: relative;
+        }
+        .pricing-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 5px 18px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+        .pricing-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+        .pricing-price {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 4px;
+            margin-bottom: 6px;
+        }
+        .pricing-currency {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--ink);
+        }
+        .pricing-amount {
+            font-size: 4.5rem;
+            font-weight: 800;
+            color: var(--ink);
+            letter-spacing: -3px;
+            line-height: 1;
+        }
+        .pricing-period {
+            font-size: 1rem;
+            color: var(--muted);
+            font-weight: 500;
+        }
+        .pricing-trial {
+            font-size: 0.88rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 32px;
+        }
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 36px;
+        }
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            font-size: 0.95rem;
+            color: var(--ink);
+            border-bottom: 1px solid var(--border);
+        }
+        .pricing-features li:last-child { border-bottom: none; }
+        .pricing-features li svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+        .pricing-cta {
+            width: 100%;
+            padding: 16px;
+            font-size: 1.05rem;
+            border-radius: 12px;
+            font-weight: 700;
+            text-align: center;
+            display: block;
+        }
+        .pricing-commitment {
+            margin-top: 16px;
+            font-size: 0.82rem;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 40px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+        }
+        footer .logo { font-size: 1.1rem; margin-bottom: 8px; display: block; }
+
+        /* HAMBURGER BUTTON */
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 40px;
+            height: 40px;
+            padding: 8px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .nav-hamburger:hover { background: rgba(0,0,0,0.05); }
+        .nav-hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--ink);
+            border-radius: 2px;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+        .nav-hamburger[aria-expanded="true"] span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        .nav-hamburger[aria-expanded="true"] span:nth-child(2) {
+            opacity: 0;
+        }
+        .nav-hamburger[aria-expanded="true"] span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav { padding: 16px 20px; position: relative; flex-wrap: wrap; }
+            .nav-hamburger { display: flex; }
+            .nav-actions {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                gap: 6px;
+                padding: 12px 0 4px;
+                order: 3;
+            }
+            .nav-actions.open { display: flex; }
+            .nav-actions .btn {
+                padding: 12px 16px;
+                font-size: 0.95rem;
+                justify-content: center;
+                border-radius: 10px;
+            }
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 40px 20px;
+                gap: 40px;
+            }
+            .hero h1 { font-size: 2.2rem; letter-spacing: -1px; }
+            .how { padding: 60px 20px; }
+            .steps { grid-template-columns: 1fr; gap: 32px; }
+            .features { padding: 60px 20px; }
+            .feature-grid { grid-template-columns: 1fr; gap: 20px; }
+            .cta { padding: 60px 20px; }
+            .pricing { padding: 60px 20px; }
+            .pricing-card { padding: 36px 24px; }
+            .pricing-amount { font-size: 3.5rem; }
+            .mock-stats { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+            .mock-stat { padding: 8px 4px; }
+            .mock-stat-value { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="logo"><img src="/logo/navbar.svg" alt="Kinévia" style="width:130px;height:37px;border-radius:0;object-fit:contain;"></a>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-actions" id="nav-menu">
+            <a href="/blog" class="btn btn-ghost">Blog</a>
+            <a href="#tarifs" class="btn btn-ghost">Tarifs</a>
+            <a href="/connexion" class="btn btn-ghost">Connexion</a>
+            <a href="/inscription" class="btn btn-primary">Inscription</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div>
+            <h1>Le suivi patient<br><em>simplifié</em> pour<br>les kinés.</h1>
+            <p class="hero-sub">Créez des programmes d'exercices personnalisés, suivez la progression de vos patients, et partagez-leur un lien unique pour qu'ils accèdent à leurs exercices. Zéro friction.</p>
+            <div class="hero-actions">
+                <a href="/inscription" class="btn btn-dark btn-lg">Essai gratuit 14 jours →</a>
+                <a href="#fonctionnalites" class="btn btn-ghost btn-lg">Voir les fonctionnalités</a>
+            </div>
+            <div class="hero-trust">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L10.2 5.5L15 6.2L11.5 9.6L12.4 14.4L8 12.1L3.6 14.4L4.5 9.6L1 6.2L5.8 5.5L8 1Z" fill="#2DD4BF"/></svg>
+                14 jours gratuits — puis 19,99€/mois, résiliable à tout moment
+            </div>
+        </div>
+        <div class="mock-card">
+            <div class="mock-patient-header">
+                <div class="mock-avatar">ML</div>
+                <div style="flex:1">
+                    <div class="mock-name">Marie Lefèvre</div>
+                    <div class="mock-path">Tendinite épaule droite</div>
+                </div>
+                <div class="mock-badge">Programme actif</div>
+            </div>
+            <div class="mock-programme">
+                <div class="mock-programme-title">
+                    Rééducation épaule — Semaine 3
+                </div>
+                <div class="mock-exercise">
+                    <div class="mock-exercise-dot" style="background: var(--primary)"></div>
+                    Élévation antérieure passive — 3×12
+                    <span class="mock-zone">Épaule</span>
+                </div>
+                <div class="mock-exercise">
+                    <div class="mock-exercise-dot" style="background: var(--accent)"></div>
+                    Rotation externe élastique — 3×15
+                    <span class="mock-zone">Épaule</span>
+                </div>
+                <div class="mock-exercise">
+                    <div class="mock-exercise-dot" style="background: var(--primary)"></div>
+                    Pendulaire de Codman — 2 min
+                    <span class="mock-zone">Épaule</span>
+                </div>
+                <div class="mock-exercise">
+                    <div class="mock-exercise-dot" style="background: var(--accent)"></div>
+                    Étirement capsulaire post. — 3×30s
+                    <span class="mock-zone">Épaule</span>
+                </div>
+            </div>
+            <div class="mock-stats">
+                <div class="mock-stat">
+                    <div class="mock-stat-value">12</div>
+                    <div class="mock-stat-label">Séances</div>
+                </div>
+                <div class="mock-stat">
+                    <div class="mock-stat-value">3/10</div>
+                    <div class="mock-stat-label">Douleur</div>
+                </div>
+                <div class="mock-stat">
+                    <div class="mock-stat-value">85%</div>
+                    <div class="mock-stat-label">Adhérence</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"><hr></div>
+
+    <section class="how">
+        <div class="section-label">Comment ça marche</div>
+        <h2>Opérationnel en 3 minutes. Pas 3 heures.</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">01</div>
+                <h3>Ajoutez vos patients</h3>
+                <p>Renseignez le nom, la pathologie, et les informations de contact. Chaque patient reçoit un lien unique d'accès à son programme.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">02</div>
+                <h3>Créez leurs programmes</h3>
+                <p>Composez des programmes d'exercices personnalisés. Séries, répétitions, durée, instructions — tout est configurable par exercice.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">03</div>
+                <h3>Suivez la progression</h3>
+                <p>Vos patients enregistrent leurs séances, notent leur douleur, et vous voyez tout en temps réel sur votre tableau de bord.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="fonctionnalites">
+        <div class="features-inner">
+            <div class="section-label">Fonctionnalités</div>
+            <h2>Tout ce qu'il faut pour<br>un suivi patient efficace.</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">&#128203;</div>
+                    <h3>Programmes personnalisés</h3>
+                    <p>Créez des programmes d'exercices sur mesure avec séries, répétitions, durée et instructions détaillées pour chaque patient.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">&#128279;</div>
+                    <h3>Lien patient unique</h3>
+                    <p>Chaque patient accède à son programme via un lien unique. Pas de compte à créer, pas de mot de passe. Simple et immédiat.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">&#128200;</div>
+                    <h3>Suivi de la douleur</h3>
+                    <p>Vos patients notent leur niveau de douleur à chaque séance. Vous suivez l'évolution et adaptez le programme en conséquence.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">&#128221;</div>
+                    <h3>Bilans initiaux</h3>
+                    <p>Documentez l'état initial du patient : douleur, mobilité, objectifs. La base pour mesurer les progrès réalisés.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">&#127891;</div>
+                    <h3>Bibliothèque d'exercices</h3>
+                    <p>Accédez à une bibliothèque d'exercices par zone corporelle, ou créez vos propres exercices personnalisés.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">&#128241;</div>
+                    <h3>100% responsive</h3>
+                    <p>Interface pensée pour le bureau du kiné (desktop) et le téléphone du patient (mobile). Fonctionne partout, tout le temps.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"><hr></div>
+
+    <section class="pricing" id="tarifs">
+        <div class="section-label">Tarifs</div>
+        <h2>Simple. Transparent. Sans surprise.</h2>
+        <p class="pricing-sub">Un seul plan, toutes les fonctionnalités incluses. Pas de fonctionnalités cachées derrière un tier supérieur.</p>
+
+        <div class="pricing-card">
+            <div class="pricing-badge">Essai gratuit 14 jours</div>
+            <div class="pricing-name">Plan Professionnel</div>
+            <div class="pricing-price">
+                <span class="pricing-currency">€</span>
+                <span class="pricing-amount">19,99</span>
+                <span class="pricing-period">/mois</span>
+            </div>
+            <div class="pricing-trial">✓ 14 jours gratuits — sans carte bancaire</div>
+
+            <ul class="pricing-features">
+                <li>
+                    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#CCFBF1"/><path d="M6 10l3 3 5-5" stroke="#14B8A6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Gestion patients illimitée
+                </li>
+                <li>
+                    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#CCFBF1"/><path d="M6 10l3 3 5-5" stroke="#14B8A6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Bibliothèque de 200+ exercices
+                </li>
+                <li>
+                    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#CCFBF1"/><path d="M6 10l3 3 5-5" stroke="#14B8A6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Programmes personnalisés illimités
+                </li>
+                <li>
+                    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#CCFBF1"/><path d="M6 10l3 3 5-5" stroke="#14B8A6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Vue patient mobile (accès par lien unique)
+                </li>
+                <li>
+                    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#CCFBF1"/><path d="M6 10l3 3 5-5" stroke="#14B8A6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Suivi observance en temps réel
+                </li>
+                <li>
+                    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#CCFBF1"/><path d="M6 10l3 3 5-5" stroke="#14B8A6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Chiffrement données de santé (HDS)
+                </li>
+                <li>
+                    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#CCFBF1"/><path d="M6 10l3 3 5-5" stroke="#14B8A6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Support dédié
+                </li>
+            </ul>
+
+            <a href="/inscription" class="btn btn-primary btn-lg pricing-cta">Commencer l'essai gratuit →</a>
+            <div class="pricing-commitment">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.8 3.7L13 5.4l-3 2.9.7 4.1L7 10.4l-3.7 2 .7-4.1-3-2.9 4.2-.7L7 1z" fill="#2DD4BF"/></svg>
+                Sans engagement · Annulation à tout moment
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>Vos patients méritent<br>un meilleur suivi.</h2>
+        <p>Kinévia donne à chaque kinésithérapeute les outils pour suivre ses patients efficacement, mesurer les progrès, et adapter les programmes en temps réel.</p>
+        <a href="/inscription" class="btn btn-primary btn-lg">Essai gratuit 14 jours</a>
+    </section>
+
+    <footer>
+        <span class="logo"><img src="/logo/navbar.svg" alt="Kinévia" style="width:120px;height:34px;border-radius:0;object-fit:contain;"></span>
+        <p>&copy; 2026 Kinévia. Tous droits réservés.</p>
+        <div style="margin-top:12px; display:flex; gap:20px; justify-content:center; flex-wrap:wrap;">
+            <a href="/mentions-legales" style="color:var(--muted);font-size:0.82rem;text-decoration:none;">Mentions légales</a>
+            <a href="/confidentialite" style="color:var(--muted);font-size:0.82rem;text-decoration:none;">Confidentialité</a>
+            <a href="/cgu" style="color:var(--muted);font-size:0.82rem;text-decoration:none;">CGU</a>
+            <a href="/cgv" style="color:var(--muted);font-size:0.82rem;text-decoration:none;">CGV</a>
+            <a href="/securite" style="color:var(--muted);font-size:0.82rem;text-decoration:none;">Sécurité des données</a>
+        </div>
+    </footer>
+
+    <!-- RGPD Cookie Consent Banner -->
+    <div id="rgpd-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#fff;border-top:2px solid #e2e8f0;padding:20px 24px;box-shadow:0 -4px 24px rgba(0,0,0,0.08);">
+        <div style="max-width:900px;margin:0 auto;">
+            <div style="display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+                <div style="flex:1;min-width:260px;">
+                    <p style="font-weight:700;font-size:0.95rem;margin-bottom:6px;color:#0f172a;">🍪 Gestion des cookies</p>
+                    <p style="font-size:0.85rem;color:#64748b;margin:0;line-height:1.5;">
+                        Kinévia utilise des cookies nécessaires au fonctionnement du service.
+                        Avec votre accord, nous utilisons également des cookies analytiques pour améliorer l'application.
+                        <a href="/confidentialite" style="color:#38BDF8;text-decoration:none;">En savoir plus</a>
+                    </p>
+                    <div style="margin-top:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                        <label style="display:flex;align-items:center;gap:6px;font-size:0.83rem;color:#64748b;cursor:default;">
+                            <input type="checkbox" checked disabled style="accent-color:#38BDF8;"> Fonctionnels (requis)
+                        </label>
+                        <label style="display:flex;align-items:center;gap:6px;font-size:0.83rem;color:#64748b;cursor:pointer;">
+                            <input type="checkbox" id="rgpd-analytics" style="accent-color:#38BDF8;"> Analytics
+                        </label>
+                    </div>
+                </div>
+                <div style="display:flex;gap:10px;align-items:center;flex-shrink:0;">
+                    <button onclick="rgpdSave(false)" style="padding:10px 18px;border:1px solid #e2e8f0;border-radius:8px;background:#fff;color:#64748b;font-size:0.85rem;font-weight:600;cursor:pointer;font-family:inherit;">Refuser les analytics</button>
+                    <button onclick="rgpdSave(true)" style="padding:10px 18px;border:none;border-radius:8px;background:#38BDF8;color:#fff;font-size:0.85rem;font-weight:600;cursor:pointer;font-family:inherit;">Accepter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // RGPD Cookie Consent
+    (function() {
+        function getOrCreateVid() {
+            var vid = localStorage.getItem('polsia_vid');
+            if (!vid) {
+                vid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                    var r = Math.random() * 16 | 0;
+                    return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+                });
+                localStorage.setItem('polsia_vid', vid);
+            }
+            return vid;
+        }
+
+        var vid = getOrCreateVid();
+        var consentKey = 'mk_cookie_consent';
+        var saved = localStorage.getItem(consentKey);
+
+        if (!saved) {
+            // Check server-side consent
+            fetch('/api/rgpd/cookie-consent/' + encodeURIComponent(vid))
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    if (data.found) {
+                        localStorage.setItem(consentKey, JSON.stringify({ analytics: data.analytics_cookies }));
+                        if (data.analytics_cookies) fireAnalytics(vid);
+                    } else {
+                        document.getElementById('rgpd-banner').style.display = 'block';
+                    }
+                })
+                .catch(function() {
+                    document.getElementById('rgpd-banner').style.display = 'block';
+                });
+        } else {
+            var c = JSON.parse(saved);
+            if (c.analytics) fireAnalytics(vid);
+        }
+
+        function fireAnalytics(vid) {
+            new Image().src = 'https://polsia.com/api/beacon/pixel?s=creneau&v=' + encodeURIComponent(vid);
+        }
+
+        window.rgpdSave = function(acceptAnalytics) {
+            var analyticsChecked = document.getElementById('rgpd-analytics').checked;
+            var useAnalytics = acceptAnalytics && analyticsChecked !== false ? (acceptAnalytics === true) : false;
+            // If "Accepter" is clicked, use the checkbox value; if "Refuser", force false
+            if (acceptAnalytics === false) useAnalytics = false;
+            else useAnalytics = document.getElementById('rgpd-analytics').checked;
+
+            localStorage.setItem(consentKey, JSON.stringify({ analytics: useAnalytics }));
+            document.getElementById('rgpd-banner').style.display = 'none';
+
+            fetch('/api/rgpd/cookie-consent', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ visitor_id: vid, functional_cookies: true, analytics_cookies: useAnalytics })
+            }).catch(function() {});
+
+            if (useAnalytics) fireAnalytics(vid);
+        };
+    })();
+    </script>
+    <script>
+    // Auto-scroll to tarifs section when landing on /tarifs
+    (function() {
+        if (window.location.pathname === '/tarifs') {
+            var el = document.getElementById('tarifs');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+    })();
+    </script>
+
+    <!-- PWA Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js')
+            .then(function(reg) { console.log('[SW] Registered:', reg.scope); })
+            .catch(function(err) { console.warn('[SW] Registration failed:', err); });
+        });
+      }
+    </script>
+
+    <!-- PWA Install Prompt -->
+    <script src="/pwa-install.js" defer></script>
+
+    <!-- Mobile hamburger menu -->
+    <script>
+    (function() {
+        var btn = document.getElementById('nav-hamburger');
+        var menu = document.getElementById('nav-menu');
+        if (!btn || !menu) return;
+
+        btn.addEventListener('click', function() {
+            var isOpen = menu.classList.toggle('open');
+            btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        // Close menu on anchor link click (smooth scroll / navigation)
+        menu.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                menu.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Close menu on outside click
+        document.addEventListener('click', function(e) {
+            if (!btn.contains(e.target) && !menu.contains(e.target)) {
+                menu.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        });
+    })();
+    </script>
+</body>
+</html>

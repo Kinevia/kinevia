@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kinévia — Démo</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#38BDF8',
+            'primary-dark': '#0EA5E9',
+            'primary-light': '#E0F2FE',
+            secondary: '#2DD4BF',
+            'secondary-dark': '#14B8A6',
+            'secondary-light': '#CCFBF1',
+            dark: '#0f172a',
+            'dark-light': '#1e293b',
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        },
+      },
+    }
+  </script>
+  <style>
+    * { font-family: 'Inter', system-ui, sans-serif; }
+    .fade-in { animation: fadeIn 0.2s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    .sidebar-link { display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 10px; cursor: pointer; transition: all 0.15s; color: #64748b; font-size: 14px; font-weight: 500; }
+    .sidebar-link.active { background: #38BDF8; color: white; }
+    .sidebar-link:not(.active):hover { background: #E0F2FE; color: #38BDF8; }
+    .demo-badge { position: fixed; top: 12px; right: 12px; z-index: 9999; background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; box-shadow: 0 4px 12px rgba(245,158,11,0.35); letter-spacing: 0.02em; }
+    .card { background: white; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .stat-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .observance-bar { height: 8px; border-radius: 4px; background: #e2e8f0; overflow: hidden; }
+    .observance-fill { height: 100%; border-radius: 4px; transition: width 0.5s ease; }
+    .sidebar { position: fixed; left: 0; top: 0; height: 100vh; width: 230px; background: white; border-right: 1px solid #f1f5f9; padding: 20px 12px; display: flex; flex-direction: column; z-index: 100; }
+    .main { margin-left: 230px; min-height: 100vh; background: #f8fafc; }
+    .section { display: none; }
+    .section.active { display: block; animation: fadeIn 0.2s ease-in-out; }
+    .badge { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+    .badge-green { background: #dcfce7; color: #16a34a; }
+    .badge-yellow { background: #fef9c3; color: #ca8a04; }
+    .badge-red { background: #fee2e2; color: #dc2626; }
+    .badge-blue { background: #e0f2fe; color: #0369a1; }
+    .badge-purple { background: #f3e8ff; color: #7c3aed; }
+    .chat-msg { max-width: 72%; }
+    .chat-kine { background: #38BDF8; color: white; border-radius: 18px 18px 4px 18px; }
+    .chat-patient { background: white; color: #1e293b; border-radius: 18px 18px 18px 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .exercise-card { background: white; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); padding: 16px; transition: transform 0.15s, box-shadow 0.15s; }
+    .exercise-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .patho-card { background: white; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); padding: 20px; transition: transform 0.15s, box-shadow 0.15s; cursor: pointer; }
+    .patho-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .mobile-demo { background: #0f172a; border-radius: 40px; padding: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); width: 375px; margin: 0 auto; }
+    .mobile-screen { background: #f8fafc; border-radius: 30px; overflow: hidden; min-height: 700px; }
+    @media (max-width: 900px) { .sidebar { display: none; } .main { margin-left: 0; } }
+  </style>
+</head>
+<body class="bg-slate-50">
+
+<!-- Demo badge -->
+<div class="demo-badge">🎬 MODE DÉMO — Lecture seule</div>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <div class="flex items-center gap-3 mb-8 px-2">
+    <img src="/favicon.png" alt="K" class="w-9 h-9 rounded-lg">
+    <div>
+      <div class="font-bold text-slate-800 text-sm">Kinévia</div>
+      <div class="text-xs text-slate-400">Dr Sophie Martin</div>
+    </div>
+  </div>
+  <nav class="flex flex-col gap-1 flex-1">
+    <div class="sidebar-link active" onclick="showSection('dashboard')">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+      Tableau de bord
+    </div>
+    <div class="sidebar-link" onclick="showSection('patients')">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+      Patients
+    </div>
+    <div class="sidebar-link" onclick="showSection('programme')">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+      Programmes
+    </div>
+    <div class="sidebar-link" onclick="showSection('exercices')">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+      Bibliothèque
+    </div>
+    <div class="sidebar-link" onclick="showSection('chat')">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 3H3a2 2 0 00-2 2v12a2 2 0 002 2h5l3 3 3-3h5a2 2 0 002-2V5a2 2 0 00-2-2z"/></svg>
+      Messagerie
+    </div>
+    <div class="sidebar-link" onclick="showSection('ia')">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+      Reco. IA
+    </div>
+    <div class="sidebar-link" onclick="showSection('pathologies')">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+      Fiches pathologies
+    </div>
+    <div class="sidebar-link" onclick="showSection('publications')">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+      Journal scientifique
+    </div>
+    <div class="sidebar-link" onclick="showSection('patient-mobile')">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+      Vue patient (PWA)
+    </div>
+  </nav>
+  <div class="mt-auto pt-4 border-t border-slate-100">
+    <a href="https://kinevia.pro" target="_blank" class="flex items-center gap-2 px-2 py-2 text-xs text-primary font-semibold hover:underline">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      Créer un compte gratuit
+    </a>
+  </div>
+</div>
+
+<!-- Main content -->
+<div class="main">
+
+  <!-- ====== DASHBOARD ====== -->
+  <div id="section-dashboard" class="section active p-6">
+    <div class="mb-6">
+      <h1 class="text-2xl font-bold text-slate-800">Tableau de bord</h1>
+      <p class="text-slate-500 text-sm mt-1">Bonjour Dr Martin, voici votre activité du jour.</p>
+    </div>
+    <!-- Stats -->
+    <div class="grid grid-cols-3 gap-4 mb-6">
+      <div class="stat-card">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-slate-500 text-sm font-medium">Patients actifs</span>
+          <div class="w-9 h-9 bg-blue-50 rounded-lg flex items-center justify-center">
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+        </div>
+        <div class="text-3xl font-bold text-slate-800">4</div>
+        <div class="text-xs text-emerald-600 font-medium mt-1">↑ +1 ce mois</div>
+      </div>
+      <div class="stat-card">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-slate-500 text-sm font-medium">Programmes actifs</span>
+          <div class="w-9 h-9 bg-teal-50 rounded-lg flex items-center justify-center">
+            <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+          </div>
+        </div>
+        <div class="text-3xl font-bold text-slate-800">6</div>
+        <div class="text-xs text-emerald-600 font-medium mt-1">↑ +2 cette semaine</div>
+      </div>
+      <div class="stat-card">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-slate-500 text-sm font-medium">Séances (7 jours)</span>
+          <div class="w-9 h-9 bg-purple-50 rounded-lg flex items-center justify-center">
+            <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          </div>
+        </div>
+        <div class="text-3xl font-bold text-slate-800">23</div>
+        <div class="text-xs text-slate-400 font-medium mt-1">sur 28 attendues</div>
+      </div>
+    </div>
+    <!-- Recent patients + suivi -->
+    <div class="grid grid-cols-2 gap-4">
+      <div class="card p-5">
+        <h2 class="font-semibold text-slate-700 mb-4 text-sm uppercase tracking-wide">Patients récents</h2>
+        <div class="space-y-3">
+          <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg cursor-pointer hover:bg-primary-light" onclick="showSection('patients')">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center text-primary font-bold text-sm">LB</div>
+              <div>
+                <div class="font-medium text-slate-800 text-sm">Lucas Beaumont</div>
+                <div class="text-xs text-slate-400">Entorse cheville</div>
+              </div>
+            </div>
+            <span class="badge badge-green text-xs">Bon suivi</span>
+          </div>
+          <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg cursor-pointer hover:bg-primary-light" onclick="showSection('patients')">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-rose-100 flex items-center justify-center text-rose-600 font-bold text-sm">MR</div>
+              <div>
+                <div class="font-medium text-slate-800 text-sm">Marie Rousseau</div>
+                <div class="text-xs text-slate-400">Lombalgie chronique</div>
+              </div>
+            </div>
+            <span class="badge badge-yellow text-xs">À surveiller</span>
+          </div>
+          <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg cursor-pointer hover:bg-primary-light" onclick="showSection('patients')">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 font-bold text-sm">PD</div>
+              <div>
+                <div class="font-medium text-slate-800 text-sm">Pierre Dupont</div>
+                <div class="text-xs text-slate-400">Tendinopathie épaule</div>
+              </div>
+            </div>
+            <span class="badge badge-green text-xs">Bon suivi</span>
+          </div>
+          <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg cursor-pointer hover:bg-primary-light" onclick="showSection('patients')">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-bold text-sm">AS</div>
+              <div>
+                <div class="font-medium text-slate-800 text-sm">Amélie Simon</div>
+                <div class="text-xs text-slate-400">Genou post-op LCA</div>
+              </div>
+            </div>
+            <span class="badge badge-red text-xs">Inactif</span>
+          </div>
+        </div>
+      </div>
+      <div class="card p-5">
+        <h2 class="font-semibold text-slate-700 mb-4 text-sm uppercase tracking-wide">Observance (28 jours)</h2>
+        <div class="space-y-4">
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span class="text-slate-600 font-medium">Lucas Beaumont</span>
+              <span class="font-bold text-emerald-600">87 %</span>
+            </div>
+            <div class="observance-bar"><div class="observance-fill bg-emerald-500" style="width:87%"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span class="text-slate-600 font-medium">Marie Rousseau</span>
+              <span class="font-bold text-amber-500">52 %</span>
+            </div>
+            <div class="observance-bar"><div class="observance-fill bg-amber-400" style="width:52%"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span class="text-slate-600 font-medium">Pierre Dupont</span>
+              <span class="font-bold text-emerald-600">94 %</span>
+            </div>
+            <div class="observance-bar"><div class="observance-fill bg-emerald-500" style="width:94%"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span class="text-slate-600 font-medium">Amélie Simon</span>
+              <span class="font-bold text-red-500">18 %</span>
+            </div>
+            <div class="observance-bar"><div class="observance-fill bg-red-400" style="width:18%"></div></div>
+          </div>
+        </div>
+        <div class="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg">
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.999L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16.001c-.77 1.332.192 2.999 1.732 2.999z"/></svg>
+            <span class="text-xs text-amber-700 font-medium">Amélie Simon n'a pas fait de séance depuis 6 jours.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== PATIENTS ====== -->
+  <div id="section-patients" class="section p-6">
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h1 class="text-2xl font-bold text-slate-800">Patients</h1>
+        <p class="text-slate-500 text-sm mt-1">4 patients actifs</p>
+      </div>
+      <button class="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium opacity-60 cursor-not-allowed" title="Désactivé en mode démo">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        Nouveau patient
+      </button>
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+      <div class="card p-5 cursor-pointer hover:shadow-md transition-shadow" onclick="showSection('programme')">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-primary font-bold">LB</div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-semibold text-slate-800">Lucas Beaumont</h3>
+              <span class="badge badge-green">Actif</span>
+            </div>
+            <p class="text-sm text-slate-500 mt-1">Entorse de cheville G3 post-traumatique</p>
+            <div class="mt-3 grid grid-cols-2 gap-3 text-xs">
+              <div><span class="text-slate-400">Dernière séance</span><div class="font-medium text-slate-700 mt-0.5">Il y a 1 jour</div></div>
+              <div><span class="text-slate-400">Observance</span><div class="font-medium text-emerald-600 mt-0.5">87 %</div></div>
+              <div><span class="text-slate-400">Programme</span><div class="font-medium text-slate-700 mt-0.5">Rééducation cheville</div></div>
+              <div><span class="text-slate-400">Douleur EVA</span><div class="font-medium text-slate-700 mt-0.5">3/10</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card p-5 cursor-pointer hover:shadow-md transition-shadow">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-full bg-rose-100 flex items-center justify-center text-rose-600 font-bold">MR</div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-semibold text-slate-800">Marie Rousseau</h3>
+              <span class="badge badge-yellow">Moyen</span>
+            </div>
+            <p class="text-sm text-slate-500 mt-1">Lombalgie chronique — syndrome myofascial</p>
+            <div class="mt-3 grid grid-cols-2 gap-3 text-xs">
+              <div><span class="text-slate-400">Dernière séance</span><div class="font-medium text-slate-700 mt-0.5">Il y a 3 jours</div></div>
+              <div><span class="text-slate-400">Observance</span><div class="font-medium text-amber-500 mt-0.5">52 %</div></div>
+              <div><span class="text-slate-400">Programme</span><div class="font-medium text-slate-700 mt-0.5">Dos & Core</div></div>
+              <div><span class="text-slate-400">Douleur EVA</span><div class="font-medium text-slate-700 mt-0.5">5/10</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card p-5 cursor-pointer hover:shadow-md transition-shadow">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 font-bold">PD</div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-semibold text-slate-800">Pierre Dupont</h3>
+              <span class="badge badge-green">Actif</span>
+            </div>
+            <p class="text-sm text-slate-500 mt-1">Tendinopathie de la coiffe des rotateurs</p>
+            <div class="mt-3 grid grid-cols-2 gap-3 text-xs">
+              <div><span class="text-slate-400">Dernière séance</span><div class="font-medium text-slate-700 mt-0.5">Aujourd'hui</div></div>
+              <div><span class="text-slate-400">Observance</span><div class="font-medium text-emerald-600 mt-0.5">94 %</div></div>
+              <div><span class="text-slate-400">Programme</span><div class="font-medium text-slate-700 mt-0.5">Épaule renforcement</div></div>
+              <div><span class="text-slate-400">Douleur EVA</span><div class="font-medium text-slate-700 mt-0.5">2/10</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card p-5 cursor-pointer hover:shadow-md transition-shadow">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-bold">AS</div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between">
+              <h3 class="font-semibold text-slate-800">Amélie Simon</h3>
+              <span class="badge badge-red">Inactif</span>
+            </div>
+            <p class="text-sm text-slate-500 mt-1">Post-opératoire reconstruction LCA genou D</p>
+            <div class="mt-3 grid grid-cols-2 gap-3 text-xs">
+              <div><span class="text-slate-400">Dernière séance</span><div class="font-medium text-red-500 mt-0.5">Il y a 6 jours</div></div>
+              <div><span class="text-slate-400">Observance</span><div class="font-medium text-red-500 mt-0.5">18 %</div></div>
+              <div><span class="text-slate-400">Programme</span><div class="font-medium text-slate-700 mt-0.5">Rééducation LCA</div></div>
+              <div><span class="text-slate-400">Douleur EVA</span><div class="font-medium text-slate-700 mt-0.5">7/10</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== PROGRAMME ====== -->
+  <div id="section-programme" class="section p-6">
+    <div class="flex items-center gap-2 mb-2">
+      <button class="text-slate-400 hover:text-primary text-sm" onclick="showSection('patients')">← Patients</button>
+      <span class="text-slate-300">/</span>
+      <span class="text-slate-600 text-sm font-medium">Lucas Beaumont</span>
+    </div>
+    <div class="flex items-center justify-between mb-5">
+      <div>
+        <h1 class="text-2xl font-bold text-slate-800">Rééducation cheville</h1>
+        <p class="text-slate-500 text-sm mt-1">Programme actif · 3 × / semaine · 6 semaines</p>
+      </div>
+      <span class="badge badge-green">Actif</span>
+    </div>
+    <!-- Suivi EVA chart placeholder -->
+    <div class="card p-5 mb-4">
+      <h2 class="font-semibold text-slate-700 mb-3 text-sm">Évolution douleur EVA</h2>
+      <div class="flex items-end gap-2 h-24">
+        <div class="flex flex-col items-center gap-1">
+          <div class="bg-red-400 rounded-t" style="width:28px;height:72px"></div>
+          <span class="text-xs text-slate-400">S1</span>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+          <div class="bg-amber-400 rounded-t" style="width:28px;height:58px"></div>
+          <span class="text-xs text-slate-400">S2</span>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+          <div class="bg-amber-300 rounded-t" style="width:28px;height:44px"></div>
+          <span class="text-xs text-slate-400">S3</span>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+          <div class="bg-emerald-400 rounded-t" style="width:28px;height:36px"></div>
+          <span class="text-xs text-slate-400">S4</span>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+          <div class="bg-emerald-400 rounded-t" style="width:28px;height:28px"></div>
+          <span class="text-xs text-slate-400">S5</span>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+          <div class="bg-emerald-500 rounded-t" style="width:28px;height:24px"></div>
+          <span class="text-xs text-slate-400">S6</span>
+        </div>
+        <div class="ml-3 text-xs text-slate-400 self-start">
+          <div class="font-medium text-emerald-600 text-base">−67 %</div>
+          <div>douleur</div>
+        </div>
+      </div>
+    </div>
+    <!-- Exercises list -->
+    <div class="card p-5">
+      <h2 class="font-semibold text-slate-700 mb-4 text-sm">Exercices du programme (5)</h2>
+      <div class="space-y-3">
+        <div class="flex items-center gap-4 p-3 bg-slate-50 rounded-lg">
+          <div class="w-14 h-14 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg flex items-center justify-center">
+            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <div class="flex-1">
+            <div class="font-medium text-slate-800">Proprioception unipodal</div>
+            <div class="text-xs text-slate-500 mt-0.5">3 séries · 45 secondes · Sur plan instable</div>
+          </div>
+          <span class="badge badge-green text-xs">Réalisé</span>
+        </div>
+        <div class="flex items-center gap-4 p-3 bg-slate-50 rounded-lg">
+          <div class="w-14 h-14 bg-gradient-to-br from-teal-100 to-teal-200 rounded-lg flex items-center justify-center">
+            <svg class="w-7 h-7 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          </div>
+          <div class="flex-1">
+            <div class="font-medium text-slate-800">Flexion dorsale murale</div>
+            <div class="text-xs text-slate-500 mt-0.5">3 séries · 15 répétitions · Avec élastique</div>
+          </div>
+          <span class="badge badge-green text-xs">Réalisé</span>
+        </div>
+        <div class="flex items-center gap-4 p-3 bg-slate-50 rounded-lg">
+          <div class="w-14 h-14 bg-gradient-to-br from-purple-100 to-purple-200 rounded-lg flex items-center justify-center">
+            <svg class="w-7 h-7 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          </div>
+          <div class="flex-1">
+            <div class="font-medium text-slate-800">Montées sur pointes de pieds</div>
+            <div class="text-xs text-slate-500 mt-0.5">3 séries · 20 répétitions · Excentrique</div>
+          </div>
+          <span class="badge badge-green text-xs">Réalisé</span>
+        </div>
+        <div class="flex items-center gap-4 p-3 bg-slate-50 rounded-lg">
+          <div class="w-14 h-14 bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg flex items-center justify-center">
+            <svg class="w-7 h-7 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div class="flex-1">
+            <div class="font-medium text-slate-800">Étirement mollet au mur</div>
+            <div class="text-xs text-slate-500 mt-0.5">2 séries · 30 secondes · Genou tendu</div>
+          </div>
+          <span class="badge badge-yellow text-xs">Partiel</span>
+        </div>
+        <div class="flex items-center gap-4 p-3 bg-slate-50 rounded-lg">
+          <div class="w-14 h-14 bg-gradient-to-br from-rose-100 to-rose-200 rounded-lg flex items-center justify-center">
+            <svg class="w-7 h-7 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+          </div>
+          <div class="flex-1">
+            <div class="font-medium text-slate-800">Mobilisation péronière</div>
+            <div class="text-xs text-slate-500 mt-0.5">2 séries · 12 répétitions · Doux</div>
+          </div>
+          <span class="badge badge-blue text-xs">À faire</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== EXERCICES ====== -->
+  <div id="section-exercices" class="section p-6">
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h1 class="text-2xl font-bold text-slate-800">Bibliothèque d'exercices</h1>
+        <p class="text-slate-500 text-sm mt-1">310 exercices validés par des kinésithérapeutes</p>
+      </div>
+      <div class="flex gap-2">
+        <div class="relative">
+          <svg class="w-4 h-4 text-slate-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <input type="text" placeholder="Rechercher..." class="pl-9 pr-4 py-2 border border-slate-200 rounded-lg text-sm w-48 focus:outline-none focus:border-primary">
+        </div>
+      </div>
+    </div>
+    <!-- Zone filter -->
+    <div class="flex gap-2 mb-5 flex-wrap">
+      <button class="px-3 py-1.5 bg-primary text-white rounded-lg text-sm font-medium">Tout</button>
+      <button class="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 rounded-lg text-sm font-medium hover:bg-primary-light hover:text-primary hover:border-primary">Cheville</button>
+      <button class="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 rounded-lg text-sm font-medium hover:bg-primary-light hover:text-primary hover:border-primary">Genou</button>
+      <button class="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 rounded-lg text-sm font-medium hover:bg-primary-light hover:text-primary hover:border-primary">Hanche</button>
+      <button class="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 rounded-lg text-sm font-medium hover:bg-primary-light hover:text-primary hover:border-primary">Épaule</button>
+      <button class="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 rounded-lg text-sm font-medium hover:bg-primary-light hover:text-primary hover:border-primary">Rachis</button>
+      <button class="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 rounded-lg text-sm font-medium hover:bg-primary-light hover:text-primary hover:border-primary">Gainage</button>
+    </div>
+    <div class="grid grid-cols-3 gap-4">
+      <div class="exercise-card">
+        <div class="w-full h-32 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg mb-3 flex items-center justify-center">
+          <svg class="w-12 h-12 text-primary opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <div class="font-medium text-slate-800 text-sm">Proprioception unipodal</div>
+        <div class="text-xs text-slate-400 mt-1">Cheville · Équilibre</div>
+        <div class="flex gap-1 mt-2"><span class="badge badge-blue text-xs">Intermédiaire</span></div>
+      </div>
+      <div class="exercise-card">
+        <div class="w-full h-32 bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg mb-3 flex items-center justify-center">
+          <svg class="w-12 h-12 text-teal-400 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+        </div>
+        <div class="font-medium text-slate-800 text-sm">Squat unilatéral</div>
+        <div class="text-xs text-slate-400 mt-1">Genou · Renforcement</div>
+        <div class="flex gap-1 mt-2"><span class="badge badge-purple text-xs">Avancé</span></div>
+      </div>
+      <div class="exercise-card">
+        <div class="w-full h-32 bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg mb-3 flex items-center justify-center">
+          <svg class="w-12 h-12 text-purple-400 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        </div>
+        <div class="font-medium text-slate-800 text-sm">Gainage latéral</div>
+        <div class="text-xs text-slate-400 mt-1">Tronc · Stabilisation</div>
+        <div class="flex gap-1 mt-2"><span class="badge badge-green text-xs">Débutant</span></div>
+      </div>
+      <div class="exercise-card">
+        <div class="w-full h-32 bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg mb-3 flex items-center justify-center">
+          <svg class="w-12 h-12 text-orange-400 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        </div>
+        <div class="font-medium text-slate-800 text-sm">Abduction épaule isométrique</div>
+        <div class="text-xs text-slate-400 mt-1">Épaule · Isométrique</div>
+        <div class="flex gap-1 mt-2"><span class="badge badge-green text-xs">Débutant</span></div>
+      </div>
+      <div class="exercise-card">
+        <div class="w-full h-32 bg-gradient-to-br from-rose-50 to-rose-100 rounded-lg mb-3 flex items-center justify-center">
+          <svg class="w-12 h-12 text-rose-400 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div class="font-medium text-slate-800 text-sm">Étirement piriforme</div>
+        <div class="text-xs text-slate-400 mt-1">Hanche · Souplesse</div>
+        <div class="flex gap-1 mt-2"><span class="badge badge-blue text-xs">Intermédiaire</span></div>
+      </div>
+      <div class="exercise-card">
+        <div class="w-full h-32 bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-lg mb-3 flex items-center justify-center">
+          <svg class="w-12 h-12 text-emerald-400 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+        </div>
+        <div class="font-medium text-slate-800 text-sm">Bird-dog lombaire</div>
+        <div class="text-xs text-slate-400 mt-1">Rachis · Stabilisation</div>
+        <div class="flex gap-1 mt-2"><span class="badge badge-blue text-xs">Intermédiaire</span></div>
+      </div>
+    </div>
+    <div class="text-center mt-6 text-sm text-slate-400">Affichage de 6 / 310 exercices — <a href="https://kinevia.pro" target="_blank" class="text-primary font-medium hover:underline">Créer un compte pour accéder à tous</a></div>
+  </div>
+
+  <!-- ====== CHAT ====== -->
+  <div id="section-chat" class="section p-6">
+    <h1 class="text-2xl font-bold text-slate-800 mb-1">Messagerie</h1>
+    <p class="text-slate-500 text-sm mb-5">Communication sécurisée kiné ↔ patient</p>
+    <div class="flex gap-4" style="height: calc(100vh - 160px); max-height: 600px;">
+      <!-- Patient list -->
+      <div class="w-72 card p-0 overflow-hidden flex flex-col">
+        <div class="p-4 border-b border-slate-100">
+          <div class="text-sm font-semibold text-slate-700">Conversations</div>
+        </div>
+        <div class="overflow-y-auto flex-1">
+          <div class="p-3 bg-primary-light border-l-4 border-primary cursor-pointer">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-blue-200 flex items-center justify-center text-primary font-bold text-xs">LB</div>
+              <div class="flex-1 min-w-0">
+                <div class="font-medium text-slate-800 text-sm">Lucas Beaumont</div>
+                <div class="text-xs text-slate-500 truncate">Bonjour docteur, j'ai fait...</div>
+              </div>
+              <div class="text-xs text-slate-400">10:24</div>
+            </div>
+          </div>
+          <div class="p-3 hover:bg-slate-50 cursor-pointer border-b border-slate-50">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-rose-100 flex items-center justify-center text-rose-600 font-bold text-xs">MR</div>
+              <div class="flex-1 min-w-0">
+                <div class="font-medium text-slate-800 text-sm">Marie Rousseau</div>
+                <div class="text-xs text-slate-500 truncate">Merci pour le programme !</div>
+              </div>
+              <div class="text-xs text-slate-400">Hier</div>
+            </div>
+          </div>
+          <div class="p-3 hover:bg-slate-50 cursor-pointer border-b border-slate-50">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 font-bold text-xs">PD</div>
+              <div class="flex-1 min-w-0">
+                <div class="font-medium text-slate-800 text-sm">Pierre Dupont</div>
+                <div class="text-xs text-slate-500 truncate">Aucune douleur aujourd'hui 🎉</div>
+              </div>
+              <div class="text-xs text-slate-400">Mer.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Chat window -->
+      <div class="flex-1 card p-0 overflow-hidden flex flex-col">
+        <div class="p-4 border-b border-slate-100 flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center text-primary font-bold text-sm">LB</div>
+          <div>
+            <div class="font-semibold text-slate-800">Lucas Beaumont</div>
+            <div class="text-xs text-slate-400">Entorse cheville · Programme actif</div>
+          </div>
+        </div>
+        <div class="flex-1 overflow-y-auto p-5 space-y-4 bg-slate-50">
+          <div class="flex justify-start">
+            <div class="chat-msg">
+              <div class="chat-patient p-3 text-sm">
+                Bonjour Dr Martin ! J'ai bien fait mes exercices hier soir. La proprioception, c'était un peu difficile mais j'ai tenu 45 secondes sans trop bouger !
+              </div>
+              <div class="text-xs text-slate-400 mt-1 ml-2">Lundi 10:12</div>
+            </div>
+          </div>
+          <div class="flex justify-end">
+            <div class="chat-msg">
+              <div class="chat-kine p-3 text-sm">
+                Excellent ! 45 secondes c'est déjà très bien pour la semaine 3. Continuez à augmenter progressivement. Comment est la douleur ce matin ?
+              </div>
+              <div class="text-xs text-slate-400 mt-1 text-right mr-2">Lundi 10:18</div>
+            </div>
+          </div>
+          <div class="flex justify-start">
+            <div class="chat-msg">
+              <div class="chat-patient p-3 text-sm">
+                Ce matin c'est 3/10, hier après les exercices j'étais à 4 mais ça a bien diminué avec la glace. Est-ce que je peux essayer de marcher sans l'attelle aujourd'hui ?
+              </div>
+              <div class="text-xs text-slate-400 mt-1 ml-2">Lundi 10:24</div>
+            </div>
+          </div>
+          <div class="flex justify-end">
+            <div class="chat-msg">
+              <div class="chat-kine p-3 text-sm">
+                Bonne progression ! Oui, vous pouvez essayer 15-20 min sans l'attelle sur terrain plat. Si douleur ≥ 4/10, remettez-la. On vise l'objectif de marche libre pour la semaine 6 👍
+              </div>
+              <div class="text-xs text-slate-400 mt-1 text-right mr-2">Lundi 10:31</div>
+            </div>
+          </div>
+        </div>
+        <div class="p-4 border-t border-slate-100">
+          <div class="flex gap-2">
+            <input type="text" placeholder="Répondre... (désactivé en démo)" class="flex-1 px-4 py-2 border border-slate-200 rounded-lg text-sm opacity-50 cursor-not-allowed" disabled>
+            <button class="bg-primary text-white px-4 py-2 rounded-lg text-sm opacity-50 cursor-not-allowed" disabled>Envoyer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== IA RECOMMENDATIONS ====== -->
+  <div id="section-ia" class="section p-6">
+    <h1 class="text-2xl font-bold text-slate-800 mb-1">Recommandations IA</h1>
+    <p class="text-slate-500 text-sm mb-5">Suggestions d'exercices générées par Claude · Basées sur le profil clinique</p>
+    <div class="card p-5 mb-4 border border-blue-100">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-purple-500 rounded-lg flex items-center justify-center">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        </div>
+        <div>
+          <div class="font-semibold text-slate-800">Recommandations pour Lucas Beaumont</div>
+          <div class="text-xs text-slate-400">Entorse cheville G3 · Semaine 3 de rééducation</div>
+        </div>
+      </div>
+      <div class="bg-blue-50 rounded-lg p-4 text-sm text-slate-700 mb-4 leading-relaxed">
+        <strong>Analyse :</strong> En semaine 3 post-entorse grade 3, la phase proprioceptive est prioritaire. La douleur EVA actuelle (3/10) indique une bonne tolérance à la charge. Je recommande d'intensifier le travail d'équilibre dynamique et d'introduire progressivement les activités fonctionnelles.
+      </div>
+      <div class="space-y-3">
+        <div class="flex items-start gap-3 p-3 bg-white border border-slate-100 rounded-lg">
+          <div class="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+            <span class="text-emerald-600 font-bold text-sm">1</span>
+          </div>
+          <div>
+            <div class="font-medium text-slate-800 text-sm">Proprioception sur plateau de Freeman</div>
+            <div class="text-xs text-slate-500 mt-0.5">3 × 45 sec · Yeux ouverts → fermés progressivement</div>
+            <span class="badge badge-green text-xs mt-1">Déjà dans le programme ✓</span>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-white border border-blue-200 rounded-lg">
+          <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+            <span class="text-blue-600 font-bold text-sm">2</span>
+          </div>
+          <div>
+            <div class="font-medium text-slate-800 text-sm">Sauts latéraux progressifs</div>
+            <div class="text-xs text-slate-500 mt-0.5">3 × 10 rép · Introduire en fin de semaine 3 si EVA ≤ 3</div>
+            <span class="badge badge-blue text-xs mt-1">Suggéré · Niveau avancé</span>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-white border border-blue-200 rounded-lg">
+          <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+            <span class="text-blue-600 font-bold text-sm">3</span>
+          </div>
+          <div>
+            <div class="font-medium text-slate-800 text-sm">Marche sur terrain irrégulier (herbe, gravier)</div>
+            <div class="text-xs text-slate-500 mt-0.5">15 min · Sans attelle · Favorise la reprogrammation neuromusculaire</div>
+            <span class="badge badge-blue text-xs mt-1">Suggéré · Fonctionnel</span>
+          </div>
+        </div>
+      </div>
+      <button class="mt-4 w-full py-2 border border-slate-200 text-slate-500 rounded-lg text-sm opacity-60 cursor-not-allowed">Ajouter au programme (désactivé en démo)</button>
+    </div>
+  </div>
+
+  <!-- ====== PATHOLOGIES ====== -->
+  <div id="section-pathologies" class="section p-6">
+    <h1 class="text-2xl font-bold text-slate-800 mb-1">Fiches pathologies</h1>
+    <p class="text-slate-500 text-sm mb-5">54 fiches cliniques probantes · Mise à jour 2025</p>
+    <div class="flex gap-2 mb-5 flex-wrap">
+      <button class="px-3 py-1.5 bg-primary text-white rounded-lg text-sm font-medium">Tout</button>
+      <button class="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 rounded-lg text-sm hover:bg-primary-light hover:text-primary hover:border-primary">Membres inf.</button>
+      <button class="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 rounded-lg text-sm hover:bg-primary-light hover:text-primary hover:border-primary">Membres sup.</button>
+      <button class="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 rounded-lg text-sm hover:bg-primary-light hover:text-primary hover:border-primary">Rachis</button>
+      <button class="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 rounded-lg text-sm hover:bg-primary-light hover:text-primary hover:border-primary">Neurologie</button>
+      <button class="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 rounded-lg text-sm hover:bg-primary-light hover:text-primary hover:border-primary">Sport</button>
+    </div>
+    <div class="grid grid-cols-3 gap-4">
+      <div class="patho-card" onclick="showPathoDetail()">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          </div>
+          <span class="badge badge-blue">Membres inf.</span>
+        </div>
+        <h3 class="font-semibold text-slate-800 mb-1">Entorse de cheville</h3>
+        <p class="text-xs text-slate-500 line-clamp-2">Classification RICE → POLICE. Rééducation proprioceptive précoce, renforcement musculaire progressif...</p>
+        <div class="mt-3 text-xs text-primary font-medium">Voir la fiche →</div>
+      </div>
+      <div class="patho-card">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center">
+            <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          </div>
+          <span class="badge badge-yellow">Rachis</span>
+        </div>
+        <h3 class="font-semibold text-slate-800 mb-1">Lombalgie chronique</h3>
+        <p class="text-xs text-slate-500 line-clamp-2">Approche biopsychosociale. Exercice thérapeutique, éducation à la douleur, reconditionnement à l'effort...</p>
+        <div class="mt-3 text-xs text-primary font-medium">Voir la fiche →</div>
+      </div>
+      <div class="patho-card">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+            <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          </div>
+          <span class="badge badge-purple">Membres sup.</span>
+        </div>
+        <h3 class="font-semibold text-slate-800 mb-1">Tendinopathie de la coiffe</h3>
+        <p class="text-xs text-slate-500 line-clamp-2">Protocole excentrique de Stanish. Renforcement progressif coiffe, rééducation scapulaire...</p>
+        <div class="mt-3 text-xs text-primary font-medium">Voir la fiche →</div>
+      </div>
+      <div class="patho-card">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+            <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          </div>
+          <span class="badge badge-green">Sport</span>
+        </div>
+        <h3 class="font-semibold text-slate-800 mb-1">Rupture LCA — post-op</h3>
+        <p class="text-xs text-slate-500 line-clamp-2">Protocole de rééducation en 5 phases. Critères de reprise sportive basés sur les tests fonctionnels...</p>
+        <div class="mt-3 text-xs text-primary font-medium">Voir la fiche →</div>
+      </div>
+      <div class="patho-card">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 bg-rose-100 rounded-lg flex items-center justify-center">
+            <svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          </div>
+          <span class="badge badge-blue">Membres inf.</span>
+        </div>
+        <h3 class="font-semibold text-slate-800 mb-1">Gonarthrose</h3>
+        <p class="text-xs text-slate-500 line-clamp-2">Exercice en charge adapté, renforcement quadriceps/ischio, proprioception, éducation patient...</p>
+        <div class="mt-3 text-xs text-primary font-medium">Voir la fiche →</div>
+      </div>
+      <div class="patho-card">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center">
+            <svg class="w-5 h-5 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          </div>
+          <span class="badge badge-blue">Rachis</span>
+        </div>
+        <h3 class="font-semibold text-slate-800 mb-1">Cervicalgies chroniques</h3>
+        <p class="text-xs text-slate-500 line-clamp-2">Exercices thérapeutiques cervicaux, renforcement profond, mobilisations actives, éducation posturale...</p>
+        <div class="mt-3 text-xs text-primary font-medium">Voir la fiche →</div>
+      </div>
+    </div>
+    <!-- Patho detail overlay -->
+    <div id="patho-detail" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-6">
+      <div class="bg-white rounded-2xl w-full max-w-2xl max-h-[80vh] overflow-y-auto p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-bold text-slate-800">Entorse de cheville</h2>
+          <button onclick="document.getElementById('patho-detail').classList.add('hidden')" class="text-slate-400 hover:text-slate-600">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <span class="badge badge-blue mb-4 inline-block">Membres inférieurs</span>
+        <div class="prose text-sm text-slate-700 space-y-4">
+          <div>
+            <h3 class="font-semibold text-slate-800 mb-2">Définition</h3>
+            <p>Lésion ligamentaire de la cheville survenant lors d'un mécanisme d'inversion-équin. Grade 1 (distension), Grade 2 (rupture partielle), Grade 3 (rupture complète).</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-800 mb-2">Bilan initial</h3>
+            <ul class="list-disc pl-4 space-y-1 text-slate-600">
+              <li>Ottawa Ankle Rules — exclusion fracture</li>
+              <li>Test du tiroir antérieur (LLE)</li>
+              <li>Test du varus forcé</li>
+              <li>Évaluation proprioceptive (Balance Error Scoring System)</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-800 mb-2">Protocole de rééducation</h3>
+            <div class="space-y-3">
+              <div class="bg-blue-50 rounded-lg p-3"><strong class="text-blue-700">Phase 1 (J0–J5) :</strong> POLICE, mobilisation douce, élévation. EVA ≤ 6/10.</div>
+              <div class="bg-teal-50 rounded-lg p-3"><strong class="text-teal-700">Phase 2 (S1–S3) :</strong> Proprioception statique, renforcement isométrique, marche progressive.</div>
+              <div class="bg-emerald-50 rounded-lg p-3"><strong class="text-emerald-700">Phase 3 (S3–S6) :</strong> Proprioception dynamique, plyométrie légère, activités fonctionnelles.</div>
+              <div class="bg-purple-50 rounded-lg p-3"><strong class="text-purple-700">Phase 4 (S6+) :</strong> Reprise sportive progressive, tests fonctionnels (single hop test).</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== PUBLICATIONS ====== -->
+  <div id="section-publications" class="section p-6">
+    <h1 class="text-2xl font-bold text-slate-800 mb-1">Journal scientifique</h1>
+    <p class="text-slate-500 text-sm mb-5">13 articles récents · Sélection éditoriale evidence-based</p>
+    <div class="space-y-4">
+      <div class="card p-5 hover:shadow-md transition-shadow cursor-pointer">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="badge badge-blue text-xs">Méta-analyse</span>
+              <span class="text-xs text-slate-400">British Journal of Sports Medicine · 2025</span>
+            </div>
+            <h3 class="font-semibold text-slate-800 mb-1">Exercice excentrique vs concentrique dans les tendinopathies</h3>
+            <p class="text-sm text-slate-500">Comparaison de 34 RCTs. L'excentrique reste supérieur à court terme (SMD 0.72, IC 95% 0.41-1.03) mais les différences s'estompent à 12 mois...</p>
+          </div>
+        </div>
+      </div>
+      <div class="card p-5 hover:shadow-md transition-shadow cursor-pointer">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="badge badge-green text-xs">RCT</span>
+              <span class="text-xs text-slate-400">JOSPT · 2025</span>
+            </div>
+            <h3 class="font-semibold text-slate-800 mb-1">Rééducation précoce post-entorse cheville Grade 3</h3>
+            <p class="text-sm text-slate-500">La mobilisation précoce (J3) vs immobilisation (J10) réduit le temps de retour au sport de 18 jours en moyenne sans augmenter le risque de récidive...</p>
+          </div>
+        </div>
+      </div>
+      <div class="card p-5 hover:shadow-md transition-shadow cursor-pointer">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="badge badge-purple text-xs">Revue systématique</span>
+              <span class="text-xs text-slate-400">Spine · 2025</span>
+            </div>
+            <h3 class="font-semibold text-slate-800 mb-1">Éducation à la neurophysiologie de la douleur et lombalgie</h3>
+            <p class="text-sm text-slate-500">La PNE combinée à l'exercice actif montre des résultats supérieurs vs thérapie passive seule sur la kinésiophobie (TSK) et le catastrophisme (PCS)...</p>
+          </div>
+        </div>
+      </div>
+      <div class="card p-5 hover:shadow-md transition-shadow cursor-pointer">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="badge badge-yellow text-xs">Guideline</span>
+              <span class="text-xs text-slate-400">KNGF · 2024</span>
+            </div>
+            <h3 class="font-semibold text-slate-800 mb-1">Critères de retour au sport post-LCA : mise à jour 2024</h3>
+            <p class="text-sm text-slate-500">Mise à jour des critères fonctionnels : LSI ≥ 90% (triple hop), force quadriceps ≥ 90%, IKDC ≥ 85 et délai minimal de 9 mois post-chirurgie...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== PATIENT MOBILE ====== -->
+  <div id="section-patient-mobile" class="section p-6">
+    <h1 class="text-2xl font-bold text-slate-800 mb-1">Vue patient — Application mobile</h1>
+    <p class="text-slate-500 text-sm mb-6">Interface PWA que votre patient voit sur son téléphone</p>
+    <div class="flex justify-center">
+      <div class="mobile-demo">
+        <div class="mobile-screen">
+          <!-- Mobile status bar -->
+          <div class="bg-primary px-5 pt-4 pb-16 relative">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-white text-xs font-medium">09:41</span>
+              <span class="text-white text-xs">●●●●</span>
+            </div>
+            <h1 class="text-white text-lg font-bold">Mon programme</h1>
+            <p class="text-white/80 text-sm">Bonjour Lucas 👋</p>
+            <div class="absolute -bottom-6 left-5 right-5 bg-white rounded-2xl shadow-lg p-4">
+              <div class="flex justify-between items-center">
+                <div>
+                  <div class="text-xs text-slate-400">Séance d'aujourd'hui</div>
+                  <div class="font-bold text-slate-800">Rééducation cheville</div>
+                </div>
+                <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Mobile content -->
+          <div class="px-5 pt-10 pb-5">
+            <div class="mb-4">
+              <div class="flex justify-between text-xs text-slate-400 mb-2">
+                <span>Progression de la semaine</span>
+                <span class="font-semibold text-primary">3/4 séances</span>
+              </div>
+              <div class="observance-bar"><div class="observance-fill bg-primary" style="width:75%"></div></div>
+            </div>
+            <!-- Exercise cards mobile -->
+            <div class="space-y-3 mb-4">
+              <div class="bg-white rounded-xl p-4 shadow-sm flex items-center gap-3">
+                <div class="w-12 h-12 bg-emerald-50 rounded-lg flex items-center justify-center">
+                  <svg class="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <div class="flex-1">
+                  <div class="font-medium text-slate-800 text-sm">Proprioception unipodal</div>
+                  <div class="text-xs text-slate-400">3 × 45 sec</div>
+                </div>
+                <span class="text-emerald-500">✓</span>
+              </div>
+              <div class="bg-white rounded-xl p-4 shadow-sm flex items-center gap-3">
+                <div class="w-12 h-12 bg-emerald-50 rounded-lg flex items-center justify-center">
+                  <svg class="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <div class="flex-1">
+                  <div class="font-medium text-slate-800 text-sm">Flexion dorsale murale</div>
+                  <div class="text-xs text-slate-400">3 × 15 rép</div>
+                </div>
+                <span class="text-emerald-500">✓</span>
+              </div>
+              <div class="bg-primary rounded-xl p-4 shadow-sm flex items-center gap-3">
+                <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/></svg>
+                </div>
+                <div class="flex-1">
+                  <div class="font-medium text-white text-sm">Montées sur pointes de pieds</div>
+                  <div class="text-xs text-white/70">3 × 20 rép · En cours</div>
+                </div>
+              </div>
+            </div>
+            <!-- EVA slider mobile -->
+            <div class="bg-white rounded-xl p-4 shadow-sm mb-3">
+              <div class="text-xs font-medium text-slate-600 mb-3">Comment est votre douleur ?</div>
+              <div class="flex justify-between text-xs text-slate-400 mb-2">
+                <span>😊 Pas de douleur</span>
+                <span>😣 Max</span>
+              </div>
+              <div class="relative h-3 bg-gradient-to-r from-emerald-400 via-amber-400 to-red-500 rounded-full">
+                <div class="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-white border-2 border-primary rounded-full shadow-md" style="left: calc(30% - 12px)"></div>
+              </div>
+              <div class="text-center text-lg font-bold text-slate-800 mt-3">3 / 10</div>
+            </div>
+            <!-- Message button -->
+            <button class="w-full py-3 bg-slate-100 text-slate-600 rounded-xl text-sm font-medium">💬 Envoyer un message à Dr Martin</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function showSection(name) {
+    // Hide all sections
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    // Show target
+    const el = document.getElementById('section-' + name);
+    if (el) el.classList.add('active');
+    // Update sidebar
+    document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+    const links = document.querySelectorAll('.sidebar-link');
+    links.forEach(l => {
+      if (l.getAttribute('onclick') && l.getAttribute('onclick').includes("'" + name + "'")) {
+        l.classList.add('active');
+      }
+    });
+    window.scrollTo(0, 0);
+  }
+
+  function showPathoDetail() {
+    document.getElementById('patho-detail').classList.remove('hidden');
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Exercices thérapeutiques : comment créer un programme personnalisé efficace | Kinévia</title>
+    <meta name="description" content="Dosage, progression, individualisation : les principes scientifiques pour créer un programme d'exercices thérapeutiques personnalisé qui fonctionne vraiment pour chaque patient kiné.">
+    <meta name="keywords" content="programme personnalisé kinésithérapie, exercices thérapeutiques, rééducation individualisée, dosage exercices kiné, progression programme rééducation, programme exercices patients">
+    <meta name="author" content="Kinévia">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://kinevia.pro/blog/programme-exercices-personnalise">
+
+    <link rel="icon" href="/favicon.png" type="image/png">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://kinevia.pro/blog/programme-exercices-personnalise">
+    <meta property="og:site_name" content="Kinévia">
+    <meta property="og:title" content="Exercices thérapeutiques : comment créer un programme personnalisé efficace">
+    <meta property="og:description" content="Dosage, progression, individualisation — les principes scientifiques pour un programme d'exercices thérapeutiques personnalisé efficace.">
+    <meta property="og:image" content="https://kinevia.pro/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="article:published_time" content="2026-05-01">
+    <meta property="article:author" content="Kinévia">
+    <meta property="article:section" content="Thérapeutique">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Exercices thérapeutiques : comment créer un programme personnalisé efficace">
+    <meta name="twitter:description" content="Dosage, progression, individualisation — créer un programme d'exercices thérapeutiques personnalisé qui fonctionne.">
+    <meta name="twitter:image" content="https://kinevia.pro/og-image.png">
+
+    <!-- Schema.org Article -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Exercices thérapeutiques : comment créer un programme personnalisé efficace",
+      "description": "Dosage, progression, individualisation : les principes scientifiques pour créer un programme d'exercices thérapeutiques personnalisé qui fonctionne vraiment pour chaque patient kiné.",
+      "url": "https://kinevia.pro/blog/programme-exercices-personnalise",
+      "datePublished": "2026-05-01",
+      "dateModified": "2026-05-01",
+      "inLanguage": "fr",
+      "author": {
+        "@type": "Organization",
+        "name": "Kinévia",
+        "url": "https://kinevia.pro"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Kinévia",
+        "url": "https://kinevia.pro",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://kinevia.pro/og-image.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://kinevia.pro/blog/programme-exercices-personnalise"
+      }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #0ea5e9; --primary-dark: #0284c7; --primary-light: #e0f2fe;
+            --accent: #2DD4BF; --accent-light: #CCFBF1;
+            --ink: #0f172a; --paper: #f8fafc; --muted: #64748b; --border: #e2e8f0; --white: #ffffff;
+        }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--white); color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        nav { padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid var(--border); }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--ink); letter-spacing: -0.5px; text-decoration: none; }
+        .logo { display:inline-flex; align-items:center; gap:6px; } .logo .via { color: #38BDF8; }
+        .nav-actions { display: flex; gap: 12px; align-items: center; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 10px; font-size: 0.9rem; font-weight: 600; font-family: 'Inter', sans-serif; text-decoration: none; cursor: pointer; border: none; transition: all 0.2s; }
+        .btn-ghost { background: transparent; color: var(--muted); }
+        .btn-ghost:hover { color: var(--ink); }
+        .btn-primary { background: var(--primary); color: var(--white); }
+        .btn-primary:hover { background: var(--primary-dark); }
+        .article-wrapper { max-width: 720px; margin: 0 auto; padding: 60px 40px 80px; }
+        .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--muted); margin-bottom: 28px; }
+        .breadcrumb a { color: var(--muted); text-decoration: none; }
+        .breadcrumb a:hover { color: var(--primary); }
+        .article-tag { display: inline-block; background: #fef3c7; color: #92400e; font-size: 0.72rem; font-weight: 600; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; }
+        .article-wrapper h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 800; line-height: 1.2; letter-spacing: -1px; color: var(--ink); margin-bottom: 16px; }
+        .article-intro { font-size: 1.1rem; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+        .article-meta { display: flex; align-items: center; gap: 16px; font-size: 0.82rem; color: var(--muted); padding-bottom: 32px; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
+        .meta-dot { width: 3px; height: 3px; background: var(--muted); border-radius: 50%; }
+        .article-body h2 { font-size: 1.5rem; font-weight: 700; color: var(--ink); margin-top: 40px; margin-bottom: 16px; letter-spacing: -0.5px; }
+        .article-body h3 { font-size: 1.15rem; font-weight: 700; color: var(--ink); margin-top: 28px; margin-bottom: 12px; }
+        .article-body p { color: #334155; font-size: 1rem; line-height: 1.75; margin-bottom: 18px; }
+        .article-body ul, .article-body ol { padding-left: 24px; margin-bottom: 18px; }
+        .article-body li { color: #334155; font-size: 1rem; line-height: 1.7; margin-bottom: 8px; }
+        .article-body strong { color: var(--ink); font-weight: 700; }
+        .principle-card { background: var(--paper); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin: 20px 0; border-left: 4px solid var(--accent); }
+        .principle-card h4 { font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+        .principle-card p { font-size: 0.9rem; margin-bottom: 8px; color: #334155; }
+        .principle-card p:last-child { margin-bottom: 0; }
+        .info-box { background: var(--primary-light); border-left: 4px solid var(--primary); border-radius: 0 10px 10px 0; padding: 20px 24px; margin: 28px 0; }
+        .info-box p { color: #0369a1; font-size: 0.95rem; margin: 0; }
+        .info-box strong { color: #0369a1; }
+        .dosage-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 0.88rem; }
+        .dosage-table th { background: var(--paper); padding: 12px 16px; text-align: left; font-weight: 700; color: var(--ink); border-bottom: 2px solid var(--border); }
+        .dosage-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: #334155; vertical-align: top; }
+        .dosage-table tr:last-child td { border-bottom: none; }
+        .tip-card { background: var(--paper); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin: 24px 0; }
+        .tip-card h4 { font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        .tip-card p { font-size: 0.9rem; margin-bottom: 8px; color: #334155; }
+        .tip-card p:last-child { margin-bottom: 0; }
+        .article-cta { background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 16px; padding: 36px 40px; margin-top: 48px; text-align: center; }
+        .article-cta h3 { font-size: 1.4rem; font-weight: 800; color: white; margin-bottom: 10px; }
+        .article-cta p { color: rgba(255,255,255,0.85); margin-bottom: 24px; font-size: 0.95rem; }
+        .btn-white { display: inline-block; background: white; color: var(--primary-dark); padding: 14px 28px; border-radius: 12px; font-size: 1rem; font-weight: 700; text-decoration: none; transition: all 0.2s; }
+        .btn-white:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.15); transform: translateY(-1px); }
+        .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 0.85rem; font-weight: 500; text-decoration: none; margin-top: 48px; }
+        .back-link:hover { color: var(--primary); }
+        footer { border-top: 1px solid var(--border); padding: 32px 40px; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: 0.85rem; }
+        footer a { color: var(--muted); text-decoration: none; }
+        footer a:hover { color: var(--ink); }
+        .footer-links { display: flex; gap: 20px; }
+        @media (max-width: 768px) {
+            nav { padding: 16px 20px; }
+            .nav-actions .btn { padding: 8px 14px; font-size: 0.82rem; }
+            .article-wrapper { padding: 32px 20px 60px; }
+            .dosage-table { display: block; overflow-x: auto; }
+            .article-cta { padding: 28px 24px; }
+            footer { padding: 24px 20px; flex-direction: column; gap: 12px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="logo"><img src="/icons/icon-96.png" alt="Kinévia" style="width:28px;height:28px;border-radius:6px;object-fit:cover;">Kiné<span class="via">via</span></a>
+        <div class="nav-actions">
+            <a href="/blog" class="btn btn-ghost">Blog</a>
+            <a href="/#tarifs" class="btn btn-ghost">Tarifs</a>
+            <a href="/connexion" class="btn btn-ghost">Connexion</a>
+            <a href="/inscription" class="btn btn-primary">Essai gratuit 14 jours</a>
+        </div>
+    </nav>
+
+    <article class="article-wrapper">
+
+        <div class="breadcrumb">
+            <a href="/">Accueil</a>
+            <span>›</span>
+            <a href="/blog">Blog</a>
+            <span>›</span>
+            <span>Programme personnalisé</span>
+        </div>
+
+        <span class="article-tag">Thérapeutique</span>
+
+        <h1>Exercices thérapeutiques : comment créer un programme personnalisé efficace</h1>
+
+        <p class="article-intro">Un programme d'exercices thérapeutiques n'est pas une liste d'exercices. C'est une prescription — avec un dosage, une progression, et une adaptation au profil spécifique du patient. La recherche en sciences du mouvement a considérablement affiné ce que "personnaliser" signifie réellement. Voici les principes opérationnels.</p>
+
+        <div class="article-meta">
+            <span>1 mai 2026</span>
+            <span class="meta-dot"></span>
+            <span>8 min de lecture</span>
+            <span class="meta-dot"></span>
+            <span>Par l'équipe Kinévia</span>
+        </div>
+
+        <div class="article-body">
+
+            <h2>Pourquoi la personnalisation change les résultats</h2>
+
+            <p>L'essai MOBILIZE, publié dans <em>Nature Medicine</em> (Veronese et al., 2025), démontre que l'exercice thérapeutique individualisé — combiné à un soutien à l'autogestion — améliore significativement la qualité de vie liée à la santé chez des patients atteints de multimorbidité, par rapport aux soins habituels seuls. Les auteurs identifient trois variables clés de la personnalisation : le dosage adapté au statut fonctionnel initial, la progression ajustée à la réponse individuelle (et non à un calendrier fixe), et la sélection d'exercices cohérents avec les activités que le patient souhaite retrouver. Cette approche individualisée est également soutenue par la revue systématique de Sánchez-Meca et al. (<em>Pain</em>, 2022) qui confirme que les programmes personnalisés sur critères fonctionnels surpassent les programmes standardisés pour la lombalgie chronique non spécifique.</p>
+
+            <p>Ce n'est pas une révélation théorique — c'est ce que les kinésithérapeutes expérimentés font intuitivement. L'enjeu est de rendre cette personnalisation systématique et reproductible, y compris pour les patients complexes ou les prises en charge longues.</p>
+
+            <h2>Les 5 dimensions de la personnalisation</h2>
+
+            <h3>1. Le statut fonctionnel initial</h3>
+
+            <p>Avant de prescrire quoi que ce soit, établissez un niveau de base objectif :</p>
+            <ul>
+                <li>Douleur au repos et à l'effort (EVA)</li>
+                <li>Amplitudes articulaires disponibles</li>
+                <li>Force (test de résistance manuelle, ou dynamomètre si disponible)</li>
+                <li>Capacité fonctionnelle globale (peut-il monter un escalier ? Se lever du sol ?)</li>
+                <li>Niveau d'activité physique habituel (sédentaire, actif, sportif)</li>
+            </ul>
+
+            <p>Ce bilan initial définit le point de départ du programme — pas un programme générique "genou post-op", mais un programme pour ce patient, avec ses capacités actuelles et ses contraintes réelles.</p>
+
+            <h3>2. Le dosage individualisé</h3>
+
+            <p>Le dosage est la variable la plus mal comprise de la prescription d'exercices. Il ne se résume pas aux séries et répétitions — il couvre six paramètres :</p>
+
+            <div class="dosage-table-wrapper">
+            <table class="dosage-table">
+                <thead>
+                    <tr>
+                        <th>Paramètre</th>
+                        <th>Ce que vous devez prescrire</th>
+                        <th>Piège fréquent</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Intensité</strong></td>
+                        <td>% de 1RM, EVA cible, ou RPE (0-10)</td>
+                        <td>Prescrire "léger" sans critère objectif</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Volume</strong></td>
+                        <td>Séries × répétitions (ou durée)</td>
+                        <td>Volume trop élevé pour observance</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fréquence</strong></td>
+                        <td>Jours par semaine, moments de la journée</td>
+                        <td>"Tous les jours" → abandon rapide</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tempo</strong></td>
+                        <td>Vitesse d'exécution (ex: 3-1-3)</td>
+                        <td>Non précisé → exécution rapide inefficace</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Repos</strong></td>
+                        <td>Temps de récupération entre séries</td>
+                        <td>Omis → surcharge ou sous-stimulus</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Seuil de douleur</strong></td>
+                        <td>EVA maximale tolérée ("stop si > X/10")</td>
+                        <td>Non précisé → arrêt par prudence</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+
+            <div class="info-box">
+                <p><strong>L'échelle RPE comme outil de dosage individuel :</strong> L'échelle de Borg modifiée (0-10) — "sur 10, quel effort percevez-vous ?" — est un outil de dosage fiable, facile à utiliser à domicile, et adaptatif par nature. Prescrire "exercez-vous à 6-7/10 d'effort" s'ajuste automatiquement aux variations d'état du patient d'un jour à l'autre.</p>
+            </div>
+
+            <h3>3. La progression ancrée sur la réponse individuelle</h3>
+
+            <p>La progression d'un programme d'exercices ne doit pas suivre un calendrier arbitraire ("augmentez les charges à J+14") — elle doit être déclenchée par des critères de performance atteints.</p>
+
+            <div class="principle-card">
+                <h4>Le principe de la progression basée sur des critères (criterion-based progression)</h4>
+                <p>Au lieu de "semaine 3 : passez à 3 séries", définissez : "lorsque vous réalisez 3 séries de 15 répétitions avec une EVA ≤ 2/10 pendant 3 séances consécutives, passez à la variante suivante."</p>
+                <p>Ce principe, recommandé par les guidelines de l'ACSM (American College of Sports Medicine) pour la rééducation musculo-squelettique, évite deux écueils : progresser trop vite (blessures, découragement par la douleur) et stagner trop longtemps (perte d'effet stimulant).</p>
+            </div>
+
+            <h3>4. La sélection d'exercices cohérente avec les objectifs fonctionnels du patient</h3>
+
+            <p>Les exercices thérapeutiques ne doivent pas seulement cibler les déficits identifiés au bilan — ils doivent être cohérents avec ce que le patient veut retrouver. Deux patients avec la même pathologie d'épaule peuvent avoir des objectifs radicalement différents : l'un veut reprendre la natation, l'autre veut porter son petit-enfant. Leurs programmes ne sont pas les mêmes.</p>
+
+            <p>Posez systématiquement la question : "Quelle activité spécifique voulez-vous pouvoir refaire à la fin de cette prise en charge ?" La réponse structure les exercices fonctionnels en fin de programme.</p>
+
+            <h3>5. L'adaptation aux comorbidités et contraintes individuelles</h3>
+
+            <p>La personnalisation inclut les éléments qui rendent un exercice "standard" contre-indiqué ou à adapter :</p>
+
+            <ul>
+                <li><strong>Pathologies cardiovasculaires :</strong> limiter l'intensité, surveiller la fréquence cardiaque, éviter les Valsalva</li>
+                <li><strong>Diabète :</strong> tenir compte des variations glycémiques liées à l'exercice, timing des séances</li>
+                <li><strong>Ostéoporose :</strong> éviter les exercices en flexion du rachis, privilégier les exercices en charge</li>
+                <li><strong>Grossesse / post-partum :</strong> modifications spécifiques pour la pression intra-abdominale</li>
+                <li><strong>Kinésiophobie :</strong> intégrer une éducation neurophysiologique de la douleur avant ou en parallèle des exercices</li>
+            </ul>
+
+            <h2>La structure type d'un programme personnalisé efficace</h2>
+
+            <h3>Phase 1 : Contrôle de la douleur et mobilisation (J1 à J10-14 environ)</h3>
+
+            <p>Objectif : réduire l'irritabilité tissulaire, restaurer les amplitudes articulaires de base, rassurer le patient sur ce qu'il peut faire.</p>
+            <ul>
+                <li>Exercices peu chargés, à amplitude réduite si nécessaire</li>
+                <li>Priorité sur la qualité d'exécution plutôt que le volume</li>
+                <li>EVA cible pendant l'exercice : ≤ 4/10</li>
+                <li>Fréquence : quotidienne ou biquotidienne, durée courte (10-15 min)</li>
+            </ul>
+
+            <h3>Phase 2 : Renforcement progressif</h3>
+
+            <p>Objectif : reconstruire la force, l'endurance musculaire, et la stabilité articulaire.</p>
+            <ul>
+                <li>Introduction de la résistance (poids, élastiques, machines)</li>
+                <li>Progression par critères atteints, pas par calendrier</li>
+                <li>Intégration d'exercices fonctionnels spécifiques aux objectifs du patient</li>
+                <li>EVA cible : ≤ 3/10, disparaissant en moins de 24h après la séance</li>
+            </ul>
+
+            <h3>Phase 3 : Réintégration fonctionnelle et prévention</h3>
+
+            <p>Objectif : retour à l'activité cible (sport, travail, activités quotidiennes), prévention de la récidive.</p>
+            <ul>
+                <li>Exercices simulant les contraintes de l'activité cible</li>
+                <li>Programme de maintien allégé (2-3 séances par semaine)</li>
+                <li>Éducation à l'autogestion pour la prévention</li>
+            </ul>
+
+            <div class="tip-card">
+                <h4>📋 L'outil que les kinés sous-utilisent : la hiérarchie des exercices</h4>
+                <p>Pour chaque groupe musculaire ou mouvement cible, ayez une bibliothèque d'exercices ordonnés par difficulté croissante — de la contraction isométrique à l'exercice pliométrique. Cela vous permet de progresser le patient de manière fluide sans repenser le programme à chaque fois.</p>
+                <p>Exemple pour le quadriceps : contraction isométrique → extensions jambes en décharge → demi-squat → squat complet → squat sur une jambe → sauts. La progression est claire, les critères de passage définis à l'avance.</p>
+            </div>
+
+            <h2>Les erreurs de prescription les plus courantes</h2>
+
+            <ol>
+                <li><strong>Programmer trop d'exercices.</strong> Un programme de 10 exercices à domicile est un programme qui ne sera pas fait. Maximum 5, idéalement 3 dans les phases précoces.</li>
+                <li><strong>Négliger le dosage du tempo.</strong> Un squat exécuté en 1 seconde et un squat en tempo 3-1-3 ne sont pas le même exercice — le second génère une contrainte excentrique nettement supérieure.</li>
+                <li><strong>Progresser sur calendrier plutôt que sur critères.</strong> Le patient n'est pas prêt parce qu'il a passé deux semaines — il est prêt parce qu'il remplit les critères fonctionnels définis.</li>
+                <li><strong>Ignorer la kinésiophobie.</strong> Un patient qui a peur de se faire mal ne fera pas ses exercices correctement, quelle que soit la qualité de la prescription. La peur est une variable clinique à traiter au même titre que la douleur.</li>
+                <li><strong>Négliger l'environnement domestique.</strong> Prescrire des exercices qui nécessitent du matériel que le patient n'a pas chez lui est une erreur de prescription — pas un manque de motivation du patient.</li>
+            </ol>
+
+            <h2>Ce qu'il faut retenir</h2>
+
+            <ul>
+                <li>Personnaliser = adapter le dosage, la progression, et le choix des exercices au profil individuel — pas juste changer un exercice générique</li>
+                <li>Prescrivez les 6 paramètres du dosage, pas seulement les séries et répétitions</li>
+                <li>Utilisez des critères de performance (et non le calendrier) pour déclencher les progressions</li>
+                <li>Alignez les exercices sur l'objectif fonctionnel du patient — ce qu'il veut retrouver, pas ce que vous pensez qu'il doit travailler</li>
+                <li>Limitez le volume du programme à domicile : moins d'exercices bien faits vaut mieux que beaucoup d'exercices mal ou pas faits</li>
+            </ul>
+
+            <h2>Sources scientifiques</h2>
+
+            <ol style="font-size:0.88rem; color:#64748b; line-height:1.7;">
+                <li>Veronese N, Custodero C, Cella A, et al. Exercise therapy and self-management support for individuals with multimorbidity: a randomized and controlled trial (MOBILIZE). <em>Nature Medicine</em>. 2025. <a href="https://doi.org/10.1038/s41591-025-03779-4" target="_blank" rel="noopener">doi:10.1038/s41591-025-03779-4</a></li>
+                <li>American College of Sports Medicine. ACSM's Guidelines for Exercise Testing and Prescription, 12th ed. Wolters Kluwer, 2022. <a href="https://acsm.org/education-resources/books/guidelines-exercise-testing-prescription/" target="_blank" rel="noopener">acsm.org</a></li>
+                <li>Hayden JA, Ellis J, Ogilvie R, et al. Some types of exercise are more effective than others in people with chronic low back pain: a network meta-analysis. <em>Journal of Physiotherapy</em>. 2021;67(4):252-262. <a href="https://doi.org/10.1016/j.jphys.2021.09.004" target="_blank" rel="noopener">doi:10.1016/j.jphys.2021.09.004</a></li>
+                <li>Lonsdale C, Hall AM, Murray A, et al. Communication Skills Training for Practitioners to Increase Patient Adherence to Home-Based Rehabilitation for Chronic Low Back Pain. <em>Archives of Physical Medicine and Rehabilitation</em>. 2017;98(9):1732-1743. <a href="https://doi.org/10.1016/j.apmr.2017.02.026" target="_blank" rel="noopener">doi:10.1016/j.apmr.2017.02.026</a></li>
+                <li>Jack K, McLean SM, Moffett JK, Gardiner E. Barriers to treatment adherence in physiotherapy outpatient clinics: a systematic review. <em>Manual Therapy</em>. 2010;15(3):220-228. <a href="https://doi.org/10.1016/j.math.2009.12.004" target="_blank" rel="noopener">doi:10.1016/j.math.2009.12.004</a></li>
+            </ol>
+
+        </div>
+
+        <div class="article-cta">
+            <h3>Créez des programmes personnalisés avec Kinévia</h3>
+            <p>Bibliothèque d'exercices, programmes envoyés par lien unique, suivi de l'observance en temps réel. Chaque programme est individuel — pas un template copié-collé. 14 jours gratuits.</p>
+            <a href="/inscription" class="btn-white">Créer mon premier programme →</a>
+        </div>
+
+        <a href="/blog" class="back-link">← Retour au blog</a>
+
+    </article>
+
+    <footer>
+        <a href="/" class="logo" style="font-size:1.1rem;"><img src="/icons/icon-96.png" alt="Kinévia" style="width:24px;height:24px;border-radius:5px;object-fit:cover;">Kiné<span class="via">via</span></a>
+        <div class="footer-links">
+            <a href="/blog">Blog</a>
+            <a href="/mentions-legales">Mentions légales</a>
+            <a href="/confidentialite">Confidentialité</a>
+            <a href="/cgu">CGU</a>
+        </div>
+    </footer>
+
+</body>
+</html>

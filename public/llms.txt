@@ -1,0 +1,24 @@
+# Kinévia
+
+Kinévia est une application SaaS pour kinésithérapeutes francophones.
+
+## À propos
+
+Kinévia permet aux kinésithérapeutes de :
+- Créer des programmes d'exercices personnalisés pour leurs patients
+- Suivre la progression et la douleur des patients au fil des séances
+- Partager un lien unique d'accès au programme (sans compte patient)
+- Documenter des bilans initiaux (douleur, mobilité, objectifs)
+- Accéder à une bibliothèque d'exercices par zone corporelle
+
+## Public cible
+
+Kinésithérapeutes francophones (France, Belgique, Suisse, Québec).
+
+## Conformité
+
+Données de santé chiffrées AES-256-GCM. Consentement RGPD intégré.
+
+## URL
+
+https://kinevia.pro

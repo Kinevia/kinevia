@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abonnement activé — Kinévia</title>
+    <link rel="icon" href="/favicon.png" type="image/png">
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#38BDF8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 48px 40px;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 20px 60px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+        }
+        .icon {
+            width: 72px;
+            height: 72px;
+            background: #CCFBF1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 2rem;
+        }
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+            color: #0f172a;
+        }
+        p {
+            color: #64748b;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+        .details {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 32px;
+            text-align: left;
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .detail-row:last-child { border-bottom: none; }
+        .detail-label { color: #64748b; }
+        .detail-value { font-weight: 600; color: #0f172a; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            width: 100%;
+            justify-content: center;
+        }
+        .btn-primary {
+            background: #38BDF8;
+            color: white;
+        }
+        .btn-primary:hover { background: #0EA5E9; }
+        .note {
+            margin-top: 20px;
+            font-size: 0.82rem;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="icon">✅</div>
+        <h1>Abonnement activé !</h1>
+        <p>Votre abonnement Kinévia est maintenant actif. Vous allez recevoir une confirmation par email avec votre facture.</p>
+
+        <div class="details">
+            <div class="detail-row">
+                <span class="detail-label">Plan</span>
+                <span class="detail-value">Professionnel</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Montant</span>
+                <span class="detail-value">19,99€ HT/mois</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Facturation</span>
+                <span class="detail-value">Mensuelle automatique</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Résiliation</span>
+                <span class="detail-value">À tout moment</span>
+            </div>
+        </div>
+
+        <a href="/dashboard" class="btn btn-primary">
+            Accéder à mon espace →
+        </a>
+
+        <p class="note">
+            Une facture vous sera envoyée par email à chaque renouvellement.<br>
+            Vous pouvez gérer votre abonnement depuis <strong>Paramètres → Abonnement</strong>.
+        </p>
+    </div>
+
+    <!-- PWA Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js')
+            .then(function(reg) { console.log('[SW] Registered:', reg.scope); })
+            .catch(function(err) { console.warn('[SW] Registration failed:', err); });
+        });
+      }
+    </script>
+</body>
+</html>

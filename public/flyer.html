@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kinévia — Flyer Promotionnel</title>
+  <meta name="description" content="Kinévia — L'app qui booste l'observance de vos patients. Essai gratuit 14 jours.">
+  <meta property="og:title" content="Kinévia — L'app des kinésithérapeutes">
+  <meta property="og:description" content="Vos patients font vraiment leurs exercices entre les séances ?">
+  <meta property="og:image" content="https://kinevia.polsia.app/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal: #2BB5B2;
+      --teal-dark: #1A9B98;
+      --teal-light: #E8F8F8;
+      --teal-xlight: #F0FAFA;
+      --text-dark: #1A1A2E;
+      --text-mid: #3A3A5C;
+      --text-muted: #6B7280;
+      --white: #FFFFFF;
+      --border: #E2F4F4;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #F5F9FA;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 16px 48px;
+      color: var(--text-dark);
+    }
+
+    /* ===== TOP BAR ===== */
+    .page-toolbar {
+      width: 100%;
+      max-width: 520px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      gap: 12px;
+    }
+
+    .page-toolbar a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--teal-dark);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .page-toolbar a:hover { opacity: 1; }
+
+    .btn-download {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--teal);
+      color: var(--white) !important;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-family: 'Montserrat', sans-serif !important;
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      opacity: 1 !important;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(43,181,178,0.3);
+      text-decoration: none;
+    }
+    .btn-download:hover {
+      background: var(--teal-dark) !important;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(43,181,178,0.4) !important;
+    }
+    .btn-download:active { transform: translateY(0); }
+
+    /* ===== FLYER CARD ===== */
+    .flyer {
+      width: 100%;
+      max-width: 480px;
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 48px rgba(43,181,178,0.12), 0 2px 16px rgba(0,0,0,0.06);
+      position: relative;
+    }
+
+    /* ===== HEADER ===== */
+    .flyer-header {
+      background: linear-gradient(135deg, #2BB5B2 0%, #1A9B98 50%, #158F8C 100%);
+      padding: 32px 32px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .flyer-header::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      pointer-events: none;
+    }
+
+    .flyer-header::after {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      left: -20px;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      pointer-events: none;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      backdrop-filter: blur(4px);
+    }
+
+    .logo-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.5px;
+    }
+
+    .logo-tagline {
+      font-size: 11px;
+      color: rgba(255,255,255,0.75);
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      font-family: 'Montserrat', sans-serif;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(4px);
+    }
+
+    .header-question {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+      letter-spacing: -0.5px;
+    }
+
+    .header-sub {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.4;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== BODY ===== */
+    .flyer-body {
+      padding: 28px 28px 0;
+    }
+
+    .section-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+
+    /* ===== FEATURES GRID ===== */
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .feature-card {
+      background: var(--teal-xlight);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 12px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .feature-card:hover {
+      border-color: var(--teal);
+      box-shadow: 0 2px 12px rgba(43,181,178,0.12);
+    }
+
+    .feature-icon {
+      font-size: 22px;
+      margin-bottom: 8px;
+      display: block;
+      line-height: 1;
+    }
+
+    .feature-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .feature-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* ===== CONTENT BADGE ===== */
+    .content-badge {
+      background: linear-gradient(135deg, var(--teal-light), var(--teal-xlight));
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .content-badge-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .content-badge-text {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .content-badge-number {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--teal-dark);
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+
+    .content-badge-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-mid);
+    }
+
+    .content-badge-divider {
+      width: 1px;
+      height: 36px;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+
+    /* ===== SOCIAL PROOF ===== */
+    .social-proof {
+      background: #F8FFFE;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .quote-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      opacity: 0.6;
+    }
+
+    .quote-text {
+      font-size: 12px;
+      font-style: italic;
+      color: var(--text-mid);
+      line-height: 1.5;
+    }
+
+    .quote-author {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--teal-dark);
+      margin-top: 4px;
+      font-style: normal;
+    }
+
+    /* ===== STATS ROW ===== */
+    .stats-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .stat-item {
+      flex: 1;
+      text-align: center;
+      background: var(--teal-xlight);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 8px;
+    }
+
+    .stat-number {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--teal-dark);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+
+    /* ===== CTA SECTION ===== */
+    .cta-section {
+      background: linear-gradient(135deg, #1A1A2E 0%, #2A2A4E 100%);
+      padding: 28px;
+      margin: 0 -28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: rgba(43,181,178,0.08);
+      pointer-events: none;
+    }
+
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      left: -20px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: rgba(43,181,178,0.05);
+      pointer-events: none;
+    }
+
+    .cta-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--teal);
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 6px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+      color: var(--white);
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      box-shadow: 0 4px 20px rgba(43,181,178,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      margin-bottom: 12px;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(43,181,178,0.45);
+    }
+
+    .cta-url {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-url span {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .cta-url a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--teal);
+      text-decoration: none;
+      letter-spacing: 0.3px;
+    }
+
+    /* ===== FOOTER ===== */
+    .flyer-footer {
+      padding: 16px 28px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .footer-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--teal-xlight);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 9px;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--teal-dark);
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .footer-note {
+      font-size: 10px;
+      color: var(--text-muted);
+      text-align: right;
+    }
+
+    /* ===== PAGE FOOTER ===== */
+    .page-footer {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* ===== PRINT / PDF STYLES ===== */
+    @media print {
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+
+      html, body {
+        width: 210mm;
+        height: 297mm;
+        margin: 0;
+        padding: 0;
+        background: white;
+        overflow: hidden;
+      }
+
+      body {
+        display: block;
+        min-height: unset;
+      }
+
+      .page-toolbar,
+      .page-footer { display: none !important; }
+
+      .flyer {
+        max-width: 100%;
+        width: 100%;
+        box-shadow: none;
+        border-radius: 0;
+        margin: 0;
+        /* Fill exactly one page, clip any micro-overflow */
+        height: 297mm;
+        max-height: 297mm;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* --- Header: tighten padding & fonts --- */
+      .flyer-header {
+        background: linear-gradient(135deg, #2BB5B2 0%, #1A9B98 50%, #158F8C 100%) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        padding: 20px 28px 16px !important;
+      }
+
+      .logo-row { margin-bottom: 12px; }
+      .logo-icon { width: 32px; height: 32px; font-size: 16px; }
+      .logo-text { font-size: 20px; }
+      .logo-tagline { font-size: 10px; }
+
+      .header-badge {
+        padding: 3px 10px;
+        font-size: 10px;
+        margin-bottom: 10px;
+      }
+
+      .header-question {
+        font-size: 21px;
+        margin-bottom: 8px;
+        line-height: 1.2;
+      }
+
+      .header-sub { font-size: 12px; }
+
+      /* --- Body: compress spacing --- */
+      .flyer-body {
+        padding: 16px 24px 0 !important;
+        flex: 1 1 auto;
+      }
+
+      .section-label { margin-bottom: 8px; font-size: 9px; }
+
+      .features-grid { gap: 6px; margin-bottom: 12px; }
+
+      .feature-card {
+        background: #F0FAFA !important;
+        padding: 10px 10px !important;
+        border-radius: 8px;
+      }
+      .feature-icon { font-size: 18px; margin-bottom: 4px; }
+      .feature-title { font-size: 11px; margin-bottom: 2px; }
+      .feature-desc { font-size: 10px; line-height: 1.3; }
+
+      /* --- Content badge --- */
+      .content-badge {
+        background: #F0FAFA !important;
+        padding: 10px 14px !important;
+        margin-bottom: 12px;
+        border-radius: 8px;
+      }
+      .content-badge-icon { font-size: 22px; }
+      .content-badge-number { font-size: 15px; }
+      .content-badge-label { font-size: 10px; }
+
+      /* --- Stats row --- */
+      .stats-row { margin-bottom: 12px; gap: 6px; }
+      .stat-item {
+        background: #F0FAFA !important;
+        padding: 8px 6px !important;
+        border-radius: 8px;
+      }
+      .stat-number { font-size: 17px; }
+      .stat-label { font-size: 9px; }
+
+      /* --- CTA section --- */
+      .cta-section {
+        background: #1A1A2E !important;
+        padding: 18px 24px !important;
+        margin: 0 !important;
+        flex-shrink: 0;
+      }
+      .cta-eyebrow { font-size: 10px; margin-bottom: 5px; }
+      .cta-title { font-size: 17px; margin-bottom: 4px; }
+      .cta-sub { font-size: 11px; margin-bottom: 12px; }
+      .cta-button {
+        background: #2BB5B2 !important;
+        color: white !important;
+        padding: 10px 24px !important;
+        font-size: 13px;
+        margin-bottom: 8px;
+        border-radius: 10px;
+      }
+      .cta-url span { font-size: 11px; }
+      .cta-url a { font-size: 12px; }
+
+      /* --- Footer --- */
+      .flyer-footer {
+        padding: 10px 24px 14px !important;
+        flex-shrink: 0;
+      }
+      .footer-tag { font-size: 9px; padding: 3px 7px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page Toolbar (hidden on print) -->
+  <div class="page-toolbar">
+    <a href="/">← Retour à Kinévia</a>
+    <button class="btn-download" onclick="window.print()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Télécharger en PDF
+    </button>
+  </div>
+
+  <!-- Flyer Card -->
+  <div class="flyer">
+
+    <!-- Header -->
+    <div class="flyer-header">
+      <div class="logo-row">
+        <div class="logo-icon">🩺</div>
+        <div>
+          <div class="logo-text">Kinévia</div>
+          <div class="logo-tagline">Plateforme des kinésithérapeutes</div>
+        </div>
+      </div>
+
+      <div class="header-badge">
+        ✨ &nbsp;Nouveau en 2026
+      </div>
+
+      <div class="header-question">
+        Vos patients font vraiment leurs exercices entre les séances ?
+      </div>
+      <div class="header-sub">
+        L'app qui booste l'observance de vos patients — simple, claire, efficace.
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="flyer-body">
+
+      <div class="section-label">Ce que vous obtenez</div>
+
+      <!-- Features Grid -->
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">📚</span>
+          <div class="feature-title">300+ exercices illustrés</div>
+          <div class="feature-desc">Bibliothèque validée, prête à prescrire</div>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">📊</span>
+          <div class="feature-title">Suivi en temps réel</div>
+          <div class="feature-desc">Taux d'observance de chaque patient</div>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">💬</span>
+          <div class="feature-title">Messagerie sécurisée</div>
+          <div class="feature-desc">Communication directe patient–kiné</div>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🤖</span>
+          <div class="feature-title">Recommandations IA</div>
+          <div class="feature-desc">Exercices personnalisés par pathologie</div>
+        </div>
+      </div>
+
+      <!-- Content Stats -->
+      <div class="content-badge">
+        <div class="content-badge-icon">🗂️</div>
+        <div class="content-badge-text">
+          <div class="content-badge-number">120</div>
+          <div class="content-badge-label">Fiches pathologies</div>
+        </div>
+        <div class="content-badge-divider"></div>
+        <div class="content-badge-text">
+          <div class="content-badge-number">88</div>
+          <div class="content-badge-label">Tests cliniques</div>
+        </div>
+        <div class="content-badge-divider"></div>
+        <div class="content-badge-text">
+          <div class="content-badge-number">∞</div>
+          <div class="content-badge-label">Patients suivis</div>
+        </div>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="stats-row">
+        <div class="stat-item">
+          <div class="stat-number">+73%</div>
+          <div class="stat-label">Observance moyenne</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">14j</div>
+          <div class="stat-label">Essai gratuit</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">5★</div>
+          <div class="stat-label">Note utilisateurs</div>
+        </div>
+      </div>
+
+    </div><!-- /flyer-body -->
+
+    <!-- CTA Section -->
+    <div class="cta-section" style="padding: 28px;">
+      <div class="cta-eyebrow">Commencez aujourd'hui</div>
+      <div class="cta-title">Essai gratuit<br>14 jours — sans CB</div>
+      <div class="cta-sub">Accès complet. Annulation en 1 clic.</div>
+      <a href="https://kinevia.pro" target="_blank" class="cta-button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+        Démarrer l'essai gratuit
+      </a>
+      <div class="cta-url">
+        <span>→ &nbsp;</span><a href="https://kinevia.pro" target="_blank">kinevia.pro</a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="flyer-footer">
+      <div>
+        <div class="footer-tag">🇫🇷 &nbsp;Fait en France</div>
+      </div>
+      <div>
+        <div class="footer-tag">🔒 &nbsp;RGPD</div>
+      </div>
+      <div>
+        <div class="footer-tag">💊 &nbsp;CE certifié</div>
+      </div>
+    </div>
+
+  </div><!-- /flyer -->
+
+  <!-- Page footer -->
+  <div class="page-footer">
+    Pour télécharger en PDF : cliquez « Télécharger en PDF » puis choisissez <strong>Enregistrer au format PDF</strong> dans la boîte de dialogue d'impression.
+  </div>
+
+</body>
+</html>

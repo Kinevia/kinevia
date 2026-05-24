@@ -1,0 +1,17 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1DADE4"/>
+      <stop offset="100%" stop-color="#0E7FA8"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="7" fill="url(#g)"/>
+  <!-- Vertical stem -->
+  <rect x="8" y="6" width="4.5" height="20" rx="2" fill="white"/>
+  <!-- Upper arm -->
+  <line x1="10" y1="16" x2="24" y2="6" stroke="white" stroke-width="4.5" stroke-linecap="round"/>
+  <!-- Lower arm (distinctive lighter turquoise — Kinévia brand mark) -->
+  <line x1="10" y1="16" x2="22.5" y2="26" stroke="#5ED8E4" stroke-width="4.5" stroke-linecap="round"/>
+  <!-- Teal dot at lower arm end -->
+  <circle cx="24" cy="26.5" r="2.8" fill="#5ED8E4"/>
+</svg>

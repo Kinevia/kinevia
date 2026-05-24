@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rejoignez la bêta Kinévia — 14 jours gratuits, sans carte bancaire</title>
+    <meta name="description" content="Rejoignez les premiers kinésithérapeutes à tester Kinévia. 14 jours gratuits, sans engagement, sans carte bancaire. Accès anticipé, support prioritaire, tarif fondateur.">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://kinevia.pro/beta">
+    <link rel="icon" href="/favicon.png" type="image/png">
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#38BDF8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kinevia.pro/beta">
+    <meta property="og:site_name" content="Kinévia">
+    <meta property="og:title" content="Rejoignez la bêta Kinévia — Programme fondateur">
+    <meta property="og:description" content="14 jours gratuits, sans engagement, sans carte bancaire. Accès anticipé, support prioritaire, tarif fondateur garanti.">
+    <meta property="og:image" content="https://kinevia.pro/og-image.png">
+    <meta property="og:locale" content="fr_FR">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Rejoignez la bêta Kinévia — Programme fondateur">
+    <meta name="twitter:description" content="14 jours gratuits, sans engagement, sans carte bancaire.">
+    <meta name="twitter:image" content="https://kinevia.pro/og-image.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Satoshi:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --teal: #38BDF8;
+            --teal-dark: #0EA5E9;
+            --teal-light: #E0F2FE;
+            --sky: #38BDF8;
+            --sky-dark: #0EA5E9;
+            --ink: #0f172a;
+            --ink-soft: #1e293b;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --surface: #f8fafc;
+            --white: #ffffff;
+            --amber: #f59e0b;
+        }
+
+        body {
+            font-family: 'Satoshi', -apple-system, sans-serif;
+            background: var(--surface);
+            color: var(--ink);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--ink);
+            text-decoration: none;
+            letter-spacing: -0.3px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo img { width: 28px; height: 28px; border-radius: 6px; object-fit: cover; flex-shrink: 0; }
+        .logo .via { color: var(--sky); }
+        .nav-link {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-link:hover { color: var(--ink); }
+
+        /* ─── LAYOUT ─── */
+        .page-wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px 80px;
+        }
+
+        /* ─── BADGE ─── */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--teal-light);
+            color: var(--teal-dark);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 100px;
+            margin-bottom: 28px;
+        }
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--teal);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 480px;
+            gap: 80px;
+            align-items: start;
+            padding: 60px 0 80px;
+        }
+        .hero-left {}
+        h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2.4rem, 4vw, 3.4rem);
+            line-height: 1.1;
+            color: var(--ink);
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+        }
+        h1 em {
+            font-style: italic;
+            color: var(--teal);
+        }
+        .hero-sub {
+            font-size: 1.1rem;
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: 36px;
+            max-width: 500px;
+        }
+
+        /* ─── COUNTER ─── */
+        .counter-block {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 20px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 40px;
+            max-width: 320px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .counter-avatars {
+            display: flex;
+        }
+        .counter-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--teal) 0%, var(--sky) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: white;
+            border: 2px solid var(--white);
+            margin-right: -8px;
+        }
+        .counter-text {
+            font-size: 0.9rem;
+            color: var(--ink-soft);
+            font-weight: 500;
+        }
+        .counter-text strong { color: var(--teal); }
+        #counter-block { display: none; }
+
+        /* ─── BENEFITS ─── */
+        .benefits {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 40px;
+        }
+        .benefit {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .benefit-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: var(--teal-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .benefit-icon svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--teal-dark);
+        }
+        .benefit-text {
+            font-size: 0.95rem;
+            color: var(--ink-soft);
+            line-height: 1.5;
+        }
+        .benefit-text strong {
+            color: var(--ink);
+            display: block;
+            font-weight: 600;
+        }
+
+        /* ─── FORM CARD ─── */
+        .form-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            position: sticky;
+            top: 30px;
+        }
+        .form-card h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.5rem;
+            color: var(--ink);
+            margin-bottom: 6px;
+        }
+        .form-card p {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--ink-soft);
+            margin-bottom: 7px;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 0.95rem;
+            color: var(--ink);
+            background: var(--surface);
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+            appearance: none;
+        }
+        input:focus, select:focus {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
+            background: var(--white);
+        }
+        input::placeholder { color: #94a3b8; }
+        input.error { border-color: #ef4444; }
+
+        .form-error {
+            font-size: 0.8rem;
+            color: #ef4444;
+            margin-top: 5px;
+            display: none;
+        }
+        .form-error.visible { display: block; }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px 24px;
+            background: var(--teal);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            margin-top: 8px;
+            letter-spacing: -0.01em;
+        }
+        .btn-submit:hover { background: var(--teal-dark); }
+        .btn-submit:active { transform: scale(0.99); }
+        .btn-submit:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        .form-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-top: 14px;
+            line-height: 1.5;
+        }
+        .form-note svg {
+            display: inline;
+            vertical-align: -2px;
+            margin-right: 3px;
+        }
+
+        /* ─── SUCCESS STATE ─── */
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .success-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--teal-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        .success-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--teal-dark);
+        }
+        .form-success h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.4rem;
+            color: var(--ink);
+            margin-bottom: 10px;
+        }
+        .form-success p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 32px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .footer-brand {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .footer-brand span { color: var(--teal); }
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+        .footer-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--ink); }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 860px) {
+            nav { padding: 16px 24px; }
+            .page-wrap { padding: 0 24px 60px; }
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 40px 0 60px;
+            }
+            .form-card { position: static; }
+            footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="logo"><img src="/icons/icon-96.png" alt="Kinévia">Kiné<span class="via">via</span></a>
+        <a href="/connexion" class="nav-link">Connexion →</a>
+    </nav>
+
+    <div class="page-wrap">
+        <div class="hero">
+            <!-- LEFT: copy -->
+            <div class="hero-left">
+                <div class="badge">
+                    <span class="badge-dot"></span>
+                    Programme bêta ouvert
+                </div>
+
+                <h1>Rejoignez les premiers<br>kinés à tester <em>Kinévia</em></h1>
+
+                <p class="hero-sub">
+                    14 jours gratuits, sans engagement, sans carte bancaire.
+                    Vous êtes kiné et vous cherchez un outil simple pour suivre vos patients ?
+                    C'est exactement pour vous.
+                </p>
+
+                <!-- Social proof counter — shown when signups >= 3 -->
+                <div class="counter-block" id="counter-block">
+                    <div class="counter-avatars">
+                        <div class="counter-avatar">JD</div>
+                        <div class="counter-avatar">ML</div>
+                        <div class="counter-avatar">SR</div>
+                    </div>
+                    <span class="counter-text"><strong id="counter-number">12</strong> kinés déjà inscrits</span>
+                </div>
+
+                <!-- Why join beta -->
+                <div class="benefits">
+                    <div class="benefit">
+                        <div class="benefit-icon">
+                            <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                        </div>
+                        <div class="benefit-text">
+                            <strong>Accès anticipé à toutes les fonctionnalités</strong>
+                            Programmes d'exercices, bilans, suivi de la douleur, rappels patients — avant tout le monde.
+                        </div>
+                    </div>
+                    <div class="benefit">
+                        <div class="benefit-icon">
+                            <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+                            </svg>
+                        </div>
+                        <div class="benefit-text">
+                            <strong>Support prioritaire</strong>
+                            Ligne directe avec l'équipe. Vos retours façonnent le produit.
+                        </div>
+                    </div>
+                    <div class="benefit">
+                        <div class="benefit-icon">
+                            <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+                            </svg>
+                        </div>
+                        <div class="benefit-text">
+                            <strong>Tarif fondateur garanti à vie</strong>
+                            Les bêta-testeurs bénéficient d'un tarif préférentiel verrouillé — quelle que soit l'évolution des prix.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: form -->
+            <div class="form-card">
+                <h2>Rejoindre la bêta</h2>
+                <p>Inscription en 30 secondes. Aucune carte bancaire requise.</p>
+
+                <form id="beta-form" method="post" action="javascript:void(0)">
+                    <div class="form-group">
+                        <label for="name">Votre prénom et nom</label>
+                        <input type="text" id="name" name="name" placeholder="ex. Sophie Martin" required autocomplete="name">
+                        <div class="form-error" id="name-error">Veuillez indiquer votre nom.</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Adresse email professionnelle</label>
+                        <input type="email" id="email" name="email" placeholder="vous@exemple.fr" required autocomplete="email">
+                        <div class="form-error" id="email-error">Adresse email invalide.</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="patients_per_week">Combien de patients par semaine ?</label>
+                        <select id="patients_per_week" name="patients_per_week">
+                            <option value="">— Sélectionner —</option>
+                            <option value="5">Moins de 10</option>
+                            <option value="15">10 à 20</option>
+                            <option value="30">20 à 40</option>
+                            <option value="50">Plus de 40</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom:12px;">
+                        <label id="cgv-label" style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:0.85rem;font-weight:400;color:var(--muted);line-height:1.5;">
+                            <input type="checkbox" id="cgv-checkbox" name="cgv_accepted" style="width:16px;height:16px;flex-shrink:0;margin-top:2px;accent-color:var(--teal);cursor:pointer;" required>
+                            <span>J'ai lu et j'accepte les <a href="/cgv" target="_blank" style="color:var(--teal-dark);font-weight:600;text-decoration:none;border-bottom:1px solid currentColor;">Conditions Générales de Vente</a> de Kinévia</span>
+                        </label>
+                        <div class="form-error" id="cgv-error">Vous devez accepter les CGV pour continuer.</div>
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="submit-btn">
+                        Rejoindre le programme bêta →
+                    </button>
+
+                    <p class="form-note">
+                        <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                        Sans engagement · Sans carte bancaire · Données protégées RGPD
+                    </p>
+
+                    <div id="submit-error" style="color: #ef4444; font-size: 0.85rem; margin-top: 10px; text-align: center; display: none;"></div>
+                </form>
+
+                <!-- Success state (hidden by default) -->
+                <div class="form-success" id="form-success">
+                    <div class="success-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                        </svg>
+                    </div>
+                    <h3>Bienvenue dans la bêta !</h3>
+                    <p>Vous êtes inscrit(e). Un email de bienvenue vient de vous être envoyé avec les prochaines étapes. À très vite sur Kinévia !</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-brand">Kin<span>évia</span></div>
+        <div class="footer-links">
+            <a href="/mentions-legales">Mentions légales</a>
+            <a href="/confidentialite">Confidentialité</a>
+            <a href="/cgu">CGU</a>
+            <a href="/cgv">CGV</a>
+        </div>
+    </footer>
+
+    <script>
+        // ─── Load signup count ───
+        async function loadCount() {
+            try {
+                const res = await fetch('/api/beta/count');
+                const data = await res.json();
+                if (data.count >= 3) {
+                    document.getElementById('counter-number').textContent = data.count;
+                    document.getElementById('counter-block').style.display = 'flex';
+                }
+            } catch (e) {
+                // silently ignore
+            }
+        }
+        loadCount();
+
+        // ─── Form submission ───
+        const form = document.getElementById('beta-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const submitError = document.getElementById('submit-error');
+
+        function validateEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const patients_per_week = document.getElementById('patients_per_week').value;
+            const cgvAccepted = document.getElementById('cgv-checkbox').checked;
+
+            // Client-side validation
+            let hasError = false;
+
+            const nameErr = document.getElementById('name-error');
+            const emailErr = document.getElementById('email-error');
+            const cgvErr = document.getElementById('cgv-error');
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+
+            if (!name) {
+                nameErr.classList.add('visible');
+                nameInput.classList.add('error');
+                hasError = true;
+            } else {
+                nameErr.classList.remove('visible');
+                nameInput.classList.remove('error');
+            }
+
+            if (!email || !validateEmail(email)) {
+                emailErr.classList.add('visible');
+                emailInput.classList.add('error');
+                hasError = true;
+            } else {
+                emailErr.classList.remove('visible');
+                emailInput.classList.remove('error');
+            }
+
+            if (!cgvAccepted) {
+                cgvErr.classList.add('visible');
+                document.getElementById('cgv-label').style.color = '#ef4444';
+                hasError = true;
+            } else {
+                cgvErr.classList.remove('visible');
+                document.getElementById('cgv-label').style.color = '';
+            }
+
+            if (hasError) return;
+
+            // Submit
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Inscription en cours…';
+            submitError.style.display = 'none';
+
+            try {
+                const res = await fetch('/api/beta/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, patients_per_week: patients_per_week ? parseInt(patients_per_week) : null })
+                });
+
+                const data = await res.json();
+
+                if (res.ok) {
+                    // Show success
+                    form.style.display = 'none';
+                    document.getElementById('form-success').style.display = 'block';
+                } else {
+                    submitError.textContent = data.error || 'Une erreur est survenue. Veuillez réessayer.';
+                    submitError.style.display = 'block';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Rejoindre le programme bêta →';
+                }
+            } catch (err) {
+                submitError.textContent = 'Erreur réseau. Veuillez réessayer.';
+                submitError.style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Rejoindre le programme bêta →';
+            }
+        });
+    </script>
+
+    <!-- PWA Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js')
+            .then(function(reg) { console.log('[SW] Registered:', reg.scope); })
+            .catch(function(err) { console.warn('[SW] Registration failed:', err); });
+        });
+      }
+    </script>
+
+    <!-- PWA Install Prompt -->
+    <script src="/pwa-install.js" defer></script>
+</body>
+</html>

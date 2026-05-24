@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title & description -->
+    <title>Exercices de kinésithérapie — Bibliothèque complète | Kinévia</title>
+    <meta name="description" content="Découvrez notre bibliothèque d'exercices de kinésithérapie : épaule, genou, dos, hanche, cheville et plus. Filtrez par zone corporelle ou pathologie. Exercices professionnels pour kinésithérapeutes.">
+    <meta name="keywords" content="exercices kinésithérapie, exercices kiné épaule, exercices kiné genou, exercices kiné dos, rééducation, programme exercices kiné, lombalgie, cervicalgie, tendinopathie">
+    <meta name="author" content="Kinévia">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://kinevia.pro/exercices">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.png" type="image/png">
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#38BDF8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kinevia.pro/exercices">
+    <meta property="og:site_name" content="Kinévia">
+    <meta property="og:title" content="Exercices de kinésithérapie — Bibliothèque complète | Kinévia">
+    <meta property="og:description" content="Bibliothèque d'exercices professionnels pour kinésithérapeutes. Filtrez par zone corporelle ou pathologie.">
+    <meta property="og:image" content="https://kinevia.pro/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Exercices de kinésithérapie — Bibliothèque | Kinévia">
+    <meta name="twitter:description" content="Bibliothèque d'exercices professionnels pour kinésithérapeutes. Filtrez par zone corporelle ou pathologie.">
+    <meta name="twitter:image" content="https://kinevia.pro/og-image.png">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Exercices de kinésithérapie",
+      "description": "Bibliothèque complète d'exercices de kinésithérapie pour professionnels. Classés par zone corporelle et pathologie.",
+      "url": "https://kinevia.pro/exercices",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Kinévia",
+        "url": "https://kinevia.pro"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "Kinévia",
+        "url": "https://kinevia.pro"
+      }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #38BDF8;
+            --primary-dark: #0EA5E9;
+            --primary-light: #E0F2FE;
+            --accent: #2DD4BF;
+            --accent-light: #CCFBF1;
+            --ink: #0f172a;
+            --paper: #f8fafc;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAV */
+        nav {
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--ink);
+            letter-spacing: -0.5px;
+            text-decoration: none;
+        }
+        .logo span { color: var(--primary); }
+        .nav-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+        .btn-ghost {
+            background: transparent;
+            color: var(--muted);
+        }
+        .btn-ghost:hover { color: var(--ink); }
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+        .btn-primary:hover { background: var(--primary-dark); }
+
+        /* HERO */
+        .hero-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px 40px;
+            text-align: center;
+        }
+        .hero-section h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+            color: var(--ink);
+        }
+        .hero-section h1 em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-sub {
+            margin-top: 16px;
+            font-size: 1.1rem;
+            color: var(--muted);
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* FILTERS */
+        .filters-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px 24px;
+        }
+        .filter-group {
+            margin-bottom: 16px;
+        }
+        .filter-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .filter-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .filter-pill {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            border: 1px solid var(--border);
+            background: var(--white);
+            color: var(--muted);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .filter-pill:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        .filter-pill.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        /* GRID */
+        .exercices-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px 60px;
+        }
+        .exercices-count {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+        .exercices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .exercice-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .exercice-img {
+            width: 100%;
+            height: 160px;
+            background: #f1f5f9;
+            overflow: hidden;
+        }
+        .exercice-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .exercice-body {
+            padding: 20px 24px 24px;
+        }
+        .exercice-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px -5px rgba(0,0,0,0.08);
+        }
+        .exercice-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+        .exercice-card .exercice-body p {
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.5;
+            margin-bottom: 12px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .exercice-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .tag {
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.72rem;
+            font-weight: 600;
+        }
+        .tag-zone {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+        }
+        .tag-patho {
+            background: var(--accent-light);
+            color: #14B8A6;
+        }
+        .tag-niveau {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .tag-duree {
+            background: #f3e8ff;
+            color: #7c3aed;
+        }
+
+        /* CTA */
+        .cta-section {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            padding: 48px 40px;
+            background: linear-gradient(135deg, var(--primary), #0369a1);
+            border-radius: 20px;
+            text-align: center;
+            color: var(--white);
+        }
+        .cta-section h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+        .cta-section p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            background: var(--white);
+            color: var(--primary-dark);
+            transition: all 0.2s;
+        }
+        .btn-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+        }
+        footer .logo { font-size: 1.2rem; }
+
+        /* LOADING */
+        .loading-spinner {
+            display: flex;
+            justify-content: center;
+            padding: 60px 0;
+        }
+        .spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--border);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* EMPTY STATE */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--muted);
+        }
+        .empty-state p {
+            font-size: 1.1rem;
+        }
+
+        /* MOBILE */
+        @media (max-width: 640px) {
+            nav { padding: 16px 20px; }
+            .hero-section { padding: 40px 20px 24px; }
+            .filters-section { padding: 0 20px 20px; }
+            .exercices-section { padding: 0 20px 40px; }
+            .exercices-grid { grid-template-columns: 1fr; }
+            .cta-section { margin: 0 20px 40px; padding: 32px 20px; }
+            .nav-actions .btn-ghost { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAV -->
+    <nav>
+        <a href="/" class="logo">Kin<span>&eacute;via</span></a>
+        <div class="nav-actions">
+            <a href="/tarifs" class="btn btn-ghost">Tarifs</a>
+            <a href="/connexion" class="btn btn-ghost">Connexion</a>
+            <a href="/beta" class="btn btn-primary">Essai gratuit 14 jours</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-section">
+        <h1>Biblioth&egrave;que d'exercices de <em>kin&eacute;sith&eacute;rapie</em></h1>
+        <p class="hero-sub">Parcourez notre catalogue d'exercices professionnels class&eacute;s par zone corporelle et pathologie. Utilisez-les dans vos programmes de r&eacute;&eacute;ducation avec Kinévia.</p>
+    </section>
+
+    <!-- FILTERS -->
+    <section class="filters-section">
+        <div class="filter-group">
+            <div class="filter-label">Zone corporelle</div>
+            <div class="filter-pills" id="zone-filters"></div>
+        </div>
+        <div class="filter-group">
+            <div class="filter-label">Pathologie</div>
+            <div class="filter-pills" id="patho-filters"></div>
+        </div>
+    </section>
+
+    <!-- EXERCICES GRID -->
+    <section class="exercices-section">
+        <div class="exercices-count" id="exercices-count"></div>
+        <div id="exercices-container">
+            <div class="loading-spinner"><div class="spinner"></div></div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>Cr&eacute;ez des programmes personnalis&eacute;s pour vos patients</h2>
+        <p>Acc&eacute;dez &agrave; la biblioth&egrave;que compl&egrave;te, cr&eacute;ez vos propres exercices et partagez-les avec vos patients en un clic.</p>
+        <a href="/beta" class="btn-cta">Essai gratuit 14 jours &rarr;</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <a href="/" class="logo">Kin<span>&eacute;via</span></a>
+        <p style="margin-top:8px">&copy; 2026 Kinévia. Tous droits r&eacute;serv&eacute;s.</p>
+        <div style="margin-top:12px; display:flex; gap:20px; justify-content:center; flex-wrap:wrap;">
+            <a href="/mentions-legales" style="color:var(--muted);font-size:0.82rem;text-decoration:none;">Mentions l&eacute;gales</a>
+            <a href="/confidentialite" style="color:var(--muted);font-size:0.82rem;text-decoration:none;">Confidentialit&eacute;</a>
+            <a href="/cgu" style="color:var(--muted);font-size:0.82rem;text-decoration:none;">CGU</a>
+        </div>
+    </footer>
+
+    <script>
+    (function() {
+        var zoneLabels = {
+            epaule: '\u00c9paule', genou: 'Genou', dos: 'Dos lombaire', hanche: 'Hanche',
+            cheville: 'Cheville', poignet: 'Poignet', cou: 'Cou/Cervical', pied: 'Pied',
+            coude: 'Coude', rachis_thoracique: 'Dos thoracique', abdominaux: 'Abdominaux/Core',
+            geriatrie: 'G\u00e9riatrie \u2014 \u00c9quilibre', geriatrie_renforcement: 'G\u00e9riatrie \u2014 Renforcement',
+            atm: 'ATM',
+            muscles_profonds_gainage: 'Muscles profonds \u2014 Gainage',
+            muscles_profonds_plancher: 'Muscles profonds \u2014 Plancher pelvien'
+        };
+        var pathologieLabels = {
+            lombalgie: 'Lombalgie', cervicalgie: 'Cervicalgie', tendinopathie_epaule: 'Tendinopathie \u00e9paule',
+            capsulite_retractile: 'Capsulite r\u00e9tractile', entorse_cheville: 'Entorse cheville',
+            lca: 'LCA (genou)', gonarthrose: 'Gonarthrose', coxarthrose: 'Coxarthrose',
+            pth: 'Proth\u00e8se hanche (PTH)', ptg: 'Proth\u00e8se genou (PTG)', canal_carpien: 'Canal carpien',
+            hernie_discale: 'Hernie discale', sciatique: 'Sciatique/Cruralgie',
+            tendinopathie_achille: 'Tendinopathie Achille', aponevrosite_plantaire: 'Fasciite plantaire',
+            epicondylite: '\u00c9picondylite (Tennis elbow)', sfp: 'Syndrome f\u00e9moro-patellaire',
+            scoliose: 'Scoliose', torticolis: 'Torticolis'
+        };
+        var niveauLabels = { facile: 'Facile', moyen: 'Moyen', difficile: 'Difficile' };
+
+        var allExercices = [];
+        var currentZone = '';
+        var currentPatho = '';
+
+        // Build zone filter pills
+        var zoneContainer = document.getElementById('zone-filters');
+        var allZoneBtn = document.createElement('button');
+        allZoneBtn.className = 'filter-pill active';
+        allZoneBtn.textContent = 'Toutes';
+        allZoneBtn.dataset.zone = '';
+        zoneContainer.appendChild(allZoneBtn);
+        Object.keys(zoneLabels).forEach(function(z) {
+            var btn = document.createElement('button');
+            btn.className = 'filter-pill';
+            btn.textContent = zoneLabels[z];
+            btn.dataset.zone = z;
+            zoneContainer.appendChild(btn);
+        });
+
+        // Build pathologie filter pills
+        var pathoContainer = document.getElementById('patho-filters');
+        var allPathoBtn = document.createElement('button');
+        allPathoBtn.className = 'filter-pill active';
+        allPathoBtn.textContent = 'Toutes';
+        allPathoBtn.dataset.patho = '';
+        pathoContainer.appendChild(allPathoBtn);
+        Object.keys(pathologieLabels).forEach(function(p) {
+            var btn = document.createElement('button');
+            btn.className = 'filter-pill';
+            btn.textContent = pathologieLabels[p];
+            btn.dataset.patho = p;
+            pathoContainer.appendChild(btn);
+        });
+
+        // Filter click handlers
+        zoneContainer.addEventListener('click', function(e) {
+            var pill = e.target.closest('.filter-pill');
+            if (!pill) return;
+            currentZone = pill.dataset.zone;
+            zoneContainer.querySelectorAll('.filter-pill').forEach(function(b) { b.classList.remove('active'); });
+            pill.classList.add('active');
+            renderGrid();
+        });
+        pathoContainer.addEventListener('click', function(e) {
+            var pill = e.target.closest('.filter-pill');
+            if (!pill) return;
+            currentPatho = pill.dataset.patho;
+            pathoContainer.querySelectorAll('.filter-pill').forEach(function(b) { b.classList.remove('active'); });
+            pill.classList.add('active');
+            renderGrid();
+        });
+
+        function renderGrid() {
+            var filtered = allExercices;
+            if (currentZone) {
+                filtered = filtered.filter(function(ex) { return ex.zone_corporelle === currentZone; });
+            }
+            if (currentPatho) {
+                filtered = filtered.filter(function(ex) {
+                    if (!ex.pathologies) return false;
+                    var pathos = ex.pathologies.split(',').map(function(s) { return s.trim(); });
+                    return pathos.indexOf(currentPatho) > -1;
+                });
+            }
+
+            var countEl = document.getElementById('exercices-count');
+            countEl.textContent = filtered.length + ' exercice' + (filtered.length !== 1 ? 's' : '') + ' disponible' + (filtered.length !== 1 ? 's' : '');
+
+            var container = document.getElementById('exercices-container');
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="empty-state"><p>Aucun exercice ne correspond \u00e0 ces filtres.</p></div>';
+                return;
+            }
+
+            var html = '<div class="exercices-grid">';
+            filtered.forEach(function(ex) {
+                var tags = '';
+                if (ex.zone_corporelle && zoneLabels[ex.zone_corporelle]) {
+                    tags += '<span class="tag tag-zone">' + zoneLabels[ex.zone_corporelle] + '</span>';
+                }
+                if (ex.pathologies) {
+                    var pathos = ex.pathologies.split(',');
+                    pathos.slice(0, 2).forEach(function(p) {
+                        var key = p.trim();
+                        var label = pathologieLabels[key] || key;
+                        tags += '<span class="tag tag-patho">' + label + '</span>';
+                    });
+                    if (pathos.length > 2) {
+                        tags += '<span class="tag tag-patho">+' + (pathos.length - 2) + '</span>';
+                    }
+                }
+                if (ex.niveau_difficulte && niveauLabels[ex.niveau_difficulte]) {
+                    tags += '<span class="tag tag-niveau">' + niveauLabels[ex.niveau_difficulte] + '</span>';
+                }
+                if (ex.series_recommandees || ex.repetitions_recommandees) {
+                    var dosage = '';
+                    if (ex.series_recommandees) dosage += ex.series_recommandees + ' s\u00e9ries';
+                    if (ex.series_recommandees && ex.repetitions_recommandees) dosage += ' \u00d7 ';
+                    if (ex.repetitions_recommandees) dosage += ex.repetitions_recommandees + ' r\u00e9p.';
+                    tags += '<span class="tag tag-duree">' + dosage + '</span>';
+                }
+
+                var desc = ex.description || 'Exercice de kin\u00e9sith\u00e9rapie pour la r\u00e9\u00e9ducation.';
+
+                var imgHtml = '';
+                if (ex.image_url) {
+                    imgHtml = '<div class="exercice-img"><img src="' + escapeHtml(ex.image_url) + '" alt="' + escapeHtml(ex.nom) + '" loading="lazy" onerror="this.parentElement.style.display=\'none\'"></div>';
+                }
+
+                html += '<article class="exercice-card">' +
+                    imgHtml +
+                    '<div class="exercice-body">' +
+                    '<h3>' + escapeHtml(ex.nom) + '</h3>' +
+                    '<p>' + escapeHtml(desc) + '</p>' +
+                    '<div class="exercice-tags">' + tags + '</div>' +
+                    '</div>' +
+                '</article>';
+            });
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        function escapeHtml(str) {
+            var div = document.createElement('div');
+            div.appendChild(document.createTextNode(str));
+            return div.innerHTML;
+        }
+
+        // Fetch exercises from public API
+        fetch('/api/public/exercices')
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                allExercices = data.exercices || [];
+                renderGrid();
+            })
+            .catch(function() {
+                document.getElementById('exercices-container').innerHTML =
+                    '<div class="empty-state"><p>Impossible de charger les exercices. Veuillez r\u00e9essayer.</p></div>';
+            });
+    })();
+    </script>
+
+    <!-- Polsia Analytics -->
+    <script defer src="https://app.polsia.com/analytics/t/__POLSIA_SLUG__"></script>
+
+    <!-- PWA Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js')
+            .then(function(reg) { console.log('[SW] Registered:', reg.scope); })
+            .catch(function(err) { console.warn('[SW] Registration failed:', err); });
+        });
+      }
+    </script>
+</body>
+</html>

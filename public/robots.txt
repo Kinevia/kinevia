@@ -1,0 +1,32 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard/
+Disallow: /patients/
+Disallow: /programmes/
+Disallow: /bilans/
+Disallow: /suivi/
+Disallow: /parametres/
+Disallow: /abonnement/
+Disallow: /api/
+Disallow: /p/
+
+# LLM crawlers — bienvenue
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://kinevia.pro/sitemap.xml

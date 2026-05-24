@@ -1,0 +1,32 @@
+<svg width="280" height="100" viewBox="0 0 280 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kinévia — Simplifie la rééducation">
+  <defs>
+    <linearGradient id="login-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1DADE4"/>
+      <stop offset="100%" stop-color="#0E7FA8"/>
+    </linearGradient>
+    <filter id="login-shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#0E7FA8" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Icon background -->
+  <rect x="0" y="10" width="80" height="80" rx="20" fill="url(#login-bg)" filter="url(#login-shadow)"/>
+
+  <!-- K letterform — vertical stem -->
+  <rect x="18" y="22" width="9" height="46" rx="4" fill="white"/>
+
+  <!-- Upper arm -->
+  <line x1="22.5" y1="45" x2="58" y2="22" stroke="white" stroke-width="9" stroke-linecap="round"/>
+
+  <!-- Lower arm (distinctive lighter turquoise — Kinévia brand mark) -->
+  <line x1="22.5" y1="45" x2="56" y2="68" stroke="#5ED8E4" stroke-width="9" stroke-linecap="round"/>
+
+  <!-- Turquoise circle at end of lower arm -->
+  <circle cx="60" cy="70" r="7" fill="#5ED8E4"/>
+
+  <!-- Brand name -->
+  <text x="96" y="52" font-family="Inter, -apple-system, system-ui, sans-serif" font-size="34" font-weight="800" fill="#1e293b" letter-spacing="-1.5">Kiné<tspan fill="#1DADE4">via</tspan></text>
+
+  <!-- Tagline -->
+  <text x="97" y="72" font-family="Inter, -apple-system, system-ui, sans-serif" font-size="13" font-weight="400" fill="#64748B" letter-spacing="0.2">Simplifie la rééducation</text>
+</svg>

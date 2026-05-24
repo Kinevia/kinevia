@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide Micro-Entreprise Kiné — Kinévia</title>
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal: #0d9488;
+      --teal-light: #14b8a6;
+      --teal-pale: #f0fdfa;
+      --teal-mid: #ccfbf1;
+      --teal-dark: #0f766e;
+      --sky: #38bdf8;
+      --gray-900: #0f172a;
+      --gray-700: #334155;
+      --gray-500: #64748b;
+      --gray-300: #cbd5e1;
+      --gray-100: #f1f5f9;
+      --white: #ffffff;
+      --orange: #f97316;
+      --green: #22c55e;
+      --red: #ef4444;
+    }
+
+    html { font-size: 15px; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: var(--gray-900);
+      background: var(--white);
+      line-height: 1.65;
+    }
+
+    /* ===== SCREEN: Print button bar ===== */
+    @media screen {
+      .print-bar {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        background: var(--gray-900);
+        color: var(--white);
+        padding: 10px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 9999;
+        box-shadow: 0 2px 8px rgba(0,0,0,.3);
+      }
+      .print-bar .bar-title { font-size: 13px; opacity: .7; }
+      .print-bar .btn-print {
+        background: var(--teal);
+        color: var(--white);
+        border: none;
+        padding: 8px 20px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        transition: background .15s;
+      }
+      .print-bar .btn-print:hover { background: var(--teal-dark); }
+      .page-wrapper { padding-top: 52px; }
+    }
+
+    @media print {
+      .print-bar { display: none !important; }
+      .page-wrapper { padding-top: 0; }
+    }
+
+    /* ===== DOCUMENT ===== */
+    .document {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 48px 56px;
+    }
+
+    @media screen and (max-width: 700px) {
+      .document { padding: 24px 18px; }
+    }
+
+    @media print {
+      .document { padding: 0; max-width: 100%; }
+      html { font-size: 11pt; }
+    }
+
+    /* ===== COVER PAGE ===== */
+    .cover {
+      text-align: center;
+      padding: 64px 0 72px;
+      border-bottom: 3px solid var(--teal);
+      margin-bottom: 56px;
+      page-break-after: always;
+    }
+
+    .cover-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+    .cover-logo svg { width: 44px; height: 44px; }
+    .cover-logo-text {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--teal);
+      letter-spacing: -0.5px;
+    }
+
+    .cover-badge {
+      display: inline-block;
+      background: var(--teal-mid);
+      color: var(--teal-dark);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+    }
+
+    .cover h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--gray-900);
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .cover h1 span { color: var(--teal); }
+
+    .cover-subtitle {
+      font-size: 1.1rem;
+      color: var(--gray-500);
+      max-width: 520px;
+      margin: 0 auto 40px;
+    }
+
+    .cover-meta {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .cover-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .cover-meta-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gray-500);
+    }
+    .cover-meta-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray-700);
+    }
+
+    .cover-timeline {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-top: 48px;
+      flex-wrap: wrap;
+    }
+    .tl-item {
+      text-align: center;
+      padding: 20px 28px;
+      position: relative;
+    }
+    .tl-item:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -8px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--teal);
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .tl-circle {
+      width: 52px; height: 52px;
+      background: var(--teal);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 10px;
+      color: var(--white);
+      font-size: 22px;
+    }
+    .tl-time {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--teal-dark);
+    }
+    .tl-label {
+      font-size: 11px;
+      color: var(--gray-500);
+      margin-top: 3px;
+    }
+
+    /* ===== TABLE OF CONTENTS ===== */
+    .toc {
+      background: var(--teal-pale);
+      border: 1px solid var(--teal-mid);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 56px;
+      page-break-after: always;
+    }
+
+    .toc-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--teal-dark);
+      margin-bottom: 20px;
+    }
+
+    .toc-list {
+      list-style: none;
+      columns: 2;
+      column-gap: 32px;
+    }
+
+    @media (max-width: 600px) {
+      .toc-list { columns: 1; }
+    }
+
+    .toc-item {
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--teal-mid);
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+      break-inside: avoid;
+    }
+    .toc-num {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--teal);
+      min-width: 22px;
+    }
+    .toc-text {
+      font-size: 13px;
+      color: var(--gray-700);
+    }
+
+    /* ===== SECTIONS ===== */
+    .section {
+      margin-bottom: 52px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--teal-mid);
+    }
+
+    .section-num {
+      width: 36px; height: 36px;
+      min-width: 36px;
+      background: var(--teal);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .section h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      letter-spacing: -0.3px;
+    }
+
+    .section h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--teal-dark);
+      margin: 20px 0 10px;
+    }
+
+    .section h4 {
+      font-size: .93rem;
+      font-weight: 600;
+      color: var(--gray-700);
+      margin: 16px 0 8px;
+    }
+
+    p {
+      margin-bottom: 12px;
+      color: var(--gray-700);
+    }
+
+    /* ===== ALERT BOX ===== */
+    .alert {
+      display: flex;
+      gap: 14px;
+      padding: 16px 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+      border-left: 4px solid;
+    }
+    .alert-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+    .alert-body { flex: 1; }
+    .alert-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+    .alert-text { font-size: 13px; }
+
+    .alert-success { background: #f0fdf4; border-color: var(--green); }
+    .alert-success .alert-title { color: #15803d; }
+    .alert-success .alert-text { color: #166534; }
+
+    .alert-warn { background: #fff7ed; border-color: var(--orange); }
+    .alert-warn .alert-title { color: #c2410c; }
+    .alert-warn .alert-text { color: #9a3412; }
+
+    .alert-info { background: var(--teal-pale); border-color: var(--teal); }
+    .alert-info .alert-title { color: var(--teal-dark); }
+    .alert-info .alert-text { color: var(--teal-dark); }
+
+    /* ===== CHECKLIST ===== */
+    .checklist {
+      list-style: none;
+      margin: 12px 0;
+    }
+    .checklist li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--gray-100);
+      font-size: 14px;
+      color: var(--gray-700);
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .check-box {
+      width: 18px; height: 18px;
+      min-width: 18px;
+      border: 2px solid var(--teal);
+      border-radius: 4px;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .checklist .sub-item { margin-top: 4px; margin-left: 28px; font-size: 13px; color: var(--gray-500); }
+
+    /* ===== TABLE ===== */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      margin: 16px 0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .data-table thead tr {
+      background: var(--teal);
+      color: var(--white);
+    }
+    .data-table th {
+      padding: 11px 14px;
+      text-align: left;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .data-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--gray-100);
+      color: var(--gray-700);
+      vertical-align: top;
+    }
+    .data-table tbody tr:last-child td { border-bottom: none; }
+    .data-table tbody tr:nth-child(even) { background: var(--gray-100); }
+    .data-table td strong { color: var(--gray-900); }
+    .data-table .highlight { background: #fefce8 !important; }
+
+    .badge-yes { color: #15803d; font-weight: 700; }
+    .badge-no  { color: #b91c1c; font-weight: 700; }
+    .badge-warn { color: #c2410c; font-weight: 700; }
+
+    /* ===== STEPS ===== */
+    .steps { margin: 16px 0; }
+    .step-item {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 16px;
+      align-items: flex-start;
+    }
+    .step-num {
+      width: 28px; height: 28px;
+      min-width: 28px;
+      background: var(--teal-mid);
+      color: var(--teal-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      margin-top: 1px;
+    }
+    .step-body { flex: 1; }
+    .step-title { font-size: 14px; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+    .step-text { font-size: 13px; color: var(--gray-700); }
+
+    /* ===== CODE BLOCK ===== */
+    .code-block {
+      background: var(--gray-900);
+      color: #a3e635;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin: 14px 0;
+      white-space: pre;
+      overflow-x: auto;
+      line-height: 1.6;
+    }
+
+    /* ===== FAQ ===== */
+    .faq-item {
+      border: 1px solid var(--gray-300);
+      border-radius: 10px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .faq-q {
+      background: var(--gray-100);
+      padding: 14px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--teal-dark);
+    }
+    .faq-a {
+      padding: 14px 18px;
+      font-size: 13.5px;
+      color: var(--gray-700);
+      border-top: 1px solid var(--gray-300);
+    }
+
+    /* ===== SUMMARY CARD ===== */
+    .summary-card {
+      background: linear-gradient(135deg, var(--teal), var(--teal-light));
+      color: var(--white);
+      border-radius: 16px;
+      padding: 36px 40px;
+      margin: 40px 0;
+    }
+    .summary-card h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 600px) {
+      .summary-grid { grid-template-columns: 1fr; }
+    }
+    .summary-stat {
+      background: rgba(255,255,255,.15);
+      border-radius: 10px;
+      padding: 16px 20px;
+    }
+    .summary-stat-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: .8;
+      margin-bottom: 6px;
+    }
+    .summary-stat-value {
+      font-size: 22px;
+      font-weight: 800;
+    }
+    .summary-stat-sub {
+      font-size: 12px;
+      opacity: .7;
+      margin-top: 3px;
+    }
+
+    /* ===== RESOURCES GRID ===== */
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+      margin: 16px 0;
+    }
+    .resource-card {
+      border: 1px solid var(--teal-mid);
+      border-radius: 10px;
+      padding: 16px;
+      background: var(--teal-pale);
+    }
+    .resource-card-org { font-size: 12px; font-weight: 700; color: var(--teal); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .resource-card-role { font-size: 12.5px; color: var(--gray-700); margin-bottom: 8px; }
+    .resource-card-link { font-size: 12px; color: var(--teal-dark); font-weight: 600; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      margin-top: 72px;
+      padding-top: 24px;
+      border-top: 2px solid var(--teal-mid);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .footer-brand svg { width: 22px; height: 22px; }
+    .footer-brand-name { font-size: 14px; font-weight: 700; color: var(--teal); }
+    .footer-meta { font-size: 12px; color: var(--gray-500); }
+
+    /* ===== PRINT STYLES ===== */
+    @media print {
+      .section { page-break-inside: avoid; }
+      .cover { page-break-after: always; }
+      .toc { page-break-after: always; }
+      h2 { page-break-after: avoid; }
+      h3 { page-break-after: avoid; }
+      .alert { page-break-inside: avoid; }
+      .faq-item { page-break-inside: avoid; }
+      .summary-card { background: var(--teal) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .data-table thead tr { background: var(--teal) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- PRINT BAR (screen only) -->
+<div class="print-bar">
+  <span class="bar-title">Kinévia — Guide Micro-Entreprise Kiné</span>
+  <button class="btn-print" onclick="window.print()">
+    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+    </svg>
+    Télécharger PDF
+  </button>
+</div>
+
+<div class="page-wrapper">
+<div class="document">
+
+  <!-- ===== COVER ===== -->
+  <div class="cover">
+    <div class="cover-logo">
+      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="44" height="44" rx="10" fill="#0d9488"/>
+        <path d="M11 22C11 16 15.5 11 22 11C28.5 11 33 16 33 22" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="22" cy="22" r="5" fill="white"/>
+        <path d="M22 27V33" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M18 30H26" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      <span class="cover-logo-text">Kinévia</span>
+    </div>
+
+    <div class="cover-badge">Guide pratique · Mai 2026</div>
+
+    <h1>Déclarer sa <span>Micro-Entreprise</span><br>Secondaire en tant que Kiné</h1>
+
+    <p class="cover-subtitle">
+      Activité SaaS / prestation de services en parallèle de l'activité libérale BNC régime réel — guide complet et checklist pas-à-pas
+    </p>
+
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Cible</span>
+        <span class="cover-meta-value">Kinésithérapeute libéral BNC</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Activité visée</span>
+        <span class="cover-meta-value">SaaS / Services B2B santé</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Validité</span>
+        <span class="cover-meta-value">2026 – 2028</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Statut</span>
+        <span class="cover-meta-value" style="color: var(--green)">✅ 100 % légal</span>
+      </div>
+    </div>
+
+    <div class="cover-timeline">
+      <div class="tl-item">
+        <div class="tl-circle">📋</div>
+        <div class="tl-time">3 – 5 jours</div>
+        <div class="tl-label">Préparation<br>documents</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-circle">🖥️</div>
+        <div class="tl-time">30 min</div>
+        <div class="tl-label">Déclaration<br>INPI en ligne</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-circle">🏷️</div>
+        <div class="tl-time">2 – 4 sem.</div>
+        <div class="tl-label">Réception<br>SIRET</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-circle">🚀</div>
+        <div class="tl-time">J+1</div>
+        <div class="tl-label">Première<br>facturation</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TABLE OF CONTENTS ===== -->
+  <div class="toc">
+    <div class="toc-title">Sommaire</div>
+    <ul class="toc-list">
+      <li class="toc-item">
+        <span class="toc-num">1.</span>
+        <span class="toc-text">Résumé exécutif & légalité du cumul</span>
+      </li>
+      <li class="toc-item">
+        <span class="toc-num">2.</span>
+        <span class="toc-text">Checklist documents à rassembler</span>
+      </li>
+      <li class="toc-item">
+        <span class="toc-num">3.</span>
+        <span class="toc-text">Étapes de déclaration Guichet Unique INPI</span>
+      </li>
+      <li class="toc-item">
+        <span class="toc-num">4.</span>
+        <span class="toc-text">Code APE recommandé pour SaaS santé</span>
+      </li>
+      <li class="toc-item">
+        <span class="toc-num">5.</span>
+        <span class="toc-text">Options fiscales à choisir</span>
+      </li>
+      <li class="toc-item">
+        <span class="toc-num">6.</span>
+        <span class="toc-text">Points d'attention spécifiques Kinévia</span>
+      </li>
+      <li class="toc-item">
+        <span class="toc-num">7.</span>
+        <span class="toc-text">Post-déclaration : étapes essentielles</span>
+      </li>
+      <li class="toc-item">
+        <span class="toc-num">8.</span>
+        <span class="toc-text">Checklist finale chronologique</span>
+      </li>
+      <li class="toc-item">
+        <span class="toc-num">9.</span>
+        <span class="toc-text">Ressources et contacts officiels</span>
+      </li>
+      <li class="toc-item">
+        <span class="toc-num">10.</span>
+        <span class="toc-text">FAQ — Questions fréquentes</span>
+      </li>
+      <li class="toc-item">
+        <span class="toc-num">11.</span>
+        <span class="toc-text">Résumé financier annuel (simulation)</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ===== SECTION 1: RÉSUMÉ ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Résumé exécutif &amp; légalité du cumul</h2>
+    </div>
+
+    <div class="alert alert-success">
+      <span class="alert-icon">✅</span>
+      <div class="alert-body">
+        <div class="alert-title">Cumul 100 % légal en France</div>
+        <div class="alert-text">Vous pouvez <strong>légalement</strong> cumuler votre activité libérale de kiné en BNC régime réel avec une nouvelle micro-entreprise (micro-BIC) pour votre activité SaaS/services, à condition que chaque activité respecte ses propres seuils de chiffre d'affaires.</div>
+      </div>
+    </div>
+
+    <p>Les deux structures sont <strong>totalement indépendantes</strong> : chacune a ses propres cotisations sociales, ses propres seuils de chiffre d'affaires, et sa propre fiscalité. L'administration fiscale gère les deux séparément.</p>
+
+    <h3>Points-clés du régime micro-BIC pour un SaaS</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Caractéristique</th>
+          <th>Valeur</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Plafond CA annuel</td><td><strong>83 600 €</strong> (prestations de services)</td></tr>
+        <tr><td>Abattement forfaitaire IR</td><td><strong>50 %</strong> du CA</td></tr>
+        <tr><td>Cotisations URSSAF</td><td><strong>~22 %</strong> du CA</td></tr>
+        <tr><td>Versement libératoire IR</td><td><strong>2,2 %</strong> du CA (si éligible)</td></tr>
+        <tr><td>Seuil franchise TVA</td><td><strong>37 500 €</strong> de CA</td></tr>
+        <tr><td>Coût de création</td><td><strong>GRATUIT</strong> — 0 €</td></tr>
+        <tr><td>Délai obtention SIRET</td><td><strong>2 à 4 semaines</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== SECTION 2: DOCUMENTS ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Checklist — Documents à rassembler</h2>
+    </div>
+
+    <h3>Documents personnels (obligatoires)</h3>
+    <ul class="checklist">
+      <li>
+        <div class="check-box"></div>
+        <div>
+          <strong>Pièce d'identité en cours de validité</strong> — passeport ou CNI, photocopie recto-verso en PDF
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div>
+          <strong>Justificatif de domicile</strong> datant de moins de 3 mois — facture électricité, gaz, eau, téléphone, quittance de loyer ou attestation d'hébergement
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div>
+          <strong>Numéro SIRET de l'activité kiné existante</strong> — à récupérer auprès de l'URSSAF ou votre expert-comptable
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div>
+          <strong>Attestation URSSAF</strong> — optionnel mais recommandé pour vérifier votre situation actuelle
+        </div>
+      </li>
+    </ul>
+
+    <h3>Documents sur l'activité SaaS</h3>
+    <ul class="checklist">
+      <li>
+        <div class="check-box"></div>
+        <div><strong>Description de l'activité</strong> — "Développement et commercialisation d'une plateforme SaaS de gestion pour professionnels de santé" (2-3 lignes)</div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div><strong>Code APE</strong> — 6201Z (Programmation informatique) — voir Section 4</div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div><strong>Adresse du siège social</strong> — domicile personnel ou local professionnel</div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div><strong>Estimé CA prévisionnel</strong> année 1 et année 2</div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div><strong>Numéro de téléphone et email</strong> de contact (professionnels)</div>
+      </li>
+    </ul>
+
+    <h3>Déclaration personnelle (à rédiger)</h3>
+    <ul class="checklist">
+      <li>
+        <div class="check-box"></div>
+        <div>
+          <strong>Déclaration de non-condamnation</strong> — Document attestant que vous n'avez jamais été condamné(e) et que vous n'êtes pas sous le coup d'une interdiction d'exercer. Format libre (prose ou PDF téléchargeable sur procedures.inpi.fr)
+        </div>
+      </li>
+    </ul>
+
+    <div class="alert alert-info">
+      <span class="alert-icon">💡</span>
+      <div class="alert-body">
+        <div class="alert-title">Si hébergé chez quelqu'un</div>
+        <div class="alert-text">Attestation d'hébergement signée + copie pièce d'identité de l'hébergeur + justificatif de domicile à son nom.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 3: INPI ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Étapes de déclaration — Guichet Unique INPI</h2>
+    </div>
+
+    <div class="alert alert-info">
+      <span class="alert-icon">🔗</span>
+      <div class="alert-body">
+        <div class="alert-title">Adresse officielle</div>
+        <div class="alert-text"><strong>https://procedures.inpi.fr/</strong> — Cliquez sur le bouton rouge « Déclarer »</div>
+      </div>
+    </div>
+
+    <h3>Accès et création de compte</h3>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Créer un compte utilisateur</div>
+          <div class="step-text">Email personnel valide + mot de passe sécurisé (min. 12 caractères, majuscules, chiffres, caractères spéciaux). Validez l'email via le lien de confirmation.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Sélectionner « Créer une entreprise »</div>
+          <div class="step-text">Pas une modification. Forme juridique : <strong>Entreprise individuelle</strong>. Confirmez que c'est une nouvelle activité (pas une reprise).</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Remplir les informations personnelles</div>
+          <div class="step-text">Nom, prénom, date de naissance, nationalité, adresse, téléphone, email.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Déclarer l'activité principale (SaaS)</div>
+          <div class="step-text">Code APE : <strong>6201Z</strong> — Description : "Développement et commercialisation d'une plateforme SaaS de gestion pour professionnels de santé". Date de début d'activité : date souhaitée.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <div class="step-title">Choisir le régime fiscal : Micro-BIC</div>
+          <div class="step-text">Acceptez le <strong>régime micro-BIC</strong> proposé (abattement 50 %). Si CA &lt; 83 600 €, vous y êtes automatiquement éligible.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <div class="step-title">Option TVA : Franchise en base</div>
+          <div class="step-text">Gardez la franchise en base (défaut, CA &lt; 37 500 €). N'activez pas l'assujettissement volontaire à la TVA au démarrage.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">7</div>
+        <div class="step-body">
+          <div class="step-title">Versement libératoire (optionnel mais recommandé)</div>
+          <div class="step-text">Si RFR 2024 ≤ 29 315 € par part fiscale, optez pour le versement libératoire : <strong>2,2 % du CA</strong> au lieu de votre tranche IR. Économie significative.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">8</div>
+        <div class="step-body">
+          <div class="step-title">Fréquence déclaration CA : Mensuelle ou Trimestrielle</div>
+          <div class="step-text">Trimestrielle recommandée si activité irrégulière. Mensuelle si revenus réguliers dès le départ.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">9</div>
+        <div class="step-body">
+          <div class="step-title">Déclarer l'activité kiné comme activité secondaire</div>
+          <div class="step-text">Section « Activités supplémentaires » — indiquez votre SIRET kiné existant à titre informatif. Confirme le cumul auprès de l'administration.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">10</div>
+        <div class="step-body">
+          <div class="step-title">Télécharger les justificatifs &amp; valider</div>
+          <div class="step-text">Pièce d'identité + justificatif domicile + déclaration non-condamnation. Vérifier deux fois chaque champ. Cliquer <strong>« Finaliser »</strong> — gratuit, aucun paiement.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-warn">
+      <span class="alert-icon">⚠️</span>
+      <div class="alert-body">
+        <div class="alert-title">Dossier incomplet</div>
+        <div class="alert-text">En cas de demande de régularisation, vous recevrez un email. Corrigez dans les <strong>5 jours</strong> via votre tableau de bord Guichet Unique pour ne pas repousser le traitement.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 4: CODE APE ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Code APE recommandé pour un SaaS santé</h2>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Code APE</th>
+          <th>Libellé</th>
+          <th>Recommandé ?</th>
+          <th>Quand ?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td><strong>6201Z</strong></td>
+          <td>Programmation informatique</td>
+          <td><span class="badge-yes">✅ RECOMMANDÉ</span></td>
+          <td>Développement d'une plateforme SaaS de gestion</td>
+        </tr>
+        <tr>
+          <td><strong>6311Z</strong></td>
+          <td>Traitement de données, hébergement</td>
+          <td><span class="badge-warn">⚠️ Alternatif</span></td>
+          <td>Si activité principale = hébergement sécurisé HDS</td>
+        </tr>
+        <tr>
+          <td>6202A</td>
+          <td>Conseil en informatique</td>
+          <td><span class="badge-no">❌ Non adapté</span></td>
+          <td>Plutôt pour du consulting IT pur</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="alert alert-success">
+      <span class="alert-icon">🎯</span>
+      <div class="alert-body">
+        <div class="alert-title">Choix pour Kinévia</div>
+        <div class="alert-text"><strong>6201Z</strong> — C'est le code le plus pertinent pour une SaaS de gestion, même si vous hébergez des données (l'hébergement reste un service auxiliaire au développement).</div>
+      </div>
+    </div>
+
+    <h3>Implications du code APE 6201Z</h3>
+    <table class="data-table">
+      <thead><tr><th>Critère</th><th>Valeur</th></tr></thead>
+      <tbody>
+        <tr><td>Cotisations URSSAF</td><td>~22 % du CA</td></tr>
+        <tr><td>Taux versement libératoire IR</td><td>2,2 % du CA</td></tr>
+        <tr><td>OPCO (formation professionnelle)</td><td>ATLAS</td></tr>
+        <tr><td>Conventions collectives</td><td>Non applicables (micro sans salarié)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== SECTION 5: FISCAL ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Options fiscales à choisir</h2>
+    </div>
+
+    <h3>5.1 Régime fiscal : Micro-BIC</h3>
+    <p>L'activité SaaS/développement logiciel relève des <strong>Bénéfices Industriels et Commerciaux (BIC)</strong>. En dessous du plafond de 83 600 €, vous bénéficiez du régime micro automatiquement.</p>
+
+    <table class="data-table">
+      <thead><tr><th>Régime</th><th>Abattement</th><th>Bénéfice imposable (ex: CA 25 000 €)</th></tr></thead>
+      <tbody>
+        <tr class="highlight">
+          <td><strong>Micro-BIC</strong> (SaaS) ✅</td>
+          <td>50 % du CA</td>
+          <td>12 500 €</td>
+        </tr>
+        <tr>
+          <td>Micro-BNC</td>
+          <td>34 % du CA</td>
+          <td>16 500 € — <em>moins avantageux</em></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>5.2 Versement libératoire de l'IR</h3>
+
+    <table class="data-table">
+      <thead><tr><th>Situation fiscale 2024</th><th>Éligible VFL ?</th></tr></thead>
+      <tbody>
+        <tr><td>Personne seule — RFR ≤ 29 315 €</td><td><span class="badge-yes">✅ OUI</span></td></tr>
+        <tr><td>Couple (2 parts) — RFR ≤ 58 630 €</td><td><span class="badge-yes">✅ OUI</span></td></tr>
+        <tr><td>Couple + 1 enfant (3 parts) — RFR ≤ 87 945 €</td><td><span class="badge-yes">✅ OUI</span></td></tr>
+        <tr><td>Au-dessus des seuils</td><td><span class="badge-no">❌ NON</span></td></tr>
+      </tbody>
+    </table>
+
+    <p>Si éligible, le VFL réduit drastiquement votre imposition : <strong>2,2 % du CA</strong> au lieu de votre tranche marginale IR.</p>
+
+    <h3>5.3 TVA — Franchise en base</h3>
+    <table class="data-table">
+      <thead><tr><th>Seuil (2026)</th><th>Conséquence</th></tr></thead>
+      <tbody>
+        <tr><td>CA &lt; 37 500 €</td><td><span class="badge-yes">Franchise en base</span> — vous ne facturez pas la TVA</td></tr>
+        <tr><td>CA entre 37 500 € et 41 250 €</td><td>Pas de TVA en 2026, TVA dès 1er janv. 2027</td></tr>
+        <tr><td>CA &gt; 41 250 €</td><td><span class="badge-warn">TVA due immédiatement</span> dès le jour du dépassement</td></tr>
+      </tbody>
+    </table>
+
+    <div class="alert alert-warn">
+      <span class="alert-icon">⚠️</span>
+      <div class="alert-body">
+        <div class="alert-title">Plafond micro ≠ Seuil TVA</div>
+        <div class="alert-text">Vous pouvez être en micro-BIC (CA &lt; 83 600 €) tout en devant facturer la TVA (CA &gt; 37 500 €). Surveillez les deux seuils séparément.</div>
+      </div>
+    </div>
+
+    <h3>5.4 Cotisations URSSAF</h3>
+    <table class="data-table">
+      <thead><tr><th>Type</th><th>Taux</th><th>Exemple CA 25 000 €/an</th></tr></thead>
+      <tbody>
+        <tr><td>Cotisations sociales (URSSAF)</td><td>~22 %</td><td>5 500 €/an</td></tr>
+        <tr><td>Versement libératoire IR (si éligible)</td><td>2,2 %</td><td>550 €/an</td></tr>
+        <tr class="highlight"><td><strong>Total</strong></td><td><strong>~24 %</strong></td><td><strong>6 050 €/an</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div class="alert alert-info">
+      <span class="alert-icon">💡</span>
+      <div class="alert-body">
+        <div class="alert-title">Double cotisation sociale</div>
+        <div class="alert-text">Votre activité kiné a ses propres cotisations (CARPIMKO + URSSAF). La SaaS aura les siennes (URSSAF TNS). Les deux se cumulent — chaque activité est calculée séparément.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 6: POINTS ATTENTION ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Points d'attention spécifiques Kinévia</h2>
+    </div>
+
+    <h3>6.1 CFE — Cotisation Foncière des Entreprises</h3>
+    <table class="data-table">
+      <thead><tr><th>Année</th><th>CFE exigible ?</th><th>Montant estimé</th></tr></thead>
+      <tbody>
+        <tr><td>Année 1 (création)</td><td><span class="badge-yes">❌ Exonéré</span></td><td>0 €</td></tr>
+        <tr><td>Année 2</td><td><span class="badge-warn">⚠️ Réduite 50 %</span></td><td>~120 – 250 € (selon commune)</td></tr>
+        <tr><td>Année 3+</td><td><span class="badge-no">✅ Plein</span></td><td>243 – 1 000 € (base minimale)</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:13px; color: var(--gray-500)">La CFE se calcule <strong>par activité</strong> (pas sur le CA cumulé kiné + SaaS). Paiement avant le <strong>15 décembre</strong> chaque année sur impots.gouv.fr.</p>
+
+    <h3>6.2 Assurance RC Pro Informatique</h3>
+    <p>Non obligatoire pour une micro-entreprise sans salarié, mais <strong>fortement recommandée</strong> pour un SaaS traitant des données de santé.</p>
+    <table class="data-table">
+      <thead><tr><th>Type</th><th>Obligation</th><th>Coût estimé</th></tr></thead>
+      <tbody>
+        <tr><td>RC Pro Kiné (existante)</td><td><span class="badge-no">Obligatoire</span></td><td>Déjà payée</td></tr>
+        <tr><td>RC Pro Informatique/SaaS</td><td><span class="badge-warn">Recommandée</span></td><td>200 – 600 €/an</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:13px">Conseil : vérifiez auprès de votre assureur kiné actuel si une extension RC Pro informatique est possible.</p>
+
+    <h3>6.3 RGPD &amp; HDS (Données de santé)</h3>
+    <table class="data-table">
+      <thead><tr><th>Obligation</th><th>Statut</th><th>Action requise</th></tr></thead>
+      <tbody>
+        <tr><td>Politique de confidentialité RGPD</td><td><span class="badge-yes">✅ OK</span></td><td>Vérifier que la page est à jour sur kinevia.pro</td></tr>
+        <tr><td>Hébergeur HDS certifié</td><td><span class="badge-warn">⚠️ À vérifier</span></td><td>Scalingo ❌ non certifié · Outscale ✅ certifié</td></tr>
+        <tr><td>Déclaration CNIL</td><td><span class="badge-warn">⚠️ À faire</span></td><td>15 min sur cnil.fr (gratuit)</td></tr>
+      </tbody>
+    </table>
+
+    <h3>6.4 Mentions légales à ajouter sur kinevia.pro</h3>
+    <p>Après réception du SIRET, mettre à jour le footer / page mentions légales :</p>
+    <div class="code-block">Micro-entreprise enregistrée auprès de l'INPI
+SIRET : [votre nouveau SIRET]
+Forme juridique : Entreprise Individuelle
+Activité principale : Programmation informatique
+Code APE : 6201Z
+Adresse de siège social : [votre adresse]
+Responsabilité : [Votre nom complet]
+Hébergement : [Nom prestataire]
+Localisation serveurs : [ex. UE / France]
+
+Si franchise TVA (CA &lt; 37 500 €) :
+"Entreprise exonérée de TVA — Art. 293B du CGI"</div>
+  </div>
+
+  <!-- ===== SECTION 7: POST-DÉCLARATION ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Post-déclaration — Étapes essentielles</h2>
+    </div>
+
+    <h3>Délais d'obtention du SIRET</h3>
+    <table class="data-table">
+      <thead><tr><th>Étape</th><th>Délai</th></tr></thead>
+      <tbody>
+        <tr><td>Dépôt du dossier complet sur Guichet Unique</td><td>Immédiat</td></tr>
+        <tr><td>Traitement par l'INPI (dossier complet)</td><td>2 – 4 semaines</td></tr>
+        <tr><td>En cas de régularisation demandée</td><td>+1 – 2 semaines supplémentaires</td></tr>
+        <tr><td>Réception du SIRET par email</td><td>Fin du traitement</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Inscription URSSAF (automatique)</h3>
+    <p>Après obtention du SIRET, l'URSSAF vous contacte automatiquement. Activez votre compte sur <strong>autoentrepreneur.urssaf.fr</strong> et vérifiez vos données (adresse, code APE).</p>
+
+    <h3>Compte bancaire dédié (recommandé)</h3>
+    <p>Séparation comptable kiné / SaaS. Coût estimé : <strong>0 – 100 €/an</strong> selon banque.</p>
+    <p>Banques recommandées : N26, Revolut, Wise (comptes pro gratuits ou peu chers) · BNP, Crédit Mutuel, Caisse d'Épargne (~5 – 15 €/mois).</p>
+
+    <h3>Première déclaration de CA</h3>
+    <p>Sur <strong>autoentrepreneur.urssaf.fr</strong> ou l'appli mobile URSSAF. Déclarez le CA HT encaissé (pas facturé). Si versement libératoire choisi, l'IR est prélevé automatiquement avec les cotisations.</p>
+  </div>
+
+  <!-- ===== SECTION 8: CHECKLIST FINALE ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>Checklist finale chronologique</h2>
+    </div>
+
+    <h3>📋 Avant la déclaration (3 – 5 jours)</h3>
+    <ul class="checklist">
+      <li><div class="check-box"></div><div>Rassembler documents (pièce ID, justificatif domicile, déclaration non-condamnation)</div></li>
+      <li><div class="check-box"></div><div>Vérifier RFR 2024 pour éligibilité versement libératoire</div></li>
+      <li><div class="check-box"></div><div>Confirmer code APE : <strong>6201Z</strong></div></li>
+      <li><div class="check-box"></div><div>Estimer CA prévisionnel annuel</div></li>
+      <li><div class="check-box"></div><div>Rédiger description activité SaaS en 2-3 lignes</div></li>
+      <li><div class="check-box"></div><div>Récupérer le SIRET de l'activité kiné existante</div></li>
+    </ul>
+
+    <h3>🖥️ Déclaration INPI (30 min)</h3>
+    <ul class="checklist">
+      <li><div class="check-box"></div><div>Créer compte sur procedures.inpi.fr</div></li>
+      <li><div class="check-box"></div><div>Remplir formulaire : Entreprise individuelle · Micro-BIC · 6201Z</div></li>
+      <li><div class="check-box"></div><div>Déclarer activité kiné existante comme activité secondaire</div></li>
+      <li><div class="check-box"></div><div>Opter pour versement libératoire si éligible</div></li>
+      <li><div class="check-box"></div><div>Télécharger justificatifs (PDF)</div></li>
+      <li><div class="check-box"></div><div>Valider · Finaliser · <strong>Sauvegarder l'email de confirmation</strong></div></li>
+    </ul>
+
+    <h3>🏷️ Post-déclaration (2 – 4 semaines)</h3>
+    <ul class="checklist">
+      <li><div class="check-box"></div><div>Surveiller le tableau de bord Guichet Unique quotidiennement</div></li>
+      <li><div class="check-box"></div><div>Si régularisation demandée : corriger dans les 5 jours</div></li>
+      <li><div class="check-box"></div><div>Réception du SIRET par email</div></li>
+      <li><div class="check-box"></div><div>Activer le compte autoentrepreneur.urssaf.fr</div></li>
+      <li><div class="check-box"></div><div>Ouvrir un compte bancaire dédié (recommandé)</div></li>
+      <li><div class="check-box"></div><div>Mettre à jour les mentions légales sur kinevia.pro</div></li>
+      <li><div class="check-box"></div><div>Déclarer le traitement de données à la CNIL (15 min)</div></li>
+    </ul>
+
+    <h3>🚀 Démarrage activité SaaS (mois 1 – 3)</h3>
+    <ul class="checklist">
+      <li><div class="check-box"></div><div>Première déclaration CA sur URSSAF (mensuel / trimestriel)</div></li>
+      <li><div class="check-box"></div><div>Signature des contrats clients avec le nouveau SIRET</div></li>
+      <li><div class="check-box"></div><div>Facturation avec SIRET, adresse, mentions légales</div></li>
+      <li><div class="check-box"></div><div>Suivi du CA cumulé (&lt; 83 600 € annuel)</div></li>
+      <li><div class="check-box"></div><div>Suivi du seuil TVA (&lt; 37 500 € pour la franchise)</div></li>
+    </ul>
+
+    <h3>📅 Avant 15 décembre (année 2)</h3>
+    <ul class="checklist">
+      <li><div class="check-box"></div><div>Consulter l'avis CFE sur impots.gouv.fr</div></li>
+      <li><div class="check-box"></div><div>Payer la CFE avant le 15 décembre (télérèglement)</div></li>
+    </ul>
+
+    <h3>📊 Avant 31 mai (déclaration annuelle)</h3>
+    <ul class="checklist">
+      <li><div class="check-box"></div><div>Déclaration de revenus : formulaire <strong>2042-C PRO</strong> (bénéfices SaaS)</div></li>
+      <li><div class="check-box"></div><div>Paiement impôt complémentaire (si VFL choisi, impact réduit)</div></li>
+    </ul>
+  </div>
+
+  <!-- ===== SECTION 9: RESSOURCES ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <h2>Ressources et contacts officiels</h2>
+    </div>
+
+    <div class="resources-grid">
+      <div class="resource-card">
+        <div class="resource-card-org">INPI</div>
+        <div class="resource-card-role">Déclaration création micro-entreprise</div>
+        <div class="resource-card-link">procedures.inpi.fr<br>📞 01 40 15 80 80</div>
+      </div>
+      <div class="resource-card">
+        <div class="resource-card-org">URSSAF</div>
+        <div class="resource-card-role">Cotisations sociales &amp; déclarations CA</div>
+        <div class="resource-card-link">autoentrepreneur.urssaf.fr<br>📞 0806 000 556</div>
+      </div>
+      <div class="resource-card">
+        <div class="resource-card-org">Impôts</div>
+        <div class="resource-card-role">Fiscalité, déclaration de revenus, CFE</div>
+        <div class="resource-card-link">impots.gouv.fr</div>
+      </div>
+      <div class="resource-card">
+        <div class="resource-card-org">CNIL</div>
+        <div class="resource-card-role">Déclaration traitements de données</div>
+        <div class="resource-card-link">cnil.fr</div>
+      </div>
+    </div>
+
+    <h3>Outils de simulation</h3>
+    <table class="data-table">
+      <thead><tr><th>Simulateur</th><th>URL</th></tr></thead>
+      <tbody>
+        <tr><td>Versement libératoire</td><td>lamicrobyflo.fr/simulateur-vfl</td></tr>
+        <tr><td>Impôt CFE estimatif</td><td>impots.gouv.fr</td></tr>
+        <tr><td>TVA franchise</td><td>decodage-fiscal.fr/simulateur-tva</td></tr>
+      </tbody>
+    </table>
+
+    <div class="alert alert-info">
+      <span class="alert-icon">👩‍💼</span>
+      <div class="alert-body">
+        <div class="alert-title">Expert-comptable recommandé</div>
+        <div class="alert-text">Pour un cumul BNC régime réel + micro-BIC, un expert-comptable spécialisé libéraux/kiné est recommandé. Coût estimé : <strong>1 500 – 3 000 €/an</strong> pour un suivi complet (CFE, URSSAF, impôts, optimisation).</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 10: FAQ ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <h2>FAQ — Questions fréquentes</h2>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Dois-je déclarer mon activité kiné existante lors de la création de la SaaS ?</div>
+      <div class="faq-a">Oui, à titre informatif. Cela confirme à l'INPI/URSSAF que vous cumulez deux activités distinctes avec régimes différents (BNC réel pour kiné, BIC micro pour SaaS). Remplissez le champ « activités secondaires » avec votre SIRET kiné existant.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">La CFE se calcule sur le CA cumulé (kiné + SaaS) ?</div>
+      <div class="faq-a"><strong>Non — par activité.</strong> Votre activité kiné a sa propre CFE. L'activité SaaS aura la sienne. Elles ne se cumulent pas pour le calcul, mais se facturent toutes les deux séparément.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Mon CA SaaS dépasse 37 500 € en année 1 — que se passe-t-il ?</div>
+      <div class="faq-a">
+        <strong>Entre 37 500 € et 41 250 € :</strong> vous continuez sans TVA pour 2026, mais facturez la TVA dès le 1er janvier 2027.<br>
+        <strong>Au-delà de 41 250 € :</strong> vous devez facturer la TVA immédiatement (dès le jour du dépassement).<br>
+        Dans les deux cas, vous restez en régime micro-BIC tant que CA &lt; 83 600 €.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Je veux cesser l'activité SaaS après 6 mois — comment faire ?</div>
+      <div class="faq-a">Déclarez la cessation d'activité via le Guichet Unique INPI (gratuit, en ligne). Vous continuez à payer les cotisations sociales pro-rata jusqu'à la fin de la déclaration annuelle.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Dois-je cotiser à CARPIMKO pour la SaaS ?</div>
+      <div class="faq-a">Non. CARPIMKO ne s'applique qu'aux activités libérales BNC (kiné). L'activité SaaS (BIC) relève de l'assurance retraite TNS via l'URSSAF uniquement.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Le versement libératoire me dispense de déclarer aux impôts ?</div>
+      <div class="faq-a">Non. Même avec VFL, vous devez déclarer votre CA aux impôts via le formulaire <strong>2042-C PRO</strong>. Le VFL change uniquement le mode de paiement de l'IR (payé à l'URSSAF au fil de l'eau plutôt qu'aux impôts en fin d'année).</div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 11: RÉSUMÉ FINANCIER ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">11</div>
+      <h2>Résumé financier — Simulation annuelle</h2>
+    </div>
+
+    <p style="font-size:13px; color: var(--gray-500)">Hypothèse : CA SaaS de <strong>25 000 €</strong> — versement libératoire choisi</p>
+
+    <table class="data-table">
+      <thead><tr><th>Poste</th><th>Montant</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Chiffre d'affaires HT</td><td><strong>25 000 €</strong></td><td>Encaissé</td></tr>
+        <tr><td>Abattement forfaitaire BIC (50 %)</td><td>− 12 500 €</td><td>Automatique</td></tr>
+        <tr><td>Bénéfice imposable</td><td><strong>12 500 €</strong></td><td>Avant IR</td></tr>
+        <tr><td>Versement libératoire IR</td><td>− 550 €</td><td>2,2 % × 25 000 €</td></tr>
+        <tr><td>Cotisations sociales URSSAF</td><td>− 5 500 €</td><td>22 % × 25 000 €</td></tr>
+        <tr><td>CFE (année 2+)</td><td>− 300 €</td><td>Estimation base minimale</td></tr>
+        <tr><td>RC Pro informatique (optionnel)</td><td>− 300 €</td><td>Recommandée</td></tr>
+        <tr><td>Compte bancaire dédié</td><td>− 60 €</td><td>Estimation annuelle</td></tr>
+        <tr class="highlight">
+          <td><strong>Bénéfice net estimé</strong></td>
+          <td><strong>18 290 €</strong></td>
+          <td><strong>Rentabilité nette ≈ 73 %</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="summary-card">
+      <h3>En résumé pour 25 000 € de CA</h3>
+      <div class="summary-grid">
+        <div class="summary-stat">
+          <div class="summary-stat-label">Charges totales</div>
+          <div class="summary-stat-value">~6 710 €</div>
+          <div class="summary-stat-sub">IR + URSSAF + CFE + assurance</div>
+        </div>
+        <div class="summary-stat">
+          <div class="summary-stat-label">Bénéfice net</div>
+          <div class="summary-stat-value">~18 290 €</div>
+          <div class="summary-stat-sub">Après toutes les charges</div>
+        </div>
+        <div class="summary-stat">
+          <div class="summary-stat-label">Rentabilité nette</div>
+          <div class="summary-stat-value">73 %</div>
+          <div class="summary-stat-sub">Très favorable en micro</div>
+        </div>
+        <div class="summary-stat">
+          <div class="summary-stat-label">Délai SIRET</div>
+          <div class="summary-stat-value">2 – 4 sem.</div>
+          <div class="summary-stat-sub">Facturation possible dès réception</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-success">
+      <span class="alert-icon">🚀</span>
+      <div class="alert-body">
+        <div class="alert-title">Conclusion</div>
+        <div class="alert-text">Le processus est simple (15 – 30 min sur le Guichet Unique INPI), <strong>entièrement gratuit</strong>, et les charges restent raisonnables en régime micro. Vous pouvez commencer à facturer immédiatement après réception du SIRET.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <div class="footer">
+    <div class="footer-brand">
+      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="44" height="44" rx="10" fill="#0d9488"/>
+        <path d="M11 22C11 16 15.5 11 22 11C28.5 11 33 16 33 22" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="22" cy="22" r="5" fill="white"/>
+        <path d="M22 27V33" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M18 30H26" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      <span class="footer-brand-name">Kinévia</span>
+    </div>
+    <div class="footer-meta">
+      Document à jour : Mai 2026 · Validité 2026 – 2028<br>
+      Sources : INPI · URSSAF · impots.gouv.fr · CNIL · CGI · BOFiP
+    </div>
+  </div>
+
+</div>
+</div>
+
+</body>
+</html>
